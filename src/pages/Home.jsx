@@ -2,11 +2,17 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div >
-         <div>
-          <img className='livro' src="src/assets/livro.jpg" alt="" />
-        </div>
-    </div>
+    <div className='d-flex space-between' >
+       
+            <h1 className='d-flex'>tenha uma leitura leve e tranquila com bibliotech  
+              
+          <img className='livro  d-flex img-fluid'  src="src/assets/livro.jpg" alt="" />
+           </h1>
+  
+     </div>
+     
+        
+    
   )
 }
 
