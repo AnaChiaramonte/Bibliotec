@@ -3,11 +3,11 @@ import styles from "./Header.module.css";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark ">
+    <nav className="navbar navbar-expand-lg navbar-dark  ">
       <div className="container ">
-        {/* <Link   className="navbar-brand " to="/">
-      <img src="src/assets/Black White Minimalist Book Club Logo.png"   className=" logo mt-0  "alt="" />
-        </Link> */}
+        <Link   className="logo m-5 " to="/">
+      <img src="src/assets/Black White Minimalist Book Club Logo.png"   className=" logo mt-0 m-0  "alt="" />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

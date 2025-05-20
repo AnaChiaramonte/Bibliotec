@@ -2,6 +2,33 @@ body{
   background-color: #533E39;
 }
 .principal{
- 
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  z-index: 2;
   color: #E4CFC4;
+}
+.livro{
+  height: 595px;
+width: 900px;
+  position: absolute;
+  right: 0;
+
+  
+}
+.logo{
+  width: 70px;
+  height: 70px;
+}
+
+.imagem-folha {
+  position: absolute;
+  bottom: 0;
+  top: 100px;
+
+ width: 250px;
 }
