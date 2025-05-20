@@ -5,8 +5,8 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/header/Header";
 import Home from "./pages/Home";
-import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
 import Livros from "./pages/Livros";
+import Grafico from "./components/grafico/Grafico";
 
 
 function App() {
@@ -20,12 +20,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Livros" element={<Livros/>} />
-            <Route path="/ProgressoDeLeitura" element={<ProgressaoDeLeitura />} />
+            <Route path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura />} />
           </Routes>
         </main>
 
       </BrowserRouter>
       <ProgressaoDeLeitura/>
+      <Grafico/>
     </>
   );
 }
