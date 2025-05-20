@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grafico from "../components/grafico/Grafico";
-
 
 const books = [
   {
@@ -34,6 +33,10 @@ const books = [
 ];
 
 const ProgressoLivros = () => {
+  useEffect(() => {
+    document.title = "Progresso de Leitura";
+  }, []);
+
   return (
     <div className="container">
       {books.map((livro, index) => (

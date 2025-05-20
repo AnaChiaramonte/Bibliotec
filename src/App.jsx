@@ -8,25 +8,29 @@ import Home from "./pages/Home";
 import Livros from "./pages/Livros";
 import Grafico from "./components/grafico/Grafico";
 
-
 function App() {
+  const handleNavLinkClick = (event) => {
+    if (event.target.tagName === "A") {
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       <BrowserRouter>
-        <Header />
-       
-
+        <Header onClick={handleNavLinkClick} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Livros" element={<Livros/>} />
-            <Route path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura />} />
+            <Route path="/Livros" element={<Livros />} />
+            <Route
+              path="/ProgressaoDeLeitura"
+              element={<ProgressaoDeLeitura />}
+            />
           </Routes>
         </main>
-
       </BrowserRouter>
-      <ProgressaoDeLeitura/>
-      <Grafico/>
+   
     </>
   );
 }

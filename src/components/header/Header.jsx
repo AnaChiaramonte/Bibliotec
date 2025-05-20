@@ -1,36 +1,38 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark ">
-      <div className="container ">
-        {/* <Link   className="navbar-brand " to="/">
-      <img src="src/assets/Black White Minimalist Book Club Logo.png"   className=" logo mt-0  "alt="" />
-        </Link> */}
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <NavLink className="navbar-brand" to="/">
+          Home
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item ">
-              <Link className="nav-link mt-5 fs-4" to="/Livros#navbar">
-              <h5 style={{ color: "#533E39" }}>Livros</h5>
-              </Link>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Livros">
+                Livros
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link mt-5 m-5 fs-4 " to="/contato#navbar">
-              <h5 style={{ color: "#533E39" }}>  Progresso Leitura</h5>
-              </Link>
+              <NavLink className="nav-link" to="/ProgressaoDeLeitura">
+                Progressão de Leitura
+              </NavLink>
             </li>
           </ul>
         </div>
-    
       </div>
     </nav>
   );
