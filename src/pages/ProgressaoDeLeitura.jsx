@@ -1,11 +1,9 @@
-
 import React from "react";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 
 
 
-const ProgressaoDeLeitura = [
+
+const books = [
   {
     title: "Um Verão na Itália",
     author: "Carrie Elks",
@@ -29,11 +27,11 @@ const ProgressaoDeLeitura = [
   },
 ];
 
-const BookProgress = () => {
+const ProgressaoDeLeitura = () => {
   return (
     <div className="bg-[#5e4a3f] min-h-screen p-6">
       <div className="max-w-3xl mx-auto bg-[#c4a997] p-4 rounded-lg shadow-lg">
-        {ProgressaoDeLeitura.map((book, index) => (
+        {books.map((book, index) => (
           <div
             key={index}
             className="flex items-center justify-between p-4 bg-[#e4d3c3] rounded-lg mb-4"
@@ -46,14 +44,18 @@ const BookProgress = () => {
             <div className="flex-1 ml-4">
               <h2 className="text-lg font-bold">{book.title}</h2>
               <p className="text-sm text-gray-700">Autor: {book.author}</p>
-              <p className="text-sm text-gray-700">Progresso: {book.progress}%</p>
-              <p className="text-sm text-yellow-500">Avaliação: {"⭐".repeat(book.rating)}</p>
+              <p className="text-sm text-gray-700">
+                Progresso: {book.progress}%
+              </p>
+              <p className="text-sm text-yellow-500">
+                Avaliação: {"⭐".repeat(book.rating)}
+              </p>
             </div>
             <div className="w-16 h-16">
               <CircularProgressbar
                 value={book.progress}
                 text={`${book.progress}%`}
-                styles={buildStyles({
+                styles={books({
                   textSize: "24px",
                   pathColor: `#5e4a3f`,
                   textColor: "#5e4a3f",
@@ -68,5 +70,4 @@ const BookProgress = () => {
   );
 };
 
-
-export default ProgressaoDeLeitura
+export default ProgressaoDeLeitura;
