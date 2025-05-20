@@ -7,7 +7,7 @@ const books = [
     autor: "Carrie Elks",
     progresso: 25,
     avaliacao: 4,
-    imagem: "caminho-para-imagem1.jpg",
+    imagem: "/caminho-para-imagem1.jpg",
   },
   {
     titulo: "A Garota do Lago",
