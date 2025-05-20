@@ -1,5 +1,5 @@
 body{
-  background-color: #533E39;
+  background-color: #7D6155;
 }
 .principal{
   position: absolute;
@@ -17,18 +17,44 @@ body{
 width: 900px;
   position: absolute;
   right: 0;
-
-  
 }
 .logo{
   width: 70px;
   height: 70px;
 }
-
 .imagem-folha {
   position: absolute;
   bottom: 0;
   top: 100px;
 
  width: 250px;
+}
+.frase{
+  background: #E4CFC4;
+  
+}
+.frase-2{
+  margin-top: 70px;
+font-style: italic;
+ color: #876962;
+  font-family:'Courier New', Courier, monospace;
+}
+.palavra{
+  
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 20px;
+  color: #533E39;
+}
+.icone-livro{
+  color: #E4CFC4;
+}
+.titulo-1{
+  color:#E4CFC4;
+  font-family: 'Courier New', Courier, monospace;
+}
+.grafico{
+  position: absolute;
+ color: #E4CFC4;
+  right: 170px;
+ 
 }
