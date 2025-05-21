@@ -12,6 +12,12 @@ body{
   z-index: 2;
   color: #E4CFC4;
 }
+nav{
+  background-color: #C7B9AE;
+  height: 75px;
+  color: #533E39; /* Cor padrão */
+}
+
 .livro{
   height: 595px;
 width: 900px;
@@ -52,9 +58,17 @@ font-style: italic;
   color:#E4CFC4;
   font-family: 'Courier New', Courier, monospace;
 }
-.grafico{
+.img-grafico{
   position: absolute;
  color: #E4CFC4;
   right: 170px;
- 
+}
+.nav-link h5{
+  color: #533E39;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
+.nav-link h5:hover{
+  color: #8a7468;
+  
 }
