@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/header/Header";
 import Home from "./pages/Home";
 import Livros from "./pages/Livros";
+import Footer from "./components/footer/Footer";
 import Grafico from "./components/grafico/Grafico";
 
 function App() {
@@ -28,8 +29,10 @@ function App() {
               path="/ProgressaoDeLeitura"
               element={<ProgressaoDeLeitura />}
             />
-            
+             
           </Routes>
+            
+          <Footer />
           
         </main>
 
