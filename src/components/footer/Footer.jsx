@@ -1,6 +1,6 @@
 "use client"
 
-
+// Footer com nome da livraria atualizado e cartão de débito adicionado
 const Footer = () => {
   return (
     <footer style={{ backgroundColor: "#876b5d", color: "white" }} className="mt-5 pt-4">
@@ -25,6 +25,9 @@ const Footer = () => {
                 <span>💳 Cartão de Crédito</span>
               </div>
               <div className="d-flex align-items-center p-2 rounded" style={{ backgroundColor: "rgba(0,0,0,0.2)" }}>
+                <span>💲 Cartão de Débito</span>
+              </div>
+              <div className="d-flex align-items-center p-2 rounded" style={{ backgroundColor: "rgba(0,0,0,0.2)" }}>
                 <span>🏦 Pix</span>
               </div>
               <div className="d-flex align-items-center p-2 rounded" style={{ backgroundColor: "rgba(0,0,0,0.2)" }}>
@@ -40,7 +43,7 @@ const Footer = () => {
             <div className="mb-3">
               <div className="d-flex align-items-center mb-2">
                 <span>✉️</span>
-                <a href="mailto:contato@livrariamagica.com.br" className="ms-2 text-white text-decoration-none">
+                <a href="mailto:contato@bibliotec.com.br" className="ms-2 text-white text-decoration-none">
                   contato@bibliotec.com.br
                 </a>
               </div>
@@ -50,7 +53,7 @@ const Footer = () => {
               Redes Sociais
             </h5>
             <div className="d-flex gap-3">
-              
+              {/* Instagram Logo */}
               <a
                 href="#"
                 className="text-decoration-none"
@@ -83,7 +86,7 @@ const Footer = () => {
                 </svg>
               </a>
 
-             
+              {/* TikTok Logo (Melhorado) */}
               <a
                 href="#"
                 className="text-decoration-none"
@@ -104,7 +107,7 @@ const Footer = () => {
                 </svg>
               </a>
 
-              
+              {/* X (Twitter) Logo */}
               <a
                 href="#"
                 className="text-decoration-none"
@@ -125,7 +128,7 @@ const Footer = () => {
                 </svg>
               </a>
 
-          
+              {/* Facebook Logo */}
               <a
                 href="#"
                 className="text-decoration-none"
@@ -162,9 +165,7 @@ const Footer = () => {
 
       <div style={{ backgroundColor: "rgba(0,0,0,0.2)" }} className="py-3">
         <div className="container">
-          <p className="text-center mb-0">
-            &copy; {new Date().getFullYear()} Bibliotec. Todos os direitos reservados.
-          </p>
+          <p className="text-center mb-0">&copy; {new Date().getFullYear()} Bibliotec. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
