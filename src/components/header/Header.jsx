@@ -1,13 +1,16 @@
-import { NavLink } from "react-router-dom";
-import styles from "./Header.module.css";
+import { Link } from "react-router";
+
+
+
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
-          Home
-        </NavLink>
+    <nav className="navbar navbar-expand-lg navbar-dark  ">
+      <div className="container ">
+        <Link   className="logo m-5 " to="/">
+      <img src="src/assets/Black White Minimalist Book Club Logo.png"   className=" logo mt-0 m-0  "alt="" />
+        </Link>
+       
         <button
           className="navbar-toggler"
           type="button"
@@ -19,20 +22,30 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="navbar-nav collapse navbar-collapse" >
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/Livros">
-                Livros
-              </NavLink>
+            <li className="nav-item ">
+              <Link className="nav-link mt-5 fs-4" to="/Livros#navbar">
+              <h5 >Livros</h5>
+              </Link>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/ProgressaoDeLeitura">
-                Progressão de Leitura
-              </NavLink>
+              <Link className="nav-link mt-5 m-5 fs-4 " to="/ProgressoLeitura#navbar">
+              <h5>  Progresso Leitura</h5>
+              </Link>
             </li>
           </ul>
         </div>
+        <div className="text-end position-relative">
+          <Link className="nav-link mt-3 m-3 fs-4 " to="/Perfil">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg>
+</Link>
+</div>
+<Link className="nav-link mt-2  fs-4 " to="/Login#navbar">
+<h5 className="ms-4">Entrar</h5>
+</Link>
       </div>
     </nav>
   );

@@ -4,6 +4,10 @@ import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/header/Header";
+import Home from "./components/Home";
+import Login from "./pages/Login";
+import Perfil from "./pages/Perfil";
+
 import Home from "./pages/Home";
 import Livros from "./pages/Livros";
 import Footer from "./components/footer/Footer";
@@ -24,6 +28,12 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Livros" element={<Livros/>} />
+            <Route path="/ProgressoLeitura" element={<Livros />} />
+            <Route path="/Perfil" element={<Perfil />} />
+            <Route path="/Login" element={<Login />} />
+            
+
             <Route path="/Livros" element={<Livros />} />
             <Route
               path="/ProgressaoDeLeitura"

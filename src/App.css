@@ -1,114 +1,74 @@
 body{
-  background-color: #BAA89C;
+  background-color: #7D6155;
 }
 .principal{
- 
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  z-index: 2;
   color: #E4CFC4;
 }
-
-
-
-/* Estilos adicionais para o componente de Progresso de Leitura */
-.book-image-container {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+nav{
+  background-color: #C7B9AE;
+  height: 75px;
+  color: #533E39; /* Cor padrão */
 }
 
-.card {
-  transition: transform 0.3s ease;
-  background-color: #876b5d; /* Cor de fundo marrom solicitada */
-  color: #fff; /* Texto branco para melhor contraste */
+.livro{
+  height: 595px;
+width: 900px;
+  position: absolute;
+  right: 0;
 }
-
-.card .card-title {
-  color: #fff;
+.logo{
+  width: 70px;
+  height: 70px;
 }
+.imagem-folha {
+  position: absolute;
+  bottom: 0;
+  top: 100px;
 
-.card .text-muted {
-  color: #e0e0e0 !important; /* Texto cinza claro para informações secundárias */
+ width: 250px;
 }
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+.frase{
+  background: #E4CFC4;
+  
 }
-
-/* Estilos para os botões de estrela */
-.rating-buttons {
-  display: flex;
-  align-items: center;
+.frase-2{
+  margin-top: 70px;
+font-style: italic;
+ color: #876962;
+  font-family:'Courier New', Courier, monospace;
 }
-
-.btn-star {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  padding: 0;
-  margin-right: 5px;
-  color: #e0e0e0;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  /* Remover qualquer fundo ou borda */
-  outline: none;
-  box-shadow: none;
+.palavra{
+  
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 20px;
+  color: #533E39;
 }
-
-.btn-star:hover {
-  transform: scale(1.2);
-  color: #ffd700;
+.icone-livro{
+  color: #E4CFC4;
 }
-
-.btn-star:focus {
-  outline: none;
-  box-shadow: none;
+.titulo-1{
+  color:#E4CFC4;
+  font-family: 'Courier New', Courier, monospace;
 }
-
-.btn-star.active {
-  color: #ffd700;
+.img-grafico{
+  position: absolute;
+ color: #E4CFC4;
+  right: 170px;
 }
-
-.rating-value {
-  font-size: 0.9rem;
-  color: #e0e0e0;
+.nav-link h5{
+  color: #533E39;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
 }
-
-/* Estilos para dispositivos móveis */
-@media (max-width: 767.98px) {
-  .book-image-container {
-    height: 180px !important;
-  }
-
-  .btn-star {
-    font-size: 1.3rem;
-  }
+.nav-link h5:hover{
+  color: #8a7468;
+  
 }
-
-.star-rating {
-  display: inline-flex;
-  align-items: center;
-}
-
-.star {
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  user-select: none;
-}
-
-.star.empty {
-  color: #e0e0e0;
-}
-
-.star.filled {
-  color: #ffd700;
-}
-
-.star:hover {
-  transform: scale(1.1);
-}
-
-.rating-value {
-  font-size: 0.9rem;
-  color: #e0e0e0;
-}
-
