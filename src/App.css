@@ -1,7 +1,114 @@
 body{
-  background-color: #533E39;
+  background-color: #BAA89C;
 }
 .principal{
  
   color: #E4CFC4;
 }
+
+
+
+/* Estilos adicionais para o componente de Progresso de Leitura */
+.book-image-container {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card {
+  transition: transform 0.3s ease;
+  background-color: #876b5d; /* Cor de fundo marrom solicitada */
+  color: #fff; /* Texto branco para melhor contraste */
+}
+
+.card .card-title {
+  color: #fff;
+}
+
+.card .text-muted {
+  color: #e0e0e0 !important; /* Texto cinza claro para informações secundárias */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Estilos para os botões de estrela */
+.rating-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.btn-star {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0;
+  margin-right: 5px;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Remover qualquer fundo ou borda */
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-star:hover {
+  transform: scale(1.2);
+  color: #ffd700;
+}
+
+.btn-star:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-star.active {
+  color: #ffd700;
+}
+
+.rating-value {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 767.98px) {
+  .book-image-container {
+    height: 180px !important;
+  }
+
+  .btn-star {
+    font-size: 1.3rem;
+  }
+}
+
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.star {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.star.empty {
+  color: #e0e0e0;
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.rating-value {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+

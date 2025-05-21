@@ -19,6 +19,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header onClick={handleNavLinkClick} />
+        
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -27,11 +28,15 @@ function App() {
               path="/ProgressaoDeLeitura"
               element={<ProgressaoDeLeitura />}
             />
+            
           </Routes>
+          
         </main>
+
       </BrowserRouter>
    
     </>
+    
   );
 }
 
