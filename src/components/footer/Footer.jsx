@@ -1,6 +1,6 @@
 "use client"
 
-// Footer com nome da livraria atualizado e cartão de débito adicionado
+
 const Footer = () => {
   return (
     <footer style={{ backgroundColor: "#876b5d", color: "white" }} className="mt-5 pt-4">
@@ -53,7 +53,7 @@ const Footer = () => {
               Redes Sociais
             </h5>
             <div className="d-flex gap-3">
-              {/* Instagram Logo */}
+             
               <a
                 href="#"
                 className="text-decoration-none"
@@ -86,7 +86,7 @@ const Footer = () => {
                 </svg>
               </a>
 
-              {/* TikTok Logo (Melhorado) */}
+              
               <a
                 href="#"
                 className="text-decoration-none"
@@ -107,7 +107,7 @@ const Footer = () => {
                 </svg>
               </a>
 
-              {/* X (Twitter) Logo */}
+            
               <a
                 href="#"
                 className="text-decoration-none"
@@ -128,7 +128,7 @@ const Footer = () => {
                 </svg>
               </a>
 
-              {/* Facebook Logo */}
+             
               <a
                 href="#"
                 className="text-decoration-none"
