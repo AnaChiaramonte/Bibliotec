@@ -37,8 +37,6 @@ function App() {
             <Route path="/Perfil" element={<Perfil />} />
             <Route path="/Login" element={<Login />} />
           </Routes>
-
-          <Footer />
         </main>
       </BrowserRouter>
     </>

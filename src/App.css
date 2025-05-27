@@ -83,7 +83,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 .card {
   transition: transform 0.3s ease;
-  background-color: #876b5d; /* Cor de fundo marrom solicitada */
+  background-color: #000000; /* Cor de fundo marrom solicitada */
   color: #fff; /* Texto branco para melhor contraste */
 }
 
@@ -177,5 +177,14 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 .rating-value {
   font-size: 0.9rem;
   color: #e0e0e0;
+}
+
+
+footer {
+
+  padding: 1rem;
+  text-align: center;
+  top: 1200px;
+  position: relative;
 }
 
