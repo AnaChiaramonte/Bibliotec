@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import Grafico from "../components/grafico/Grafico"
 import { Link } from "react-router";
+import Footer from "../components/footer/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import * as bootstrap from "bootstrap"
@@ -226,11 +227,16 @@ const ProgressoLivros = () => {
                     Fechar
                   </button>
                 </div>
+                
               </>
             )}
           </div>
+          
         </div>
       </div>
+ 
+      <Footer/>
+    
     </div>
   )
 }

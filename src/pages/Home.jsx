@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../components/footer/Footer";
 
+
 const Home = () => {
   return (
     <div>
@@ -96,7 +97,9 @@ const Home = () => {
   </div>
  
 </div>
-      <Footer />
+<div className="rodapé">
+      <Footer   />
+    </div>
     </div>
   );
 };
