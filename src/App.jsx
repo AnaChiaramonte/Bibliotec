@@ -31,7 +31,7 @@ function App() {
              <Route path="/Adm" element={<Adm />} />
           </Routes>
           
-          <Footer />
+       
           
         </main>
         <Footer />
