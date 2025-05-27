@@ -25,17 +25,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Livros" element={<Livros />} />
-            <Route
-              path="/ProgressaoDeLeitura"
-              element={<ProgressaoDeLeitura />}
-            />
-             
+           <Route path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura />} />
+            <Route path="/Grafico" element={<Grafico progresso={75} />} />
+           
           </Routes>
             
-          <Footer />
+      
           
         </main>
-
+        <Footer />
       </BrowserRouter>
    
     </>
