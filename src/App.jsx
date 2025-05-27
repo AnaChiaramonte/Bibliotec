@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
+
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/header/Header";
@@ -35,6 +36,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
           </Routes>
         </main>
+   
       </BrowserRouter>
     </>
   );
