@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Livros from "./pages/Livros";
 import Footer from "./components/footer/Footer";
 import Grafico from "./components/grafico/Grafico";
+import Adm from "./pages/Adm";
 
 function App() {
   const handleNavLinkClick = (event) => {
@@ -26,12 +27,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Livros" element={<Livros />} />
             <Route
-              path="/ProgressaoDeLeitura"
-              element={<ProgressaoDeLeitura />}
-            />
-             
+              path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura />} />
+             <Route path="/Adm" element={<Adm />} />
           </Routes>
-            
+          
           <Footer />
           
         </main>
