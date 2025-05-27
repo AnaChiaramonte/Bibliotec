@@ -25,12 +25,12 @@ const Header = () => {
         <div className="navbar-nav collapse navbar-collapse" >
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <Link className="nav-link mt-5 fs-4" to="/Livros#navbar">
+              <Link className="nav-link mt-5 fs-4" to="/Livros">
               <h5 >Livros</h5>
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link mt-5 m-5 fs-4 " to="/ProgressoLeitura#navbar">
+              <Link className="nav-link mt-5 m-5 fs-4 " to="/ProgressaoDeLeitura">
               <h5>  Progresso Leitura</h5>
               </Link>
             </li>
@@ -38,8 +38,9 @@ const Header = () => {
         </div>
         <div className="text-end position-relative">
           <Link className="nav-link mt-3 m-3 fs-4 " to="/Perfil">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+
 </svg>
 </Link>
 </div>

@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from "react"
 import Grafico from "../components/grafico/Grafico"
+import { Link } from "react-router";
+
 import "bootstrap/dist/css/bootstrap.min.css"
 import * as bootstrap from "bootstrap"
 

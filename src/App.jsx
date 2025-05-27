@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
+
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/header/Header";
@@ -11,6 +11,7 @@ import Perfil from "./pages/Perfil";
 import Livros from "./pages/Livros";
 import Footer from "./components/footer/Footer";
 import Grafico from "./components/grafico/Grafico";
+import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
 
 function App() {
   const handleNavLinkClick = (event) => {
@@ -27,11 +28,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Livros" element={<Livros />} />
-            <Route
-              path="/ProgressaoDeLeitura"
-              element={<ProgressaoDeLeitura />}
-            />
+            <Route path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura/>}/>
 
             <Route path="/Livros" element={<Livros />} />
             <Route path="/Perfil" element={<Perfil />} />
