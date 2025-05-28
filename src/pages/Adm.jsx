@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from "react"
 
@@ -35,13 +34,13 @@ const Adm = () => {
   }
 
   const handleSaveBook = (novoLivro) => {
-    // Converte o formato do novo livro para o formato usado na tabela
+    
     const livroFormatado = {
       id: novoLivro.id,
       title: novoLivro.titulo,
       author: novoLivro.autor,
       genre: novoLivro.genero,
-      // Podemos adicionar mais campos se necessário
+      
     }
 
     setBooks([...books, livroFormatado])
@@ -52,19 +51,17 @@ const Adm = () => {
   }
 
   const handleSaveCategory = (novaCategoria) => {
-    // Aqui você pode adicionar a nova categoria ao estado
+   
     console.log("Nova categoria:", novaCategoria)
-    // Se você quiser adicionar ao estado de categorias:
-    // setCategories([...categories, novaCategoria.nome])
   }
 
   const handleLogout = () => {
     console.log("Logout realizado")
-    // window.location.href = "/login" // Descomente para redirecionar
+
   }
 
   const handleSaveEdit = (livroAtualizado) => {
-    // Atualiza o livro na lista
+   
     setBooks(
       books.map((book) =>
         book.id === livroAtualizado.id
@@ -86,7 +83,7 @@ const Adm = () => {
 
       <div className="container-fluid main-bg min-vh-100">
         <div className="p-4">
-          {/* Header */}
+       
           <div className="mb-4 d-flex justify-content-between align-items-center">
             <h1 className="display-5 fw-bold text-custom-dark">Dashboard Administrativo</h1>
             <button className="btn btn-outline-secondary btn-sm" onClick={handleLogout}>
@@ -94,7 +91,6 @@ const Adm = () => {
             </button>
           </div>
 
-          {/* Stats Cards */}
           <div className="row g-3 mb-5">
             <div className="col-sm-6 col-lg-3">
               <div className="card border-custom shadow-sm h-100">
@@ -186,7 +182,7 @@ const Adm = () => {
             </div>
           </div>
 
-          {/* Categories Section */}
+         
           <div className="mb-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h2 className="h3 fw-bold text-custom-dark">Categorias</h2>
@@ -213,13 +209,12 @@ const Adm = () => {
         </div>
       </div>
 
-      {/* Modal de Adicionar Livros */}
       <AddLivros show={showAddLivros} onClose={() => setShowAddLivros(false)} onSave={handleSaveBook} />
 
-      {/* Modal de Adicionar Categorias */}
+      
       <AddCategorias show={showAddCategorias} onClose={() => setShowAddCategorias(false)} onSave={handleSaveCategory} />
 
-      {/* Modal de Editar Livros */}
+     
       <EditarLivros
         show={showEditLivros}
         onClose={() => setShowEditLivros(false)}

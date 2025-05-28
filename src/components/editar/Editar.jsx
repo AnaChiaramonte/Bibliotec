@@ -15,7 +15,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
-  // Lista de gêneros para o select
+ 
   const generos = [
     "Ficção",
     "Não ficção",
@@ -29,7 +29,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
     "Autoajuda",
   ]
 
-  // Preenche o formulário quando o livro é passado como prop
+
   useEffect(() => {
     if (livro && show) {
       setLivroEditado({
@@ -51,7 +51,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
       ...livroEditado,
       [name]: value,
     })
-    // Limpa o erro quando o usuário começa a digitar
+   
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -71,7 +71,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
       newErrors.isbn = "ISBN inválido"
     }
 
-    // Validação opcional para ano (entre 1800 e ano atual)
+    
     const anoAtual = new Date().getFullYear()
     if (livroEditado.anoPublicacao && (livroEditado.anoPublicacao < 1800 || livroEditado.anoPublicacao > anoAtual)) {
       newErrors.anoPublicacao = `Ano deve ser entre 1800 e ${anoAtual}`
@@ -92,13 +92,13 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
       // Simulando uma chamada de API
       await new Promise((resolve) => setTimeout(resolve, 800))
 
-      // Mantém o ID original do livro
+    
       const livroAtualizado = {
         ...livroEditado,
         id: livro.id,
       }
 
-      // Chama a função de callback passada pelo componente pai
+      
       onSave(livroAtualizado)
 
       onClose()
@@ -114,7 +114,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
     onClose()
   }
 
-  // Se o modal não estiver visível, não renderiza nada
+  
   if (!show || !livro) return null
 
   return (
@@ -123,7 +123,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
         className="modal-content-custom rounded shadow-lg w-90 mw-100"
         style={{ maxWidth: "600px", maxHeight: "90vh", overflowY: "auto" }}
       >
-        {/* Header */}
+  
         <div className="d-flex justify-content-between align-items-center p-3 border-bottom border-custom bg-custom-light">
           <div className="d-flex align-items-center">
             <h5 className="text-custom-dark fw-bold m-0 me-2">
@@ -136,9 +136,9 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Body */}
+       
           <div className="p-3 bg-custom-light">
-            {/* Aviso sobre alterações */}
+           
             <div className="alert alert-warning mb-3">
               <small>
                 <i className="bi bi-exclamation-triangle me-1"></i>
@@ -148,7 +148,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
             </div>
 
             <div className="row g-3">
-              {/* Título */}
+         
               <div className="col-12">
                 <label htmlFor="titulo" className="form-label text-custom-dark fw-semibold">
                   Título <span className="text-danger">*</span>
@@ -165,7 +165,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 {errors.titulo && <div className="invalid-feedback">{errors.titulo}</div>}
               </div>
 
-              {/* Autor */}
+       
               <div className="col-md-6">
                 <label htmlFor="autor" className="form-label text-custom-dark fw-semibold">
                   Autor <span className="text-danger">*</span>
@@ -182,7 +182,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 {errors.autor && <div className="invalid-feedback">{errors.autor}</div>}
               </div>
 
-              {/* Gênero */}
+           
               <div className="col-md-6">
                 <label htmlFor="genero" className="form-label text-custom-dark fw-semibold">
                   Gênero <span className="text-danger">*</span>
@@ -204,7 +204,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 {errors.genero && <div className="invalid-feedback">{errors.genero}</div>}
               </div>
 
-              {/* ISBN */}
+            
               <div className="col-md-6">
                 <label htmlFor="isbn" className="form-label text-custom-dark fw-semibold">
                   ISBN
@@ -221,7 +221,6 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 {errors.isbn && <div className="invalid-feedback">{errors.isbn}</div>}
               </div>
 
-              {/* Ano de Publicação */}
               <div className="col-md-6">
                 <label htmlFor="anoPublicacao" className="form-label text-custom-dark fw-semibold">
                   Ano de Publicação
@@ -238,7 +237,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 {errors.anoPublicacao && <div className="invalid-feedback">{errors.anoPublicacao}</div>}
               </div>
 
-              {/* Editora */}
+      
               <div className="col-12">
                 <label htmlFor="editora" className="form-label text-custom-dark fw-semibold">
                   Editora
@@ -254,7 +253,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 />
               </div>
 
-              {/* Descrição */}
+             
               <div className="col-12">
                 <label htmlFor="descricao" className="form-label text-custom-dark fw-semibold">
                   Descrição
@@ -272,7 +271,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
             </div>
           </div>
 
-          {/* Footer */}
+         
           <div className="d-flex justify-content-end gap-2 p-3 border-top border-custom bg-custom-light">
             <button type="button" className="btn btn-outline-secondary" onClick={handleClose}>
               <i className="bi bi-x-lg me-1"></i>
