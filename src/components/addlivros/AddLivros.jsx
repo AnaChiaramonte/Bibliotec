@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 
 
@@ -109,18 +111,23 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
   return (
     <div className="modal-backdrop">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">Adicionar Novo Livro</h5>
+      <div
+        className="modal-content-custom rounded shadow-lg w-90 mw-100"
+        style={{ maxWidth: "600px", maxHeight: "90vh", overflowY: "auto" }}
+      >
+        {/* Header */}
+        <div className="d-flex justify-content-between align-items-center p-3 border-bottom border-custom bg-custom-light">
+          <h5 className="text-custom-dark fw-bold m-0">Adicionar Novo Livro</h5>
           <button type="button" className="btn-close" onClick={onClose}></button>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="modal-body">
+          {/* Body */}
+          <div className="p-3 bg-custom-light">
             <div className="row g-3">
               {/* Título */}
               <div className="col-12">
-                <label htmlFor="titulo" className="form-label">
+                <label htmlFor="titulo" className="form-label text-custom-dark fw-semibold">
                   Título <span className="text-danger">*</span>
                 </label>
                 <input
@@ -137,7 +144,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
               {/* Autor */}
               <div className="col-md-6">
-                <label htmlFor="autor" className="form-label">
+                <label htmlFor="autor" className="form-label text-custom-dark fw-semibold">
                   Autor <span className="text-danger">*</span>
                 </label>
                 <input
@@ -154,7 +161,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
               {/* Gênero */}
               <div className="col-md-6">
-                <label htmlFor="genero" className="form-label">
+                <label htmlFor="genero" className="form-label text-custom-dark fw-semibold">
                   Gênero <span className="text-danger">*</span>
                 </label>
                 <select
@@ -176,7 +183,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
               {/* ISBN */}
               <div className="col-md-6">
-                <label htmlFor="isbn" className="form-label">
+                <label htmlFor="isbn" className="form-label text-custom-dark fw-semibold">
                   ISBN
                 </label>
                 <input
@@ -193,7 +200,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
               {/* Ano de Publicação */}
               <div className="col-md-6">
-                <label htmlFor="anoPublicacao" className="form-label">
+                <label htmlFor="anoPublicacao" className="form-label text-custom-dark fw-semibold">
                   Ano de Publicação
                 </label>
                 <input
@@ -210,7 +217,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
               {/* Editora */}
               <div className="col-12">
-                <label htmlFor="editora" className="form-label">
+                <label htmlFor="editora" className="form-label text-custom-dark fw-semibold">
                   Editora
                 </label>
                 <input
@@ -226,7 +233,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
 
               {/* Descrição */}
               <div className="col-12">
-                <label htmlFor="descricao" className="form-label">
+                <label htmlFor="descricao" className="form-label text-custom-dark fw-semibold">
                   Descrição
                 </label>
                 <textarea
@@ -242,7 +249,8 @@ const AddLivros = ({ show, onClose, onSave }) => {
             </div>
           </div>
 
-          <div className="modal-footer">
+          {/* Footer */}
+          <div className="d-flex justify-content-end gap-2 p-3 border-top border-custom bg-custom-light">
             <button type="button" className="btn btn-outline-secondary" onClick={onClose}>
               Cancelar
             </button>

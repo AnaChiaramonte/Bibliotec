@@ -301,51 +301,21 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   z-index: 1050;
 }
 
-/* Modal content */
-.modal-content {
-  background-color: white;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+/* Modal content com fundo personalizado */
+.modal-content-custom {
+  background-color: var(--color-light) !important;
+  border: 1px solid var(--color-medium) !important;
 }
 
-/* Modal header */
-.modal-header {
-  padding: 1rem;
-  border-bottom: 1px solid var(--color-medium);
-  background-color: var(--color-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Cores personalizadas */
+.text-custom-dark {
+  color: var(--color-dark) !important;
 }
-
-.modal-title {
-  color: var(--color-dark);
-  font-weight: bold;
-  margin: 0;
+.border-custom {
+  border-color: var(--color-medium) !important;
 }
-
-/* Modal body e footer */
-.modal-body {
-  padding: 1rem;
-}
-
-.modal-footer {
-  padding: 1rem;
-  border-top: 1px solid var(--color-medium);
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
-/* Form focus */
-.form-control:focus,
-.form-select:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+.bg-custom-light {
+  background-color: var(--color-light) !important;
 }
 
 /* Buttons */
@@ -368,4 +338,36 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
   color: white !important;
+}
+
+/* Form focus */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.25rem rgba(135, 107, 93, 0.25);
+}
+
+.background-image {
+  position: fixed;
+  inset: 0;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 160px;
+  opacity: 0.05;
+  filter: blur(1px);
+  z-index: 1;
+}
+
+.modal-backdrop {
+  z-index: 1050;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px); /* leve embaçamento geral */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
