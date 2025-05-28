@@ -1,0 +1,266 @@
+import { useState } from "react"
+
+
+const AddLivros = ({ show, onClose, onSave }) => {
+  const [livro, setLivro] = useState({
+    titulo: "",
+    autor: "",
+    genero: "",
+    isbn: "",
+    anoPublicacao: "",
+    editora: "",
+    descricao: "",
+  })
+
+  const [errors, setErrors] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  // Lista de gêneros para o select
+  const generos = [
+    "Ficção",
+    "Não ficção",
+    "Ficção científica",
+    "Fantasia",
+    "Romance",
+    "Mistério",
+    "Terror",
+    "Biografia",
+    "História",
+    "Autoajuda",
+  ]
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setLivro({
+      ...livro,
+      [name]: value,
+    })
+    // Limpa o erro quando o usuário começa a digitar
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: null,
+      })
+    }
+  }
+
+  const validate = () => {
+    const newErrors = {}
+    if (!livro.titulo.trim()) newErrors.titulo = "Título é obrigatório"
+    if (!livro.autor.trim()) newErrors.autor = "Autor é obrigatório"
+    if (!livro.genero) newErrors.genero = "Gênero é obrigatório"
+
+    // Validação opcional para ISBN (formato básico)
+    if (livro.isbn && !/^[0-9-]{10,17}$/.test(livro.isbn)) {
+      newErrors.isbn = "ISBN inválido"
+    }
+
+    // Validação opcional para ano (entre 1800 e ano atual)
+    const anoAtual = new Date().getFullYear()
+    if (livro.anoPublicacao && (livro.anoPublicacao < 1800 || livro.anoPublicacao > anoAtual)) {
+      newErrors.anoPublicacao = `Ano deve ser entre 1800 e ${anoAtual}`
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!validate()) return
+
+    setIsLoading(true)
+
+    try {
+      // Simulando uma chamada de API
+      await new Promise((resolve) => setTimeout(resolve, 800))
+
+      // Gera um ID único para o novo livro
+      const novoLivro = {
+        ...livro,
+        id: Date.now(),
+      }
+
+      // Chama a função de callback passada pelo componente pai
+      onSave(novoLivro)
+
+      // Limpa o formulário e fecha o modal
+      setLivro({
+        titulo: "",
+        autor: "",
+        genero: "",
+        isbn: "",
+        anoPublicacao: "",
+        editora: "",
+        descricao: "",
+      })
+
+      onClose()
+    } catch (error) {
+      console.error("Erro ao salvar livro:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Se o modal não estiver visível, não renderiza nada
+  if (!show) return null
+
+  return (
+    <div className="modal-backdrop">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Adicionar Novo Livro</h5>
+          <button type="button" className="btn-close" onClick={onClose}></button>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <div className="modal-body">
+            <div className="row g-3">
+              {/* Título */}
+              <div className="col-12">
+                <label htmlFor="titulo" className="form-label">
+                  Título <span className="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  className={`form-control ${errors.titulo ? "is-invalid" : ""}`}
+                  id="titulo"
+                  name="titulo"
+                  value={livro.titulo}
+                  onChange={handleChange}
+                  placeholder="Digite o título do livro"
+                />
+                {errors.titulo && <div className="invalid-feedback">{errors.titulo}</div>}
+              </div>
+
+              {/* Autor */}
+              <div className="col-md-6">
+                <label htmlFor="autor" className="form-label">
+                  Autor <span className="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  className={`form-control ${errors.autor ? "is-invalid" : ""}`}
+                  id="autor"
+                  name="autor"
+                  value={livro.autor}
+                  onChange={handleChange}
+                  placeholder="Nome do autor"
+                />
+                {errors.autor && <div className="invalid-feedback">{errors.autor}</div>}
+              </div>
+
+              {/* Gênero */}
+              <div className="col-md-6">
+                <label htmlFor="genero" className="form-label">
+                  Gênero <span className="text-danger">*</span>
+                </label>
+                <select
+                  className={`form-select ${errors.genero ? "is-invalid" : ""}`}
+                  id="genero"
+                  name="genero"
+                  value={livro.genero}
+                  onChange={handleChange}
+                >
+                  <option value="">Selecione um gênero</option>
+                  {generos.map((genero) => (
+                    <option key={genero} value={genero}>
+                      {genero}
+                    </option>
+                  ))}
+                </select>
+                {errors.genero && <div className="invalid-feedback">{errors.genero}</div>}
+              </div>
+
+              {/* ISBN */}
+              <div className="col-md-6">
+                <label htmlFor="isbn" className="form-label">
+                  ISBN
+                </label>
+                <input
+                  type="text"
+                  className={`form-control ${errors.isbn ? "is-invalid" : ""}`}
+                  id="isbn"
+                  name="isbn"
+                  value={livro.isbn}
+                  onChange={handleChange}
+                  placeholder="Ex: 978-3-16-148410-0"
+                />
+                {errors.isbn && <div className="invalid-feedback">{errors.isbn}</div>}
+              </div>
+
+              {/* Ano de Publicação */}
+              <div className="col-md-6">
+                <label htmlFor="anoPublicacao" className="form-label">
+                  Ano de Publicação
+                </label>
+                <input
+                  type="number"
+                  className={`form-control ${errors.anoPublicacao ? "is-invalid" : ""}`}
+                  id="anoPublicacao"
+                  name="anoPublicacao"
+                  value={livro.anoPublicacao}
+                  onChange={handleChange}
+                  placeholder="Ex: 2023"
+                />
+                {errors.anoPublicacao && <div className="invalid-feedback">{errors.anoPublicacao}</div>}
+              </div>
+
+              {/* Editora */}
+              <div className="col-12">
+                <label htmlFor="editora" className="form-label">
+                  Editora
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="editora"
+                  name="editora"
+                  value={livro.editora}
+                  onChange={handleChange}
+                  placeholder="Nome da editora"
+                />
+              </div>
+
+              {/* Descrição */}
+              <div className="col-12">
+                <label htmlFor="descricao" className="form-label">
+                  Descrição
+                </label>
+                <textarea
+                  className="form-control"
+                  id="descricao"
+                  name="descricao"
+                  rows="3"
+                  value={livro.descricao}
+                  onChange={handleChange}
+                  placeholder="Breve descrição do livro"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div className="modal-footer">
+            <button type="button" className="btn btn-outline-secondary" onClick={onClose}>
+              Cancelar
+            </button>
+            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Salvando...
+                </>
+              ) : (
+                "Salvar Livro"
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default AddLivros

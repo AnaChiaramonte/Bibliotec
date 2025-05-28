@@ -75,7 +75,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 
 
-/* Estilos adicionais para o componente de Progresso de Leitura */
+
 .book-image-container {
   background-color: #f8f9fa;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -83,8 +83,8 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 .card {
   transition: transform 0.3s ease;
-  background-color: #000000; /* Cor de fundo marrom solicitada */
-  color: #fff; /* Texto branco para melhor contraste */
+  background-color: #000000; 
+  color: #fff; 
 }
 
 .card .card-title {
@@ -92,7 +92,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .card .text-muted {
-  color: #e0e0e0 !important; /* Texto cinza claro para informações secundárias */
+  color: #e0e0e0 !important; 
 }
 
 .card:hover {
@@ -100,7 +100,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Estilos para os botões de estrela */
+
 .rating-buttons {
   display: flex;
   align-items: center;
@@ -115,7 +115,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #e0e0e0;
   cursor: pointer;
   transition: all 0.2s ease;
-  /* Remover qualquer fundo ou borda */
   outline: none;
   box-shadow: none;
 }
@@ -187,47 +186,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --color-dark: #2f1f1b;
 }
 
-/* Sidebar customizada */
-.sidebar-custom {
-  background-color: var(--color-dark) !important;
-}
-
-/* Background principal */
-.main-bg {
-  background-color: var(--color-primary) !important;
-}
-
-/* Item ativo da navegação */
-.nav-item-active {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  border-right: 3px solid #0d6efd !important;
-}
-
-/* Hover nos itens de navegação */
-.nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Customização das bordas dos cards */
-.border-secondary {
-  border-color: var(--color-secondary) !important;
-}
-
-/* Header da tabela */
-.table-light {
-  background-color: var(--color-primary) !important;
-}
-
-/* Texto terciário */
-.text-muted {
-  color: var(--color-tertiary) !important;
-}
-
-/* Letter spacing para o título ADMIN */
-.ls-2 {
-  letter-spacing: 2px;
-}
-
 
 .rodapé {
 
@@ -236,3 +194,178 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   position: relative;
 }
 
+/* Cores personalizadas */
+:root {
+  --color-light: #f5f2ee;
+  --color-medium: #baa89c;
+  --color-primary: #876b5d;
+  --color-dark: #2f1f1b;
+}
+
+/* Main content */
+.main-bg {
+  background-color: var(--color-light);
+}
+
+/* Text colors */
+.text-custom-dark {
+  color: var(--color-dark) !important;
+}
+
+.text-custom-muted {
+  color: var(--color-primary) !important;
+}
+
+.text-custom-primary {
+  color: var(--color-primary) !important;
+}
+
+/* Borders */
+.border-custom {
+  border-color: var(--color-medium) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-dark) !important;
+  border-color: var(--color-dark) !important;
+  transition: all 0.3s ease;
+}
+
+/* Table */
+.table-light {
+  background-color: var(--color-light) !important;
+}
+
+/* Cards - garantir que os números apareçam */
+.card {
+  background-color: white !important;
+}
+
+.card-body h2 {
+  color: var(--color-dark) !important;
+  font-size: 3rem !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.card-body p {
+  color: var(--color-primary) !important;
+  font-size: 1rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Ícones dos cards */
+.card-body i {
+  color: var(--color-primary) !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card-body h2 {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-body h2 {
+    font-size: 2rem !important;
+  }
+}
+
+/* Cores personalizadas */
+:root {
+  --color-light: #f5f2ee;
+  --color-medium: #baa89c;
+  --color-primary: #876b5d;
+  --color-dark: #2f1f1b;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal header */
+.modal-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-medium);
+  background-color: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  color: var(--color-dark);
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Modal body e footer */
+.modal-body {
+  padding: 1rem;
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--color-medium);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Form focus */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-dark) !important;
+  border-color: var(--color-dark) !important;
+}
+
+.btn-outline-secondary {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: white !important;
+}

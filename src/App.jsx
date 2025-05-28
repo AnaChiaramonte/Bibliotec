@@ -21,9 +21,10 @@ function App() {
       event.preventDefault();
     }
   };
-
+  
   return (
     <>
+   
       <BrowserRouter>
         <Header onClick={handleNavLinkClick} />
 
@@ -35,12 +36,15 @@ function App() {
             <Route path="/Livros" element={<Livros />} />
             <Route path="/Perfil" element={<Perfil />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/Adm" element={<Adm/>}/>
+            <Route path="/Adm" element={<Adm />} />
+          
           </Routes>
+
         </main>
    
       </BrowserRouter>
     </>
+  
   );
 }
 
