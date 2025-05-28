@@ -4,6 +4,7 @@ import { useState } from "react"
 
 import AddLivros from "../components/addlivros/AddLivros"
 import AddCategorias from "../components/addcategorias/AddCategorias"
+import EditarLivros from "../components/editar/EditarLivros"
 
 const Adm = () => {
   const [books, setBooks] = useState([
@@ -16,9 +17,13 @@ const Adm = () => {
   const [categories] = useState(["Ficção", "Não ficção", "Ficção científica", "Fantasia"])
   const [showAddLivros, setShowAddLivros] = useState(false)
   const [showAddCategorias, setShowAddCategorias] = useState(false)
+  const [showEditLivros, setShowEditLivros] = useState(false)
+  const [livroParaEditar, setLivroParaEditar] = useState(null)
 
   const handleEdit = (id) => {
-    console.log("Editar livro:", id)
+    const livro = books.find((book) => book.id === id)
+    setLivroParaEditar(livro)
+    setShowEditLivros(true)
   }
 
   const handleDelete = (id) => {
@@ -56,6 +61,22 @@ const Adm = () => {
   const handleLogout = () => {
     console.log("Logout realizado")
     // window.location.href = "/login" // Descomente para redirecionar
+  }
+
+  const handleSaveEdit = (livroAtualizado) => {
+    // Atualiza o livro na lista
+    setBooks(
+      books.map((book) =>
+        book.id === livroAtualizado.id
+          ? {
+              id: livroAtualizado.id,
+              title: livroAtualizado.titulo,
+              author: livroAtualizado.autor,
+              genre: livroAtualizado.genero,
+            }
+          : book,
+      ),
+    )
   }
 
   return (
@@ -197,6 +218,14 @@ const Adm = () => {
 
       {/* Modal de Adicionar Categorias */}
       <AddCategorias show={showAddCategorias} onClose={() => setShowAddCategorias(false)} onSave={handleSaveCategory} />
+
+      {/* Modal de Editar Livros */}
+      <EditarLivros
+        show={showEditLivros}
+        onClose={() => setShowEditLivros(false)}
+        onSave={handleSaveEdit}
+        livro={livroParaEditar}
+      />
     </>
   )
 }
