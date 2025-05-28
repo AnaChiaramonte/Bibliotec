@@ -1,24 +1,19 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
- 
+
   const navigate = useNavigate();
 
   const fazerLogin = async (e) => {
     e.preventDefault();
 
     try {
-
-
-      
-
       const resposta = await fetch("http://sua-api.com/login", {
         method: "POST",
         headers: {
@@ -31,40 +26,39 @@ function Login() {
 
       if (resposta.ok) {
         setMensagem("✅ Login realizado com sucesso!");
-        setTimeout(() => navigate("/dashboard"), 1000); 
+        setTimeout(() => navigate("/dashboard"), 1000);
 
-         // Verifica o tipo de usuário e redireciona
-         if (dados.tipo === "admin") {
+        // Verifica o tipo de usuário e redireciona
+        if (dados.tipo === "admin") {
           alert("Bem-vindo, administrador!");
           navigate("/admin");
         } else {
           alert("Bem-vindo, cliente!");
           navigate("/perfil");
-        }        localStorage.setItem("usuario", JSON.stringify(dados));
+        }
+        localStorage.setItem("usuario", JSON.stringify(dados));
       } else {
         setMensagem(dados.mensagem || "❌ Erro ao fazer login");
       }
     } catch (error) {
-      setMensagem("❌ Erro na requisição. Verifique sua conexão ou tente novamente.");
+      setMensagem(
+        "❌ Erro na requisição. Verifique sua conexão ou tente novamente."
+      );
       console.error("Erro no login:", error);
     }
   };
 
-
-
   return (
     <>
-    
-
-      
       <div className="container py-5 d-flex justify-content-center align-items-center vh-100">
         <div className=" w-100 p-4" style={{ maxWidth: "400px" }}>
-          <h2 className=" text-center m-5  "style={{ color: "#E4CFC4"}}>Bem-vindo(a)</h2>
+          <h2 className=" text-center m-5  " style={{ color: "#E4CFC4" }}>
+            Bem-vindo(a)
+          </h2>
           <form onSubmit={fazerLogin} className="login-form">
             <div className="mb-3 text-start">
               <input
                 type="email"
-                className="form-control"
                 placeholder="Seu e-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -74,7 +68,6 @@ function Login() {
             <div className="mb-4 text-start">
               <input
                 type="password"
-                className="form-control"
                 placeholder="Sua senha"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
@@ -82,26 +75,26 @@ function Login() {
               />
             </div>
             <Link className="nav-link mt-5 fs-4" to="/">
-            <div className="d-flex justify-content-center">
-          
-              <button className=" btn btn w-100"style={{ background: "#E4CFC4"}} >Entrar</button>
-         
-            </div>
+              <div className="d-flex justify-content-center">
+                <button
+                  className=" btn btn w-100"
+                  style={{ background: "#E4CFC4" }}
+                >
+                  Entrar
+                </button>
+              </div>
             </Link>
           </form>
-          
-          {mensagem && <p className="login-msg text-center mt-3" >{mensagem}</p>}
+
+          {mensagem && <p className="login-msg text-center mt-3">{mensagem}</p>}
           <div className="d-flex justify-content-center">
-            <Link 
+            <Link
               to={"/cadastrar"}
-              className="text-light dropdown-item my-3 text-center " 
+              className="text-light dropdown-item my-3 text-center "
             >
-           <p  style={{ color: "#c1b2aa"}}  >
-              Cadastrar-se
-              </p>
+              <p style={{ color: "#c1b2aa" }}>Cadastrar-se</p>
             </Link>
           </div>
-   
         </div>
       </div>
     </>
