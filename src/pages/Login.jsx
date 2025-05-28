@@ -58,8 +58,8 @@ function Login() {
 
       
       <div className="container py-5 d-flex justify-content-center align-items-center vh-100">
-        <div className="login-box w-100 p-4" style={{ maxWidth: "400px" }}>
-          <h2 className="login-title text-center m-5  "style={{ color: "#E4CFC4"}}>Bem-vindo(a)</h2>
+        <div className=" w-100 p-4" style={{ maxWidth: "400px" }}>
+          <h2 className=" text-center m-5  "style={{ color: "#E4CFC4"}}>Bem-vindo(a)</h2>
           <form onSubmit={fazerLogin} className="login-form">
             <div className="mb-3 text-start">
               <input
@@ -84,7 +84,7 @@ function Login() {
             <Link className="nav-link mt-5 fs-4" to="/">
             <div className="d-flex justify-content-center">
           
-              <button className="btn btn w-100" style={{ background: "#E4CFC4", color: "#4e3d34"}} >Entrar</button>
+              <button className=" btn btn w-100"style={{ background: "#E4CFC4"}} >Entrar</button>
          
             </div>
             </Link>
@@ -93,7 +93,7 @@ function Login() {
           {mensagem && <p className="login-msg text-center mt-3" >{mensagem}</p>}
           <div className="d-flex justify-content-center">
             <Link 
-              to={"/cadastrar-se"}
+              to={"/cadastrar"}
               className="text-light dropdown-item my-3 text-center " 
             >
            <p  style={{ color: "#c1b2aa"}}  >
