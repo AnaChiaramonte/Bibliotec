@@ -13,6 +13,7 @@ import Livros from "./pages/Livros";
 import Footer from "./components/footer/Footer";
 import Grafico from "./components/grafico/Grafico";
 import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
+import Cadastrar from "./pages/Cadastrar";
 
 function App() {
   const handleNavLinkClick = (event) => {
@@ -30,6 +31,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura/>}/>
+           <Route path="/Cadastrar" element={<Cadastrar />} />
+
 
             <Route path="/Livros" element={<Livros />} />
             <Route path="/Perfil" element={<Perfil />} />
