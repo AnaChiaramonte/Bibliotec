@@ -1,7 +1,4 @@
-
-
 import { useState } from "react"
-
 
 const Adm = () => {
   const [books, setBooks] = useState([
@@ -31,12 +28,12 @@ const Adm = () => {
 
   return (
     <>
-      {/* Bootstrap CSS CDN */}
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
       <div className="container-fluid p-0">
         <div className="row g-0 min-vh-100">
-          {/* Sidebar */}
+       
           <div className="col-md-3 col-lg-2 sidebar-custom">
             <div className="p-4">
               <h2 className="text-white fw-bold ls-2">ADMIN</h2>
@@ -57,76 +54,75 @@ const Adm = () => {
             </nav>
           </div>
 
-          {/* Main Content */}
           <div className="col-md-9 col-lg-10 main-bg">
             <div className="p-4">
-              {/* Header */}
+      
               <div className="mb-4">
-                <h1 className="display-5 fw-bold text-dark">Dashboard</h1>
+                <h1 className="display-5 fw-bold text-custom-dark">Dashboard</h1>
               </div>
 
-              {/* Stats Cards */}
+         
               <div className="row g-3 mb-5">
                 <div className="col-sm-6 col-lg-3">
-                  <div className="card border-secondary h-100">
+                  <div className="card border-custom h-100">
                     <div className="card-body text-center">
-                      <h2 className="card-title display-4 fw-bold text-dark mb-2">1,250</h2>
-                      <p className="card-text text-muted fs-6">Livros</p>
+                      <h2 className="card-title display-4 fw-bold text-custom-dark mb-2">1,250</h2>
+                      <p className="card-text text-custom-muted fs-6">Livros</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-sm-6 col-lg-3">
-                  <div className="card border-secondary h-100">
+                  <div className="card border-custom h-100">
                     <div className="card-body text-center">
-                      <h2 className="card-title display-4 fw-bold text-dark mb-2">120</h2>
-                      <p className="card-text text-muted fs-6">Categorias</p>
+                      <h2 className="card-title display-4 fw-bold text-custom-dark mb-2">120</h2>
+                      <p className="card-text text-custom-muted fs-6">Categorias</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-sm-6 col-lg-3">
-                  <div className="card border-secondary h-100">
+                  <div className="card border-custom h-100">
                     <div className="card-body text-center">
-                      <h2 className="card-title display-4 fw-bold text-dark mb-2">300</h2>
-                      <p className="card-text text-muted fs-6">Usuários</p>
+                      <h2 className="card-title display-4 fw-bold text-custom-dark mb-2">300</h2>
+                      <p className="card-text text-custom-muted fs-6">Usuários</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-sm-6 col-lg-3">
-                  <div className="card border-secondary h-100">
+                  <div className="card border-custom h-100">
                     <div className="card-body text-center">
-                      <h2 className="card-title display-4 fw-bold text-dark mb-2">50</h2>
-                      <p className="card-text text-muted fs-6">Resenhas</p>
+                      <h2 className="card-title display-4 fw-bold text-custom-dark mb-2">50</h2>
+                      <p className="card-text text-custom-muted fs-6">Resenhas</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Books Section */}
+            
               <div className="mb-5">
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h2 className="h3 fw-bold text-dark">Livros</h2>
+                  <h2 className="h3 fw-bold text-custom-dark">Livros</h2>
                   <button className="btn btn-primary" onClick={handleAddBook}>
                     + Adicionar Livro
                   </button>
                 </div>
 
-                <div className="card border-secondary">
+                <div className="card border-custom">
                   <div className="table-responsive">
                     <table className="table table-hover mb-0">
                       <thead className="table-light">
                         <tr>
-                          <th className="fw-semibold text-dark">Título</th>
-                          <th className="fw-semibold text-dark">Autor</th>
-                          <th className="fw-semibold text-dark">Gênero</th>
-                          <th className="fw-semibold text-dark">Editar</th>
+                          <th className="fw-semibold text-custom-dark">Título</th>
+                          <th className="fw-semibold text-custom-dark">Autor</th>
+                          <th className="fw-semibold text-custom-dark">Gênero</th>
+                          <th className="fw-semibold text-custom-dark">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
                         {books.map((book) => (
                           <tr key={book.id}>
-                            <td className="text-dark">{book.title}</td>
-                            <td className="text-dark">{book.author}</td>
-                            <td className="text-dark">{book.genre}</td>
+                            <td className="text-custom-dark">{book.title}</td>
+                            <td className="text-custom-dark">{book.author}</td>
+                            <td className="text-custom-dark">{book.genre}</td>
                             <td>
                               <div className="d-flex gap-2">
                                 <button className="btn btn-primary btn-sm" onClick={() => handleEdit(book.id)}>
@@ -145,21 +141,22 @@ const Adm = () => {
                 </div>
               </div>
 
-              {/* Categories Section */}
               <div className="mb-5">
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h2 className="h3 fw-bold text-dark">Categorias</h2>
+                  <h2 className="h3 fw-bold text-custom-dark">Categorias</h2>
                   <button className="btn btn-primary" onClick={handleAddCategory}>
                     + Adicionar Categoria
                   </button>
                 </div>
 
-                <div className="card border-secondary">
+                <div className="card border-custom">
                   <div className="card-body">
                     {categories.map((category, index) => (
                       <div
                         key={index}
-                        className={`py-2 text-dark ${index < categories.length - 1 ? "border-bottom border-secondary" : ""}`}
+                        className={`py-2 text-custom-dark ${
+                          index < categories.length - 1 ? "border-bottom border-custom" : ""
+                        }`}
                       >
                         {category}
                       </div>
@@ -171,9 +168,6 @@ const Adm = () => {
           </div>
         </div>
       </div>
-
-      {/* Bootstrap Icons CDN */}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     </>
   )
 }
