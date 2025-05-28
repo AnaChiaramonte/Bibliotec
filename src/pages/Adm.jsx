@@ -1,5 +1,9 @@
+"use client"
+
 import { useState } from "react"
+
 import AddLivros from "../components/addlivros/AddLivros"
+import AddCategorias from "../components/addcategorias/AddCategorias"
 
 const Adm = () => {
   const [books, setBooks] = useState([
@@ -11,6 +15,7 @@ const Adm = () => {
 
   const [categories] = useState(["Ficção", "Não ficção", "Ficção científica", "Fantasia"])
   const [showAddLivros, setShowAddLivros] = useState(false)
+  const [showAddCategorias, setShowAddCategorias] = useState(false)
 
   const handleEdit = (id) => {
     console.log("Editar livro:", id)
@@ -38,7 +43,14 @@ const Adm = () => {
   }
 
   const handleAddCategory = () => {
-    console.log("Adicionar nova categoria")
+    setShowAddCategorias(true)
+  }
+
+  const handleSaveCategory = (novaCategoria) => {
+    // Aqui você pode adicionar a nova categoria ao estado
+    console.log("Nova categoria:", novaCategoria)
+    // Se você quiser adicionar ao estado de categorias:
+    // setCategories([...categories, novaCategoria.nome])
   }
 
   const handleLogout = () => {
@@ -182,6 +194,9 @@ const Adm = () => {
 
       {/* Modal de Adicionar Livros */}
       <AddLivros show={showAddLivros} onClose={() => setShowAddLivros(false)} onSave={handleSaveBook} />
+
+      {/* Modal de Adicionar Categorias */}
+      <AddCategorias show={showAddCategorias} onClose={() => setShowAddCategorias(false)} onSave={handleSaveCategory} />
     </>
   )
 }
