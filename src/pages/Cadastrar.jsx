@@ -14,17 +14,21 @@ const Cadastrar = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    const apiUrl = import.meta.env.VITE_API_URL;
     try {
-        const resposta = await fetch("URL_DO_SEU_BACKEND", {
+        const resposta = await fetch(`${apiUrl}/Users/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, senha, nome, dia, mes, ano }),
+          body: JSON.stringify({ Email: email, Senha: senha }),
         });
       
         if (!resposta.ok) {
-          throw new Error("Erro ao cadastrar");
+          const erro = await resposta.json();
+          (erro.message || "Email ou senha inválidos");
+          return;
         }
       
         alert("Cadastro realizado com sucesso!");
