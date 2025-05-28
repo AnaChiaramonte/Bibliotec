@@ -13,43 +13,36 @@ function Login() {
 
   const fazerLogin = async (e) => {
     e.preventDefault();
-
+  
+    const apiUrl = import.meta.env.VITE_API_URL;
+  
     try {
-
-
-      
-
-      const resposta = await fetch("http://sua-api.com/login", {
+      const resposta = await fetch(`${apiUrl}/Users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, senha }),
       });
-
-      const dados = await resposta.json();
-
-      if (resposta.ok) {
-        setMensagem("✅ Login realizado com sucesso!");
-        setTimeout(() => navigate("/dashboard"), 1000); 
-
-         // Verifica o tipo de usuário e redireciona
-         if (dados.tipo === "admin") {
-          alert("Bem-vindo, administrador!");
-          navigate("/admin");
-        } else {
-          alert("Bem-vindo, cliente!");
-          navigate("/perfil");
-        }        localStorage.setItem("usuario", JSON.stringify(dados));
-      } else {
-        setMensagem(dados.mensagem || "❌ Erro ao fazer login");
+  
+      if (!resposta.ok) {
+        // Se a resposta não for bem-sucedida, exibe uma mensagem de erro e interrompe o fluxo
+        const erro = await resposta.json();
+        setMensagem(erro.message || "Email ou senha inválidos");
+        return;
       }
+  
+      // Se a resposta for bem-sucedida, processa os dados e navega
+      const dados = await resposta.json();
+      alert("Login realizado com sucesso!");
+      localStorage.setItem("user", JSON.stringify(dados));
+      navigate("/dashboard");
     } catch (error) {
-      setMensagem("❌ Erro na requisição. Verifique sua conexão ou tente novamente.");
-      console.error("Erro no login:", error);
+      console.error("Erro ao fazer login:", error);
+      setMensagem("Erro ao fazer login. Tente novamente mais tarde.");
     }
   };
-
+  
 
 
   return (
@@ -81,6 +74,19 @@ function Login() {
                 className="form-control rounded-5"
               />
             </div>
+           
+            <div className="form-check mb-3">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="rememberMe"
+              />
+              <label className="form-check-label" htmlFor="rememberMe">
+                Lembrar-me
+              </label>
+            </div>
+            (email && senha) { (mensagem && setMensagem(""))}
+        
             <Link className="nav-link mt-5 fs-4" to="/">
             <div className="d-flex justify-content-center">
           
