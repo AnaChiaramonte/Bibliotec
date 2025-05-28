@@ -171,6 +171,57 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.9rem;
   color: #e0e0e0;
 }
+
+/* Apenas as cores customizadas do seu site */
+:root {
+  --color-primary: #f5f2ee;
+  --color-secondary: #baa89c;
+  --color-tertiary: #876b5d;
+  --color-dark: #2f1f1b;
+}
+
+/* Sidebar customizada */
+.sidebar-custom {
+  background-color: var(--color-dark) !important;
+}
+
+/* Background principal */
+.main-bg {
+  background-color: var(--color-primary) !important;
+}
+
+/* Item ativo da navegação */
+.nav-item-active {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-right: 3px solid #0d6efd !important;
+}
+
+/* Hover nos itens de navegação */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Customização das bordas dos cards */
+.border-secondary {
+  border-color: var(--color-secondary) !important;
+}
+
+/* Header da tabela */
+.table-light {
+  background-color: var(--color-primary) !important;
+}
+
+/* Texto terciário */
+.text-muted {
+  color: var(--color-tertiary) !important;
+}
+
+/* Letter spacing para o título ADMIN */
+.ls-2 {
+  letter-spacing: 2px;
+}
+
+
 .rodapé {
   top: 1200px;
   position: relative;
