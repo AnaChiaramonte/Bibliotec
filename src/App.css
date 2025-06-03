@@ -21,15 +21,23 @@ nav{
 .livro{
   height: 595px;
 width: 900px;
-  position: absolute;
+ position:absolute;
   right: 0;
+
+  
+  display: flex;
+  flex-direction: row; /* ou column pra empilhar */
+  justify-content: space-between;
+  align-items: center;
 }
+
 .logo{
   width: 70px;
   height: 70px;
 }
 .imagem-folha {
   position: absolute;
+  left: 0;
   bottom: 0;
   top: 100px;
 
@@ -221,11 +229,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   letter-spacing: 2px;
 }
 
-
-.rodapé {
-  top: 1200px;
-  position: relative;
-}
 .perfil{
   background-color: #533E39;
 }

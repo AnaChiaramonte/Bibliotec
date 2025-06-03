@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer
       style={{ backgroundColor: "#523832", color: "white" }}
-      className="mt-5 pt-4 footer w-100 "
+      className="mt-5 pt-4 footer w-100  "
     >
       <div className="container py-4 w-100">
         <div className="row">
