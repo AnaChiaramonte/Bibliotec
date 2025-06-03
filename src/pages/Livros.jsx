@@ -96,13 +96,6 @@ const Livro = () => {
     console.log(`Iniciando leitura de ${currentBook.title}...`)
   }
 
-  const handleAddToFavorites = () => {
-    console.log(`Adicionando ${currentBook.title} aos favoritos...`)
-  }
-
-  const handleAddToWishlist = () => {
-    console.log(`Adicionando ${currentBook.title} à lista de desejos...`)
-  }
 
   const handleSubmitFeedback = (e) => {
     e.preventDefault()
@@ -225,25 +218,6 @@ const Livro = () => {
                     Iniciar leitura
                   </button>
 
-                  <button
-                    className="btn btn-outline-light me-2"
-                    onClick={handleAddToFavorites}
-                    title="Adicionar aos favoritos"
-                  >
-                    <i className="bi bi-heart"></i>
-                  </button>
-
-                  <button
-                    className="btn btn-outline-light me-2"
-                    onClick={handleAddToWishlist}
-                    title="Adicionar à lista de desejos"
-                  >
-                    <i className="bi bi-bookmark"></i>
-                  </button>
-
-                  <button className="btn btn-outline-light" title="Compartilhar">
-                    <i className="bi bi-share"></i>
-                  </button>
                 </div>
 
                 {/* Rating */}
