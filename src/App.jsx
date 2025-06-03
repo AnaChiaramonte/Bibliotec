@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/header/Header";
@@ -13,6 +12,7 @@ import Livros from "./pages/Livros";
 import Footer from "./components/footer/Footer";
 import Grafico from "./components/grafico/Grafico";
 import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
+import Adm from "./pages/Adm";
 import Cadastrar from "./pages/Cadastrar";
 
 function App() {
@@ -30,16 +30,18 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/ProgressaoDeLeitura" element={<ProgressaoDeLeitura/>}/>
-           <Route path="/Cadastrar" element={<Cadastrar />} />
-
+            <Route
+              path="/ProgressaoDeLeitura"
+              element={<ProgressaoDeLeitura />}
+            />
+            <Route path="/Cadastrar" element={<Cadastrar />} />
 
             <Route path="/Livros" element={<Livros />} />
             <Route path="/Perfil" element={<Perfil />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/Adm" element={<Adm />} />
           </Routes>
         </main>
-   
       </BrowserRouter>
     </>
   );
