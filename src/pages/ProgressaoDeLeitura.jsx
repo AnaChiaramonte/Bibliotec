@@ -226,19 +226,24 @@ const ProgressoLivros = () => {
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                     Fechar
                   </button>
-                </div>
                 
+                </div>
+              
               </>
-            )}
-          </div>
+          
+          )}
           
         </div>
+      
       </div>
 
     
+     
    
-       <Footer/>
        </div>
+             
+    </div>
+    
   )
 }
 

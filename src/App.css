@@ -19,11 +19,11 @@ nav{
 }
 
 .livro{
-  height: 595px;
-width: 900px;
+  height: 100%;
+width: 65%;
  position:absolute;
   right: 0;
-flex: 1 1 360px;
+
   
   display: flex;
   flex-direction: row; /* ou column pra empilhar */
@@ -32,8 +32,8 @@ flex: 1 1 360px;
 }
 
 .logo{
-  width: 70px;
-  height: 70px;
+  width: 20%;
+  height: 20%;
 }
 .imagem-folha {
   position: absolute;
@@ -41,14 +41,14 @@ flex: 1 1 360px;
   bottom: 0;
   top: 100px;
 
- width: 250px;
+ width: 20%;
 }
 .frase{
   background: #E4CFC4;
   
 }
 .frase-2{
-  margin-top: 70px;
+  margin-top: 50px;
 font-style: italic;
  color: #876962;
   font-family:'Courier New', Courier, monospace;
