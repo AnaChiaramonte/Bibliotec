@@ -85,7 +85,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 
 .book-image-container {
-  background-color: #f8f9fa;
+  background-color: #faf9f8;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -186,66 +186,42 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --color-tertiary: #876b5d;
   --color-dark: #2f1f1b;
 }
-
-
-.rodapé {
-  top: 1200px;
-  position: relative;
-}
-
-/* Cores personalizadas */
 :root {
   --color-light: #f5f2ee;
   --color-medium: #baa89c;
   --color-primary: #876b5d;
   --color-dark: #2f1f1b;
 }
-
-/* Main content */
 .main-bg {
   background-color: var(--color-light);
 }
-
-/* Text colors */
 .text-custom-dark {
   color: var(--color-dark) !important;
 }
-
 .text-custom-muted {
   color: var(--color-primary) !important;
 }
-
 .text-custom-primary {
   color: var(--color-primary) !important;
 }
-
-/* Borders */
 .border-custom {
   border-color: var(--color-medium) !important;
 }
-
-/* Buttons */
 .btn-primary {
   background-color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
 }
-
 .btn-primary:hover {
   background-color: var(--color-dark) !important;
   border-color: var(--color-dark) !important;
   transition: all 0.3s ease;
 }
-
-/* Table */
 .table-light {
   background-color: var(--color-light) !important;
 }
-
-/* Cards - garantir que os números apareçam */
 .card {
-  background-color: white !important;
+  background-color: var(--color-secondary)!important;
 }
-
 .card-body h2 {
   color: var(--color-dark) !important;
   font-size: 3rem !important;
@@ -253,40 +229,30 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   line-height: 1 !important;
   margin-bottom: 0.5rem !important;
 }
-
 .card-body p {
   color: var(--color-primary) !important;
   font-size: 1rem !important;
   margin-bottom: 0 !important;
 }
-
-/* Ícones dos cards */
 .card-body i {
   color: var(--color-primary) !important;
 }
-
-/* Responsividade */
 @media (max-width: 768px) {
   .card-body h2 {
     font-size: 2.5rem !important;
   }
 }
-
 @media (max-width: 576px) {
   .card-body h2 {
     font-size: 2rem !important;
   }
 }
-
-/* Cores personalizadas */
 :root {
   --color-light: #f5f2ee;
   --color-medium: #baa89c;
   --color-primary: #876b5d;
   --color-dark: #2f1f1b;
 }
-
-/* Modal backdrop */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -299,14 +265,10 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   align-items: center;
   z-index: 1050;
 }
-
-/* Modal content com fundo personalizado */
 .modal-content-custom {
-  background-color: var(--color-light) !important;
+  background-color: var(--color-dark)!important;
   border: 1px solid var(--color-medium) !important;
 }
-
-/* Cores personalizadas */
 .text-custom-dark {
   color: var(--color-dark) !important;
 }
@@ -316,18 +278,14 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 .bg-custom-light {
   background-color: var(--color-light) !important;
 }
-
-/* Buttons */
 .btn-primary {
   background-color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
 }
-
 .btn-primary:hover:not(:disabled) {
   background-color: var(--color-dark) !important;
   border-color: var(--color-dark) !important;
 }
-
 .btn-outline-secondary {
   color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
@@ -338,15 +296,12 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   border-color: var(--color-primary) !important;
   color: white !important;
 }
-
-/* Form focus */
 .form-control:focus,
 .form-select:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 0.25rem rgba(135, 107, 93, 0.25);
 }
-
-.background-image {
+background-image {
   position: fixed;
   inset: 0;
   background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png');
@@ -359,7 +314,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 .perfil{
   background-color: #533E39;
 }
-
+}
 .modal-backdrop {
   z-index: 1050;
   position: fixed;
@@ -367,7 +322,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(2px); /* leve embaçamento geral */
+  backdrop-filter: blur(2px); 
   display: flex;
   justify-content: center;
   align-items: center;
