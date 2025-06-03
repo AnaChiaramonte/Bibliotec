@@ -7,10 +7,7 @@ import Header from "./components/header/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Perfil from "./pages/Perfil";
-
 import Livros from "./pages/Livros";
-import Footer from "./components/footer/Footer";
-import Grafico from "./components/grafico/Grafico";
 import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
 import Adm from "./pages/Adm";
 import Cadastrar from "./pages/Cadastrar";
