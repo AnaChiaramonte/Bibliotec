@@ -234,10 +234,11 @@ const ProgressoLivros = () => {
           
         </div>
       </div>
- 
-      <Footer/>
+
     
-    </div>
+   
+       <Footer/>
+       </div>
   )
 }
 

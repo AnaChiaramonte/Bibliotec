@@ -23,7 +23,7 @@ nav{
 width: 900px;
  position:absolute;
   right: 0;
-
+flex: 1 1 360px;
   
   display: flex;
   flex-direction: row; /* ou column pra empilhar */

@@ -24,8 +24,8 @@ const Home = () => {
      
      
      
-      <div className="frase w-100 top-100 h-25 align-items-center justify-content-center  d-flex mt-0">
-        <h1 className=" palavra align-items-center justify-content-center ">
+      <div className="frase position-absolute bottom-0 w-100 top-100 h-25 align-items-center justify-content-center d-flex mt-0 ">
+      <h1 className=" palavra position-absolute align-items-center justify-content-center d-flex ">
           {" "}
           Bibliotec
           <br />
