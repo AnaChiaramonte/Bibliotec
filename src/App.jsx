@@ -12,6 +12,8 @@ import ProgressaoDeLeitura from "./pages/ProgressaoDeLeitura";
 import Adm from "./pages/Adm";
 import Cadastrar from "./pages/Cadastrar";
 
+
+
 function App() {
   const handleNavLinkClick = (event) => {
     if (event.target.tagName === "A") {
@@ -37,7 +39,9 @@ function App() {
             <Route path="/Perfil" element={<Perfil />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Adm" element={<Adm />} />
+
           </Routes>
+          
         </main>
       </BrowserRouter>
     </>

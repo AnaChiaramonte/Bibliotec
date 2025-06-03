@@ -48,6 +48,7 @@ function Login() {
     }
   };
 
+  
   return (
     <>
       <div className="container py-5 d-flex justify-content-center align-items-center vh-100">
@@ -56,35 +57,35 @@ function Login() {
             Bem-vindo(a)
           </h2>
           <form onSubmit={fazerLogin} className="login-form">
-            <div className="mb-3 text-start">
-              <input
-                type="email"
-                placeholder="Seu e-mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control  rounded-5"
-              />
-            </div>
-            <div className="mb-4 text-start">
-              <input
-                type="password"
-                placeholder="Sua senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                className="form-control rounded-5"
-              />
-            </div>
-            <Link className="nav-link mt-5 fs-4" to="/">
-              <div className="d-flex justify-content-center">
-                <button
-                  className=" btn btn w-100"
-                  style={{ background: "#E4CFC4" }}
-                >
-                  Entrar
-                </button>
-              </div>
-            </Link>
-          </form>
+  <div className="mb-3 text-start">
+    <input
+      type="email"
+      placeholder="Seu e-mail"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="form-control  rounded-5"
+    />
+  </div>
+  <div className="mb-4 text-start">
+    <input
+      type="password"
+      placeholder="Sua senha"
+      value={senha}
+      onChange={(e) => setSenha(e.target.value)}
+      className="form-control rounded-5"
+    />
+  </div>
+  <div className="d-flex justify-content-center">
+    <button
+      type="submit"
+      className="btn btn w-100"
+      style={{ background: "#E4CFC4" }}
+    >
+      Entrar
+    </button>
+  </div>
+</form>
+
 
           {mensagem && <p className="login-msg text-center mt-3">{mensagem}</p>}
           <div className="d-flex justify-content-center">
