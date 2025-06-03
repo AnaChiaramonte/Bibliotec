@@ -4,7 +4,9 @@
     "\\public",
     "\\src",
     "\\src\\components",
-    "\\src\\pages"
+    "\\src\\components\\editar",
+    "\\src\\components\\estrelas"
   ],
+  "SelectedNode": "\\src\\main.jsx",
   "PreviewInSolutionExplorer": false
 }
