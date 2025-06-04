@@ -346,7 +346,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   box-shadow: 0 0 0 0.25rem rgba(135, 107, 93, 0.25);
 }
 
-.background-image {
+background-image {
   position: fixed;
   inset: 0;
   background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png');
@@ -358,7 +358,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   z-index: 1;
 .perfil{
   background-color: #533E39;
-}
+}}
 
 .modal-backdrop {
   z-index: 1050;
