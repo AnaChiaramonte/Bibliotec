@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import Footer from "../components/footer/Footer"
 import "./Livro.css"
 
 const Livro = () => {
@@ -279,8 +280,10 @@ const Livro = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
+    
     </div>
+    
   )
 }
 

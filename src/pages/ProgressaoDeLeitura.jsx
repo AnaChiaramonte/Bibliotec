@@ -87,7 +87,7 @@ const ProgressoLivros = () => {
           <div key={livro.id} className="col-md-6 col-lg-3 mb-4">
             <div
               className="card h-100 shadow-sm"
-              style={{ backgroundColor: "#876b5d", color: "white", cursor: "pointer" }}
+              style={{ backgroundColor: "#bca397", color: "#a7866454", cursor: "pointer" }}
               onClick={() => openBookDetails(livro)}
               data-bs-toggle="tooltip"
               data-bs-placement="top"
@@ -128,7 +128,7 @@ const ProgressoLivros = () => {
                 <div className="mt-3">
                   <Grafico progresso={livro.progresso} />
                   <div className="text-end mt-1">
-                    <small className="text-light opacity-75">{livro.progresso}% concluído</small>
+                    <small className="text-dark opacity-75">{livro.progresso}% concluído</small>
                   </div>
                 </div>
               </div>
@@ -139,14 +139,14 @@ const ProgressoLivros = () => {
 
       
       <div
-        className="modal fade"
+        className="modal fade " 
         id="bookDetailsModal"
         tabIndex="-1"
         aria-labelledby="bookDetailsModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-lg">
-          <div className="modal-content">
+        <div className="modal-dialog modal-lg" >
+          <div className="modal-content" style={{ backgroundColor: "#bba597f8"}}>
             {selectedBook && (
               <>
                 <div className="modal-header" style={{ backgroundColor: "#876b5d", color: "white" }}>
