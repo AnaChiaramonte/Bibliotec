@@ -12,21 +12,29 @@ body{
   z-index: 2;
   color: #E4CFC4;
 }
-nav{
-  background-color: #C7B9AE;
-  height: 75px;
-  color: #533E39; /* Cor padrão */
+
+.navbar{
+  background: #C7B9AE;
+  height: 80px;
 }
+
+.nav-link{
+  background: #C7B9AE;
+  height: 75px;
+  color: #533E39; 
+  
+}
+
+
+
 
 .livro{
   height: 100%;
 width: 65%;
  position:absolute;
   right: 0;
-
-  
   display: flex;
-  flex-direction: row; /* ou column pra empilhar */
+  flex-direction: row; 
   justify-content: space-between;
   align-items: center;
 }
@@ -48,10 +56,11 @@ width: 65%;
   
 }
 .frase-2{
-  margin-top: 50px;
+  margin-top: 5%;
 font-style: italic;
  color: #876962;
   font-family:'Courier New', Courier, monospace;
+  margin-top: 70px;
 }
 .palavra{
   
@@ -326,4 +335,26 @@ background-image {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 991px) {
+  .navbar-collapse.show {
+    background-color: #d4bfbf; 
+    position: absolute;
+    top: 100%; /* Ajusta a altura abaixo da navbar */
+    right: 0;
+    width: 60%;
+    border-radius: 0 0 0 15px;
+    padding: 20px;
+    z-index: 999;
+  }
+
+  .navbar-collapse.show .nav-link {
+    color: white !important;
+    text-align: right;
+    padding: 10px 0;
+  }
+
+  .navbar-collapse.show .nav-link:hover {
+    color: #ccc !important;
+  }
 }

@@ -1,49 +1,54 @@
-import { Link } from "react-router";
-
-
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeNavbar = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg ">
+    <nav className="navbar navbar-expand-lg navbar-dark ">
       <div className="container">
-       
-        <Link className="navbar-brand" to="/">
+        <Link className="logo m-5" to="/" onClick={closeNavbar}>
           <img
             src="src/assets/Black White Minimalist Book Club Logo.png"
             alt="Logo"
-            className="logo"
-            style={{ width: "60px" }}
+            width="60"
           />
         </Link>
 
-        {/* Botão de menu mobile */}
         <button
-          className="navbar-toggler "
+          className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={toggleNavbar}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Itens do menu */}
-        <div className="collapse navbar-collapse justify-content-center align-items-center" id="navbarNav">
-          <ul className="navbar-nav ms-auto align-items-center">
+        <div
+          className={`collapse navbar-collapse ${
+            isOpen ? "show" : ""
+          } justify-content-end`}
+        >
+          <ul className="navbar-nav ">
             <li className="nav-item">
-              <Link className="nav-link fs-5" to="/Livros">
+              <Link className="nav-link " to="/Livros" onClick={closeNavbar}>
                 Livros
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-5" to="/ProgressaoDeLeitura">
+            <li className="nav-item ">
+              <Link className="nav-link" to="/ProgressaoDeLeitura" onClick={closeNavbar}>
                 Progresso de Leitura
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link fs-5" to="/Perfil">
+              <Link className="nav-link " to="/Perfil" onClick={closeNavbar}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -54,10 +59,11 @@ const Header = () => {
                 >
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                 </svg>
+                
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="btn btn-light ms-3" to="/Login">
+              <Link className="nav-link text-white" to="/Login" onClick={closeNavbar}>
                 Entrar
               </Link>
             </li>
