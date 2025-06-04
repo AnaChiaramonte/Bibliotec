@@ -15,20 +15,18 @@ body{
 
 .navbar {
   display: flex;
-  justify-content: space-between; /* espaço entre os grupos de links */
-  align-items: center;            /* alinha verticalmente no centro */
+  justify-content: space-between; 
+  align-items: center;            
   height: 75px;
-  padding: 0 20px;                /* opcional, espaçamento lateral */
-  background-color: #D0C0B4;      /* sua cor de fundo */
+  padding: 0 20px;                
+  background-color: #D0C0B4;   
 }
-
-
 .nav-link {
   color: #533E39;
   height: 75px;
-  line-height: 75px; /* Centraliza verticalmente dentro da altura */
+  line-height: 75px; 
   transition: color 0.3s;
-  padding: 0 15px; /* Espaçamento lateral opcional */
+  padding: 0 15px;
 }
 
 .nav-link:hover {
@@ -38,28 +36,17 @@ body{
 .nav-left,
 .nav-right {
     display: flex;
-    gap: 20px; /* espaçamento entre links */
+    gap: 20px;
 }
 
 .navbar-toggler {
-  padding: 4px 8px;             /* reduz padding interno */
-  margin-top: -4px;                   /* remove margem extra */
-  align-self: center;           /* garante centralização vertical */
-  display: flex;                /* para garantir que o ícone centralize */
-  align-items: center;
-  justify-content: center;
-  border: none;                 /* opcional: remove borda se estiver feia */
-  background-color: transparent; /* opcional: evita fundo branco/feio */
-  transform: translateY(-4px); /* levanta o botão suavemente */
+  border: 1px solid rgb(165, 165, 165); 
 }
-
-@media (max-width: 768px) {
-  .navbar-toggler {
-    transform: translateY(-4px);
-  }
+.navbar-header, .navbar-top {
+  display: flex;
+  align-items: center; 
+  height: auto;  
 }
-
-
 .nav-link {
     color: #876b5d;
     text-decoration: none;
@@ -133,10 +120,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #8a7468;
   
 }
-
-
-
-
 .book-image-container {
   background-color: #faf9f8;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -160,7 +143,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   transform: translateY(-5px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
 }
-
 
 .rating-buttons {
   display: flex;
@@ -199,7 +181,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #e0e0e0;
 }
 
-/* Estilos para dispositivos móveis */
+
 @media (max-width: 767.98px) {
   .book-image-container {
     height: 180px !important;
@@ -232,7 +214,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #e0e0e0;
 }
 
-/* Apenas as cores customizadas do seu site */
 :root {
   --color-primary: #f5f2ee;
   --color-secondary: #baa89c;
@@ -276,7 +257,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: var(--color-secondary)!important;
 }
 .card-body h2 {
-  color: var(--color-dark) !important;
+  color: var(--color-medium) !important;
   font-size: 3rem !important;
   font-weight: bold !important;
   line-height: 1 !important;
@@ -382,9 +363,9 @@ background-image {
 }
 @media (max-width: 991px) {
   .navbar-collapse.show {
-    background-color: #d4bfbf; 
+    background-color: #533e39e1; 
     position: absolute;
-    top: 100%; /* Ajusta a altura abaixo da navbar */
+    top: 100%; 
     right: 0;
     width: 60%;
     border-radius: 0 0 0 15px;
@@ -402,3 +383,30 @@ background-image {
     color: #ccc !important;
   }
 }
+
+.text-brown {
+  color: #8B4513; 
+}
+
+.text-brown:hover {
+  color: #A0522D; 
+
+.bg-opacity-75 {
+  background-color: rgb(255, 255, 255); 
+}
+
+.logo-img {
+  margin-top: 0;
+}
+.navbar-collapse.show {
+  text-align: right; 
+}
+
+.nav-link {
+  display: block; 
+  padding: 10px 0; 
+}
+
+.nav-link:hover {
+  color: #A0522D; 
+}}
