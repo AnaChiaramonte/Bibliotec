@@ -14,6 +14,8 @@ const Livro = () => {
 
   const categories = ["Romance", "Terror", "Fantasia", "Biografia", "Drama", "Ficção"]
 
+ 
+
   // Dados dos livros reais organizados por categoria
   const booksByCategory = {
     Romance: {
