@@ -40,7 +40,8 @@ function Login() {
         setMensagem(erro.message || "Email ou senha inválidos.");
         return;
       }
-
+      console.log("URL da API:", apiUrl);
+      
       const dados = await resposta.json();
       alert("Login realizado com sucesso!");
       localStorage.setItem("user", JSON.stringify(dados));

@@ -42,6 +42,7 @@ function App() {
             <Route path="/Adm" element={<Adm />} />
           </Routes>
         </main>
+        <Footer   />
       </BrowserRouter>
     </>
   );

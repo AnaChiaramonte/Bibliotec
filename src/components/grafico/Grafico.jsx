@@ -10,7 +10,7 @@ const Grafico = ({ progresso }) => {
         cx="50"
         cy="50"
         r={radius}
-        stroke="#E6D5B8" /* Cor mais clara para contraste com o fundo marrom */
+        stroke="#cfb79d" 
         strokeWidth="8"
         fill="none"
         strokeLinecap="round"
@@ -19,7 +19,7 @@ const Grafico = ({ progresso }) => {
         strokeDashoffset={strokeDashoffset}
         style={{ transition: "stroke-dashoffset 0.3s" }}
       />
-      <text x="50" y="50" textAnchor="middle" dominantBaseline="middle" fontSize="20" fill="#ffffff">
+      <text x="50" y="50" textAnchor="middle" dominantBaseline="middle" fontSize="20" fill="#4b3a3a">
         {progresso}%
       </text>
     </svg>
