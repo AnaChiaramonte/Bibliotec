@@ -114,7 +114,7 @@ const Adm = () => {
 
       <div className="container-fluid main-bg min-vh-100">
         <div className="p-4">
-          {/* Header */}
+         
           <div className="mb-4 d-flex justify-content-between align-items-center">
             <h1 className="display-5 fw-bold text-custom-dark">
               Dashboard Administrativo
@@ -127,7 +127,6 @@ const Adm = () => {
             </button>
           </div>
 
-          {/* Stats Cards */}
           <div className="row g-3 mb-5">
             <div className="col-sm-6 col-lg-3">
               <div className="card border-custom shadow-sm h-100">
@@ -183,7 +182,7 @@ const Adm = () => {
             </div>
           </div>
 
-          {/* Books Section */}
+         
           <div className="mb-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h2 className="h3 fw-bold text-custom-dark">Livros</h2>
@@ -233,7 +232,7 @@ const Adm = () => {
             </div>
           </div>
 
-          {/* Categories Section */}
+     
           <div className="mb-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h2 className="h3 fw-bold text-custom-dark">Categorias</h2>
@@ -262,21 +261,21 @@ const Adm = () => {
         </div>
       </div>
 
-      {/* Modal de Adicionar Livros */}
+  
       <AddLivros
         show={showAddLivros}
         onClose={() => setShowAddLivros(false)}
         onSave={handleSaveBook}
       />
 
-      {/* Modal de Adicionar Categorias */}
+     
       <AddCategorias
         show={showAddCategorias}
         onClose={() => setShowAddCategorias(false)}
         onSave={handleSaveCategory}
       />
 
-      {/* Modal de Editar Livros */}
+   
       <EditarLivros
         show={showEditLivros}
         onClose={() => setShowEditLivros(false)}

@@ -1,11 +1,9 @@
 import { Link } from "react-router";
 
 
-
-
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark  ">
+    <nav className="navbar navbar-expand-lg navbar-dark fs-5 bg-bg-light fixed-top" id="navbar">
       <div className="container ">
         <Link   className="logo m-5 " to="/">
       <img src="src/assets/Black White Minimalist Book Club Logo.png"   className=" logo mt-0 m-0  "alt="" />
