@@ -1,56 +1,65 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom"; // Corrigido: react-router-dom
+import { Link } from "react-router"; 
+
+
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [mensagem, setMensagem] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [senha, setSenha] = useState("");
+//   const [mensagem, setMensagem] = useState("");
 
+//   const navigate = useNavigate();
 
-  const navigate = useNavigate();
+//   const fazerLogin = async (e) => {
+//     e.preventDefault();
 
-  const fazerLogin = async (e) => {
-    e.preventDefault();
+//     const apiUrl = import.meta.env.VITE_API_URL;
+//     console.log("API URL:", apiUrl);
 
-    // Validação do e-mail e da senha
-    if (!email.includes("@")) {
-      setMensagem("Digite um e-mail válido.");
-      return;
-    }
+//     try {
+//       const resposta = await fetch(`${apiUrl}/api/Usuarios/login`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           email: email,
+//           password: senha,
+//         }),
+//       });
 
-    if (senha.length < 6) {
-      setMensagem("A senha deve ter pelo menos 6 caracteres.");
-      return;
-    }
+//       if (!resposta.ok) {
+//         let erroMsg = "Email ou senha inválidos.";
+//         try {
+//           const erro = await resposta.json();
+//           erroMsg = erro.message || erroMsg;
+//         } catch {}
+//         setMensagem(erroMsg);
+//         return;
+//       }
 
-    const apiUrl = import.meta.env.VITE_API_URL;
+//       const dados = await resposta.json();
+//       console.log("Login OK:", dados);
 
-    try {
-      const resposta = await fetch(`${apiUrl}/Users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, senha }),
-      });
+//       // Salva token e dados do usuário
+//       localStorage.setItem("token", dados.token);
+//       localStorage.setItem("user", JSON.stringify(dados));
 
-      if (!resposta.ok) {
-        const erro = await resposta.json();
-        setMensagem(erro.message || "Email ou senha inválidos.");
-        return;
-      }
-      console.log("URL da API:", apiUrl);
-      
-      const dados = await resposta.json();
-      alert("Login realizado com sucesso!");
-      localStorage.setItem("user", JSON.stringify(dados));
-      navigate("/dashboard");
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      setMensagem("Erro ao fazer login. Tente novamente mais tarde.");
-    }
-  };
+//       // Pega role do usuário
+//       const role = dados.role || dados.roles?.[0];
+//       console.log("Role do usuário:", role);
+
+//       // Redireciona conforme a role
+//       if (role?.toLowerCase() === "admin") {
+//         navigate("/adm");
+//       } else {
+//         navigate("/");
+//       }
+
+//     } catch (error) {
+//       console.error("Erro no login:", error);
+//       setMensagem("Erro no login. Tente novamente.");
+//     }
+//   };
 
   return (
     <div className="container py-5 d-flex justify-content-center align-items-center vh-100">

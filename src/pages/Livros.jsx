@@ -87,6 +87,9 @@ const Livro = () => {
     ))
   }
 
+  
+
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
     setUserRating(0)
@@ -94,8 +97,29 @@ const Livro = () => {
   }
 
   const handleStartReading = () => {
-    console.log(`Iniciando leitura de ${currentBook.title}...`)
+    const savedBooks = JSON.parse(localStorage.getItem("livrosEmProgresso")) || []
+  
+    const livroAtual = {
+      id: selectedCategory,
+      titulo: currentBook.title,
+      autor: currentBook.author,
+      imagem: currentBook.image,
+      progresso: 0,
+      avaliacao: currentBook.rating,
+      descricao: currentBook.description
+    }
+  
+    const livroJaExiste = savedBooks.some(livro => livro.id === livroAtual.id)
+  
+    if (!livroJaExiste) {
+      savedBooks.push(livroAtual)
+      localStorage.setItem("livrosEmProgresso", JSON.stringify(savedBooks))
+      alert(`"${currentBook.title}" foi adicionado ao seu progresso de leitura!`)
+    } else {
+      alert("Esse livro já está no seu progresso de leitura!")
+    }
   }
+  
 
 
   const handleSubmitFeedback = (e) => {
@@ -216,6 +240,7 @@ const Livro = () => {
                 <div className="action-buttons mb-4">
                   <button className="btn btn-primary btn-lg me-3 start-reading-btn" onClick={handleStartReading}>
                     <i className="bi bi-play-circle me-2"></i>
+                    
                     Iniciar leitura
                   </button>
 

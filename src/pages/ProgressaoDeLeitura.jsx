@@ -1,82 +1,36 @@
-
-import { useEffect, useState } from "react"
-import Grafico from "../components/grafico/Grafico"
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import Grafico from "../components/grafico/Grafico";
 import Footer from "../components/footer/Footer";
+import { Link } from "react-router-dom"; // Corrigido o import do Link
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import * as bootstrap from "bootstrap"
-
-
-const Books = [
-  {
-    id: 1,
-    titulo: "Um Verão na Itália",
-    autor: "Carrie Elks",
-    progresso: 25,
-    avaliacao: 4,
-    imagem: "/src/assets/ʕ•́ᴥ•̀ʔっ Book's ♥.jpg",
-    resumo:
-      "Em 'Um Verão na Itália', acompanhamos a jornada de Sofia, uma jovem estudante de arte que decide passar o verão na Toscana após uma decepção amorosa. Lá, ela conhece Marco, um charmoso chef local que a ensina sobre a culinária italiana e, aos poucos, a ajuda a redescobrir o amor e a paixão pela vida. Entre vinhedos, oliveiras e o pôr do sol italiano, Sofia aprende que às vezes é preciso se perder para encontrar o verdadeiro caminho.",
-  },
-  {
-    id: 2,
-    titulo: "A Garota do Lago",
-    autor: "Charlie Donlea",
-    progresso: 50,
-    avaliacao: 5,
-    imagem: "/src/assets/e3c3884a-20e2-4a72-b544-3d155f968e84.jpg",
-    resumo:
-      "Neste thriller psicológico, a jornalista investigativa Kelsey Castle é contratada para produzir um documentário sobre o desaparecimento de Summit Lake, uma estudante de direito encontrada morta em circunstâncias misteriosas. Conforme Kelsey mergulha na investigação, ela descobre segredos obscuros da pequena cidade e percebe que o caso tem semelhanças perturbadoras com um trauma de seu próprio passado. Uma narrativa envolvente sobre obsessão, segredos e a busca incansável pela verdade.",
-  },
-  {
-    id: 3,
-    titulo: "O Sol é Para Todos",
-    autor: "Harper Lee",
-    progresso: 75,
-    avaliacao: 5,
-    imagem: "/src/assets/A lista de livros para você ler durante as férias….jpg",
-    resumo:
-      "Ambientado nos anos 1930 em uma pequena cidade do Alabama, este clássico da literatura americana narra a história através dos olhos de Scout Finch, uma menina de seis anos. Seu pai, o advogado Atticus Finch, defende um homem negro injustamente acusado de estuprar uma mulher branca, enfrentando o preconceito enraizado da comunidade. A obra aborda temas como racismo, injustiça, compaixão e perda da inocência, oferecendo um retrato poderoso da sociedade sulista americana e uma reflexão atemporal sobre ética e moralidade.",
-  },
-  {
-    id: 4,
-    titulo: "O Pequeno Príncipe",
-    autor: "Antoine de Saint-Exupéry",
-    progresso: 100,
-    avaliacao: 5,
-    imagem: "/src/assets/O Pequeno Príncipe Livros Clássicos Livros….jpg",
-    resumo:
-      "Esta fábula encantadora conta a história de um piloto que, após cair com seu avião no deserto do Saara, encontra um pequeno príncipe vindo de um asteroide distante. Através das conversas entre os dois, o livro explora temas profundos como amor, amizade, solidão e o sentido da vida. Com sua célebre frase 'O essencial é invisível aos olhos', a obra nos lembra que as coisas mais importantes da vida só podem ser verdadeiramente vistas com o coração, não com os olhos.",
-  },
-]
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as bootstrap from "bootstrap";
 
 const ProgressoLivros = () => {
-  const [books, setBooks] = useState(Books)
-  const [selectedBook, setSelectedBook] = useState(null)
+  const [books, setBooks] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null); // 🔥 Aqui estava faltando!
 
   useEffect(() => {
-    document.title = "Progresso de Leitura"
+    document.title = "Progresso de Leitura";
+    const savedBooks = JSON.parse(localStorage.getItem("livrosEmProgresso")) || [];
+    setBooks(savedBooks);
 
-  
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl))
-  }, [])
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+  }, []);
 
-  
   const handleRatingChange = (bookId, newRating) => {
-    setBooks((prevBooks) => prevBooks.map((book) => (book.id === bookId ? { ...book, avaliacao: newRating } : book)))
-    
-    console.log(`Livro ID ${bookId} avaliado com ${newRating} estrelas`)
-  }
-
+    setBooks((prevBooks) =>
+      prevBooks.map((book) => (book.id === bookId ? { ...book, avaliacao: newRating } : book))
+    );
+    console.log(`Livro ID ${bookId} avaliado com ${newRating} estrelas`);
+  };
 
   const openBookDetails = (book) => {
-    setSelectedBook(book)
-    
-    const modal = new bootstrap.Modal(document.getElementById("bookDetailsModal"))
-    modal.show()
-  }
+    setSelectedBook(book);
+    const bookDetailsModal = new bootstrap.Modal(document.getElementById("bookDetailsModal"));
+    bookDetailsModal.show();
+  };
 
   return (
     <div className="container py-4">
@@ -113,11 +67,14 @@ const ProgressoLivros = () => {
                         type="button"
                         className="bg-transparent border-0 p-0 me-1"
                         onClick={(e) => {
-                          e.stopPropagation() 
-                          handleRatingChange(livro.id, star)
+                          e.stopPropagation();
+                          handleRatingChange(livro.id, star);
                         }}
                         aria-label={`Avaliar com ${star} ${star === 1 ? "estrela" : "estrelas"}`}
-                        style={{ fontSize: "1.5rem", color: star <= livro.avaliacao ? "#ffd700" : "#e0e0e0" }}
+                        style={{
+                          fontSize: "1.5rem",
+                          color: star <= livro.avaliacao ? "#ffd700" : "#e0e0e0",
+                        }}
                       >
                         ★
                       </button>
@@ -137,16 +94,16 @@ const ProgressoLivros = () => {
         ))}
       </div>
 
-      
+      {/* Modal */}
       <div
-        className="modal fade " 
+        className="modal fade"
         id="bookDetailsModal"
         tabIndex="-1"
         aria-labelledby="bookDetailsModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-lg" >
-          <div className="modal-content" style={{ backgroundColor: "#bba597f8"}}>
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content" style={{ backgroundColor: "#bba597f8" }}>
             {selectedBook && (
               <>
                 <div className="modal-header" style={{ backgroundColor: "#876b5d", color: "white" }}>
@@ -226,25 +183,16 @@ const ProgressoLivros = () => {
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                     Fechar
                   </button>
-                
                 </div>
-              
               </>
-          
-          )}
-          
+            )}
+          </div>
         </div>
-      
       </div>
 
-    
      
-   
-       </div>
-             
     </div>
-    
-  )
-}
+  );
+};
 
-export default ProgressoLivros
+export default ProgressoLivros;
