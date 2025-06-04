@@ -13,20 +13,64 @@ body{
   color: #E4CFC4;
 }
 
-.navbar{
-  background: #C7B9AE;
-  height: 80px;
-}
-
-.nav-link{
-  background: #C7B9AE;
+.navbar {
+  display: flex;
+  justify-content: space-between; /* espaço entre os grupos de links */
+  align-items: center;            /* alinha verticalmente no centro */
   height: 75px;
-  color: #533E39; 
-  
+  padding: 0 20px;                /* opcional, espaçamento lateral */
+  background-color: #D0C0B4;      /* sua cor de fundo */
 }
 
 
+.nav-link {
+  color: #533E39;
+  height: 75px;
+  line-height: 75px; /* Centraliza verticalmente dentro da altura */
+  transition: color 0.3s;
+  padding: 0 15px; /* Espaçamento lateral opcional */
+}
 
+.nav-link:hover {
+  color: #533E39;
+  text-decoration: none;
+}
+.nav-left,
+.nav-right {
+    display: flex;
+    gap: 20px; /* espaçamento entre links */
+}
+
+.navbar-toggler {
+  padding: 4px 8px;             /* reduz padding interno */
+  margin-top: -4px;                   /* remove margem extra */
+  align-self: center;           /* garante centralização vertical */
+  display: flex;                /* para garantir que o ícone centralize */
+  align-items: center;
+  justify-content: center;
+  border: none;                 /* opcional: remove borda se estiver feia */
+  background-color: transparent; /* opcional: evita fundo branco/feio */
+  transform: translateY(-4px); /* levanta o botão suavemente */
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    transform: translateY(-4px);
+  }
+}
+
+
+.nav-link {
+    color: #876b5d;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: #533E39;
+    text-decoration: none;
+}
 
 .livro{
   height: 100%;
