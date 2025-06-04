@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useState } from "react";
+import Footer from "../footer/Footer";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,6 +69,7 @@ const Header = () => {
               Entrar
             </Link>
           </div>
+       
         </div>
       </div>
     </nav>

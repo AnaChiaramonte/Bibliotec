@@ -1,54 +1,36 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom"; // Corrigido: react-router-dom
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
 
-
   const navigate = useNavigate();
 
-  const fazerLogin = async (e) => {
+  const fazerLogin = (e) => {
     e.preventDefault();
 
-    // Validação do e-mail e da senha
+    // Validação do e-mail
     if (!email.includes("@")) {
       setMensagem("Digite um e-mail válido.");
       return;
     }
 
-    if (senha.length < 6) {
-      setMensagem("A senha deve ter pelo menos 6 caracteres.");
+    // Validação da senha
+    if (senha.length < 8) {
+      setMensagem("A senha deve ter pelo menos 8 caracteres.");
       return;
     }
+    
 
-    const apiUrl = import.meta.env.VITE_API_URL;
-
-    try {
-      const resposta = await fetch(`${apiUrl}/Users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, senha }),
-      });
-
-      if (!resposta.ok) {
-        const erro = await resposta.json();
-        setMensagem(erro.message || "Email ou senha inválidos.");
-        return;
-      }
-      console.log("URL da API:", apiUrl);
-      
-      const dados = await resposta.json();
-      alert("Login realizado com sucesso!");
-      localStorage.setItem("user", JSON.stringify(dados));
-      navigate("/dashboard");
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      setMensagem("Erro ao fazer login. Tente novamente mais tarde.");
+    // Login local sem API
+    if (email === "admin@admin.com" && senha === "12345678") {
+      navigate("/Adm");
+    
+    } else {
+      setMensagem("Email ou senha inválidos.");
     }
   };
 
@@ -108,8 +90,9 @@ function Login() {
           </Link>
         </div>
       </div>
+      
     </div>
   );
 }
 
-export default Login
+export default Login;
