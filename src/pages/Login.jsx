@@ -5,61 +5,61 @@ import { Link } from "react-router";
 
 
 function Login() {
-//   const [email, setEmail] = useState("");
-//   const [senha, setSenha] = useState("");
-//   const [mensagem, setMensagem] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-//   const fazerLogin = async (e) => {
-//     e.preventDefault();
+  const fazerLogin = async (e) => {
+    e.preventDefault();
 
-//     const apiUrl = import.meta.env.VITE_API_URL;
-//     console.log("API URL:", apiUrl);
+    const apiUrl = import.meta.env.VITE_API_URL;
+    console.log("API URL:", apiUrl);
 
-//     try {
-//       const resposta = await fetch(`${apiUrl}/api/Usuarios/login`, {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//           email: email,
-//           password: senha,
-//         }),
-//       });
+    try {
+      const resposta = await fetch(`${apiUrl}/api/Usuarios/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: senha,
+        }),
+      });
 
-//       if (!resposta.ok) {
-//         let erroMsg = "Email ou senha inválidos.";
-//         try {
-//           const erro = await resposta.json();
-//           erroMsg = erro.message || erroMsg;
-//         } catch {}
-//         setMensagem(erroMsg);
-//         return;
-//       }
+      if (!resposta.ok) {
+        let erroMsg = "Email ou senha inválidos.";
+        try {
+          const erro = await resposta.json();
+          erroMsg = erro.message || erroMsg;
+        } catch {}
+        setMensagem(erroMsg);
+        return;
+      }
 
-//       const dados = await resposta.json();
-//       console.log("Login OK:", dados);
+      const dados = await resposta.json();
+      console.log("Login OK:", dados);
 
-//       // Salva token e dados do usuário
-//       localStorage.setItem("token", dados.token);
-//       localStorage.setItem("user", JSON.stringify(dados));
+      // Salva token e dados do usuário
+      localStorage.setItem("token", dados.token);
+      localStorage.setItem("user", JSON.stringify(dados));
 
-//       // Pega role do usuário
-//       const role = dados.role || dados.roles?.[0];
-//       console.log("Role do usuário:", role);
+      // Pega role do usuário
+      const role = dados.role || dados.roles?.[0];
+      console.log("Role do usuário:", role);
 
-//       // Redireciona conforme a role
-//       if (role?.toLowerCase() === "admin") {
-//         navigate("/adm");
-//       } else {
-//         navigate("/");
-//       }
+      // Redireciona conforme a role
+      if (role?.toLowerCase() === "admin") {
+        navigate("/adm");
+      } else {
+        navigate("/");
+      }
 
-//     } catch (error) {
-//       console.error("Erro no login:", error);
-//       setMensagem("Erro no login. Tente novamente.");
-//     }
-//   };
+    } catch (error) {
+      console.error("Erro no login:", error);
+      setMensagem("Erro no login. Tente novamente.");
+    }
+  };
 
   return (
     <div className="container py-5 d-flex justify-content-center align-items-center vh-100">

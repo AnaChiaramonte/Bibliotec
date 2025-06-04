@@ -16,7 +16,7 @@ const Cadastrar = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL;
     try {
-      const resposta = await fetch(`${apiUrl}/Users/register`, {
+      const resposta = await fetch(`${apiUrl}/api/Usuarios/registrar`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
