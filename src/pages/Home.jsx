@@ -5,36 +5,46 @@ import Footer from "../components/footer/Footer";
 const Home = () => {
   return (
     <div>
-      <div className="d-flex ">
-        <h2 className="principal align-items-center justify-content-center d-flex  mt-5">
-          Tenha uma leitura leve e
-          <br /> tranquila com <br /> Bibliotech
-        </h2>
-        <img className="livro  " src="src/assets/imagem projeto.jpg" alt="" />
+      <div className="md flex-column align-items-center justify-content-center vh-100">
+      
+        <img className="livro" src="src/assets/imagem projeto.jpg" alt="" />
         <img
-          className="imagem-folha m-5 "
+          className="imagem-folha mt-5 md"
           src="src/assets/Black White Minimalist Book Club Logo (1).png"
           alt=""
         />
+          <h2 className="principal align-items-center justify-content-center d-flex  mt-5">
+          Tenha uma leitura leve e
+          <br /> tranquila com <br /> Bibliotech
+        </h2>
       </div>
-      <div className="frase position-absolute bottom-0 w-100 top-100 h-25 align-items-center justify-content-center d-flex mt-0">
-        <h1 className=" palavra position-absolute align-items-center justify-content-center d-flex ">
+    
+     
+      
+     
+     
+     
+      <div className="frase  bottom-0 w-100 top-100 h-25 align-items-center justify-content-center d-flex mt-0 ">
+      <h1 className=" palavra position-absolute align-items-center justify-content-center d-flex ">
           {" "}
           Bibliotec
           <br />
         </h1>
-        <h2 className=" frase-2 d-flex align-content-center justify-content-center ">
+        <h2 className=" frase-2  align-content-center justify-content-center ">
           Seu universo literário organizado em um só lugar!
         </h2>
+
       </div>
-      <div className=" position-absolute w-100 top-100 h-100 align-items-center justify-content-center d-flex flex-column ">
+    
+  <div className="  col-md-6 d-flex w-100 top-100 h-100 align-items-center justify-content-center d-flex flex-column ">
+     
         <div className=" icone-livro d-flex align-items-center m-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100"
             height="100"
             fill="currentColor"
-            class="bi bi-book-fill"
+            className="bi bi-book-fill"
             viewBox="0 0 16 16"
           >
             <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
@@ -79,25 +89,9 @@ const Home = () => {
             enriquecer sua experiência de leitura.
           </p>
         </div>
-      </div>
-      <div className="frase position-absolute bottom-0 w-100 top-100 h-25 align-items-center justify-content-center d-flex mt-0">
-        <h1 className=" palavra position-absolute align-items-center justify-content-center d-flex ">
-          {" "}
-          Bibliotec
-          <br />
-        </h1>
-        <h2 className=" frase-2 d-flex align-content-center justify-content-center ">
-          Seu universo literário organizado em um só lugar!
-        </h2>
-
-      </div>
-      <div class="home-page">
-  <div class="home-content">
-  
-  </div>
- 
+      
 </div>
-<div className="rodapé">
+<div >
       <Footer   />
     </div>
     </div>
