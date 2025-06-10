@@ -1,0 +1,33 @@
+.principal {
+  font-size: 2rem;
+}
+
+.livro,
+.imagem-folha {
+  max-width: 100%;
+  height: auto;
+}
+
+.palavra {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.frase-2 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .principal {
+    font-size: 1.5rem;
+  }
+
+  .palavra {
+    font-size: 2rem;
+  }
+
+  .frase-2 {
+    font-size: 1rem;
+  }
+}

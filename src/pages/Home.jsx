@@ -105,6 +105,7 @@ const Home = () => {
                 </svg>
               </div>
          </div>
+              <Footer />
     </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { Link } from "react-router"; 
 
 
@@ -11,8 +12,28 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const fazerLogin = async (e) => {
+  const fazerLogin = (e) => {
     e.preventDefault();
+
+    // Validação do e-mail
+    if (!email.includes("@")) {
+      setMensagem("Digite um e-mail válido.");
+      return;
+    }
+
+    // Validação da senha
+    if (senha.length < 8) {
+      setMensagem("A senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+    
+
+    // Login local sem API
+    if (email === "admin@admin.com" && senha === "12345678") {
+      navigate("/Adm");
+    
+    } else {
+      setMensagem("Email ou senha inválidos.");
 
     const apiUrl = import.meta.env.VITE_API_URL;
     console.log("API URL:", apiUrl);
@@ -117,8 +138,9 @@ function Login() {
           </Link>
         </div>
       </div>
+      
     </div>
   );
 }
 
-export default Login
+export default Login;

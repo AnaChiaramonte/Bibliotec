@@ -13,20 +13,51 @@ body{
   color: #E4CFC4;
 }
 
-.navbar{
-  background: #C7B9AE;
-  height: 80px;
-}
-
-.nav-link{
-  background: #C7B9AE;
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;            
   height: 75px;
-  color: #533E39; 
-  
+  padding: 0 20px;                
+  background-color: #D0C0B4;   
+}
+.nav-link {
+  color: #533E39;
+  height: 75px;
+  line-height: 75px; 
+  transition: color 0.3s;
+  padding: 0 15px;
 }
 
+.nav-link:hover {
+  color: #533E39;
+  text-decoration: none;
+}
+.nav-left,
+.nav-right {
+    display: flex;
+    gap: 20px;
+}
 
+.navbar-toggler {
+  border: 1px solid rgb(165, 165, 165); 
+}
+.navbar-header, .navbar-top {
+  display: flex;
+  align-items: center; 
+  height: auto;  
+}
+.nav-link {
+    color: #876b5d;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 18px;
+}
 
+.nav-link:hover {
+    color: #533E39;
+    text-decoration: none;
+}
 
 .livro{
   height: 100%;
@@ -89,10 +120,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #8a7468;
   
 }
-
-
-
-
 .book-image-container {
   background-color: #faf9f8;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -116,7 +143,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   transform: translateY(-5px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
 }
-
 
 .rating-buttons {
   display: flex;
@@ -155,7 +181,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #e0e0e0;
 }
 
-/* Estilos para dispositivos móveis */
+
 @media (max-width: 767.98px) {
   .book-image-container {
     height: 180px !important;
@@ -188,7 +214,6 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #e0e0e0;
 }
 
-/* Apenas as cores customizadas do seu site */
 :root {
   --color-primary: #f5f2ee;
   --color-secondary: #baa89c;
@@ -338,9 +363,9 @@ background-image {
 }
 @media (max-width: 991px) {
   .navbar-collapse.show {
-    background-color: #d4bfbf; 
+    background-color: #533e39e1; 
     position: absolute;
-    top: 100%; /* Ajusta a altura abaixo da navbar */
+    top: 100%; 
     right: 0;
     width: 60%;
     border-radius: 0 0 0 15px;
@@ -358,3 +383,30 @@ background-image {
     color: #ccc !important;
   }
 }
+
+.text-brown {
+  color: #8B4513; 
+}
+
+.text-brown:hover {
+  color: #A0522D; 
+
+.bg-opacity-75 {
+  background-color: rgb(255, 255, 255); 
+}
+
+.logo-img {
+  margin-top: 0;
+}
+.navbar-collapse.show {
+  text-align: right; 
+}
+
+.nav-link {
+  display: block; 
+  padding: 10px 0; 
+}
+
+.nav-link:hover {
+  color: #A0522D; 
+}}
