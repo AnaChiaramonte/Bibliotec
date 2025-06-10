@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 
-
 const AddLivros = ({ show, onClose, onSave }) => {
   const [livro, setLivro] = useState({
     titulo: "",
@@ -17,7 +16,6 @@ const AddLivros = ({ show, onClose, onSave }) => {
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
- 
   const generos = [
     "Ficção",
     "Não ficção",
@@ -37,7 +35,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
       ...livro,
       [name]: value,
     })
-    
+
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -52,7 +50,6 @@ const AddLivros = ({ show, onClose, onSave }) => {
     if (!livro.autor.trim()) newErrors.autor = "Autor é obrigatório"
     if (!livro.genero) newErrors.genero = "Gênero é obrigatório"
 
-   
     if (livro.isbn && !/^[0-9-]{10,17}$/.test(livro.isbn)) {
       newErrors.isbn = "ISBN inválido"
     }
@@ -77,16 +74,13 @@ const AddLivros = ({ show, onClose, onSave }) => {
       // Simulando uma chamada de API
       await new Promise((resolve) => setTimeout(resolve, 800))
 
-      
       const novoLivro = {
         ...livro,
         id: Date.now(),
       }
 
-     
       onSave(novoLivro)
 
-   
       setLivro({
         titulo: "",
         autor: "",
@@ -105,167 +99,213 @@ const AddLivros = ({ show, onClose, onSave }) => {
     }
   }
 
-
   if (!show) return null
 
   return (
-    <div className="modal-backdrop">
-      <div
-        className="modal-content-custom rounded shadow-lg w-90 mw-100"
-        style={{ maxWidth: "600px", maxHeight: "90vh", overflowY: "auto" }}
-      >
-      
-        <div className="d-flex justify-content-between align-items-center p-3 border-bottom border-custom bg-custom-light">
-          <h5 className="text-custom-dark fw-bold m-0">Adicionar Novo Livro</h5>
-          <button type="button" className="btn-close" onClick={onClose}></button>
-        </div>
+    <>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
-        <form onSubmit={handleSubmit}>
-        
-          <div className="p-3 bg-custom-light">
-            <div className="row g-3">
-              <div className="col-12">
-                <label htmlFor="titulo" className="form-label text-custom-dark fw-semibold">
-                  Título <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  className={`form-control ${errors.titulo ? "is-invalid" : ""}`}
-                  id="titulo"
-                  name="titulo"
-                  value={livro.titulo}
-                  onChange={handleChange}
-                  placeholder="Digite o título do livro"
-                />
-                {errors.titulo && <div className="invalid-feedback">{errors.titulo}</div>}
-              </div>
+      <div className="modal-backdrop-custom" onClick={onClose}>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div
+                className="modal-content-custom rounded shadow-custom fade-in"
+                onClick={(e) => e.stopPropagation()}
+                style={{ maxHeight: "90vh", overflowY: "auto" }}
+              >
+                {/* Header */}
+                <div className="d-flex justify-content-between align-items-center p-4 border-bottom border-custom">
+                  <h5 className="text-accent-custom fw-bold m-0">
+                    <i className="bi bi-book-fill me-2"></i>
+                    Adicionar Novo Livro
+                  </h5>
+                  <button type="button" className="btn btn-outline-custom btn-sm" onClick={onClose}>
+                    <i className="bi bi-x-lg"></i>
+                  </button>
+                </div>
 
-           
-              <div className="col-md-6">
-                <label htmlFor="autor" className="form-label text-custom-dark fw-semibold">
-                  Autor <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  className={`form-control ${errors.autor ? "is-invalid" : ""}`}
-                  id="autor"
-                  name="autor"
-                  value={livro.autor}
-                  onChange={handleChange}
-                  placeholder="Nome do autor"
-                />
-                {errors.autor && <div className="invalid-feedback">{errors.autor}</div>}
-              </div>
+                <form onSubmit={handleSubmit}>
+                  {/* Body */}
+                  <div className="p-4">
+                    <div className="row g-3">
+                      {/* Título */}
+                      <div className="col-12">
+                        <label htmlFor="titulo" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-type me-1"></i>
+                          Título <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className={`form-control border-custom ${errors.titulo ? "is-invalid" : ""}`}
+                          id="titulo"
+                          name="titulo"
+                          value={livro.titulo}
+                          onChange={handleChange}
+                          placeholder="Digite o título do livro"
+                        />
+                        {errors.titulo && <div className="text-danger small mt-1">{errors.titulo}</div>}
+                      </div>
 
-            
-              <div className="col-md-6">
-                <label htmlFor="genero" className="form-label text-custom-dark fw-semibold">
-                  Gênero <span className="text-danger">*</span>
-                </label>
-                <select
-                  className={`form-select ${errors.genero ? "is-invalid" : ""}`}
-                  id="genero"
-                  name="genero"
-                  value={livro.genero}
-                  onChange={handleChange}
-                >
-                  <option value="">Selecione um gênero</option>
-                  {generos.map((genero) => (
-                    <option key={genero} value={genero}>
-                      {genero}
-                    </option>
-                  ))}
-                </select>
-                {errors.genero && <div className="invalid-feedback">{errors.genero}</div>}
-              </div>
+                      {/* Autor */}
+                      <div className="col-md-6">
+                        <label htmlFor="autor" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-person me-1"></i>
+                          Autor <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className={`form-control border-custom ${errors.autor ? "is-invalid" : ""}`}
+                          id="autor"
+                          name="autor"
+                          value={livro.autor}
+                          onChange={handleChange}
+                          placeholder="Nome do autor"
+                        />
+                        {errors.autor && <div className="text-danger small mt-1">{errors.autor}</div>}
+                      </div>
 
-           
-              <div className="col-md-6">
-                <label htmlFor="isbn" className="form-label text-custom-dark fw-semibold">
-                  ISBN
-                </label>
-                <input
-                  type="text"
-                  className={`form-control ${errors.isbn ? "is-invalid" : ""}`}
-                  id="isbn"
-                  name="isbn"
-                  value={livro.isbn}
-                  onChange={handleChange}
-                  placeholder="Ex: 978-3-16-148410-0"
-                />
-                {errors.isbn && <div className="invalid-feedback">{errors.isbn}</div>}
-              </div>
+                      {/* Gênero */}
+                      <div className="col-md-6">
+                        <label htmlFor="genero" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-tag me-1"></i>
+                          Gênero <span className="text-danger">*</span>
+                        </label>
+                        <select
+                          className={`form-control border-custom ${errors.genero ? "is-invalid" : ""}`}
+                          id="genero"
+                          name="genero"
+                          value={livro.genero}
+                          onChange={handleChange}
+                        >
+                          <option value="">Selecione um gênero</option>
+                          {generos.map((genero) => (
+                            <option key={genero} value={genero}>
+                              {genero}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.genero && <div className="text-danger small mt-1">{errors.genero}</div>}
+                      </div>
 
-              
-              <div className="col-md-6">
-                <label htmlFor="anoPublicacao" className="form-label text-custom-dark fw-semibold">
-                  Ano de Publicação
-                </label>
-                <input
-                  type="number"
-                  className={`form-control ${errors.anoPublicacao ? "is-invalid" : ""}`}
-                  id="anoPublicacao"
-                  name="anoPublicacao"
-                  value={livro.anoPublicacao}
-                  onChange={handleChange}
-                  placeholder="Ex: 2023"
-                />
-                {errors.anoPublicacao && <div className="invalid-feedback">{errors.anoPublicacao}</div>}
-              </div>
+                      {/* ISBN */}
+                      <div className="col-md-6">
+                        <label htmlFor="isbn" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-upc me-1"></i>
+                          ISBN
+                        </label>
+                        <input
+                          type="text"
+                          className={`form-control border-custom ${errors.isbn ? "is-invalid" : ""}`}
+                          id="isbn"
+                          name="isbn"
+                          value={livro.isbn}
+                          onChange={handleChange}
+                          placeholder="Ex: 978-3-16-148410-0"
+                        />
+                        {errors.isbn && <div className="text-danger small mt-1">{errors.isbn}</div>}
+                      </div>
 
-            
-              <div className="col-12">
-                <label htmlFor="editora" className="form-label text-custom-dark fw-semibold">
-                  Editora
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="editora"
-                  name="editora"
-                  value={livro.editora}
-                  onChange={handleChange}
-                  placeholder="Nome da editora"
-                />
-              </div>
+                      {/* Ano de Publicação */}
+                      <div className="col-md-6">
+                        <label htmlFor="anoPublicacao" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-calendar me-1"></i>
+                          Ano de Publicação
+                        </label>
+                        <input
+                          type="number"
+                          className={`form-control border-custom ${errors.anoPublicacao ? "is-invalid" : ""}`}
+                          id="anoPublicacao"
+                          name="anoPublicacao"
+                          value={livro.anoPublicacao}
+                          onChange={handleChange}
+                          placeholder="Ex: 2023"
+                        />
+                        {errors.anoPublicacao && <div className="text-danger small mt-1">{errors.anoPublicacao}</div>}
+                      </div>
 
-              
-              <div className="col-12">
-                <label htmlFor="descricao" className="form-label text-custom-dark fw-semibold">
-                  Descrição
-                </label>
-                <textarea
-                  className="form-control"
-                  id="descricao"
-                  name="descricao"
-                  rows="3"
-                  value={livro.descricao}
-                  onChange={handleChange}
-                  placeholder="Breve descrição do livro"
-                ></textarea>
+                      {/* Editora */}
+                      <div className="col-12">
+                        <label htmlFor="editora" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-building me-1"></i>
+                          Editora
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control border-custom"
+                          id="editora"
+                          name="editora"
+                          value={livro.editora}
+                          onChange={handleChange}
+                          placeholder="Nome da editora"
+                        />
+                      </div>
+
+                      {/* Descrição */}
+                      <div className="col-12">
+                        <label htmlFor="descricao" className="form-label text-accent-custom fw-semibold">
+                          <i className="bi bi-text-paragraph me-1"></i>
+                          Descrição
+                        </label>
+                        <textarea
+                          className="form-control border-custom"
+                          id="descricao"
+                          name="descricao"
+                          rows="4"
+                          value={livro.descricao}
+                          onChange={handleChange}
+                          placeholder="Breve descrição do livro"
+                        ></textarea>
+                        <div className="text-muted-custom small mt-1">
+                          {livro.descricao.length} caracteres (opcional)
+                        </div>
+                      </div>
+
+                      {/* Dicas */}
+                      <div className="col-12">
+                        <div className="alert bg-secondary-custom border-custom py-2">
+                          <small className="text-dark-custom">
+                            <i className="bi bi-info-circle me-1"></i>
+                            <strong>Dica:</strong> Preencha o máximo de informações possível para facilitar a
+                            catalogação e busca do livro.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="d-flex justify-content-end gap-2 p-4 border-top border-custom">
+                    <button type="button" className="btn btn-outline-custom" onClick={onClose}>
+                      <i className="bi bi-x-lg me-1"></i>
+                      Cancelar
+                    </button>
+                    <button
+                      type="submit"
+                      className={`btn btn-primary-custom ${isLoading ? "loading" : ""}`}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                          Salvando...
+                        </>
+                      ) : (
+                        <>
+                          <i className="bi bi-check-lg me-1"></i>
+                          Salvar Livro
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-
- 
-          <div className="d-flex justify-content-end gap-2 p-3 border-top border-custom bg-custom-light">
-            <button type="button" className="btn btn-outline-secondary" onClick={onClose}>
-              Cancelar
-            </button>
-            <button type="submit" className="btn btn-primary" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                  Salvando...
-                </>
-              ) : (
-                "Salvar Livro"
-              )}
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

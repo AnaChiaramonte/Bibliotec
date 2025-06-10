@@ -1,114 +1,150 @@
-import React from "react";
-import Footer from "../components/footer/Footer";
+"use client"
 
+import Footer from "../components/footer/Footer"
 
 const Home = () => {
   return (
-    <div>
-      <div className="md flex-column align-items-center justify-content-center vh-100">
-      
-        <img className="livro" src="src/assets/imagem projeto.jpg" alt="" />
-        <img
-          className="imagem-folha mt-5 md"
-          src="src/assets/Black White Minimalist Book Club Logo (1).png"
-          alt=""
-        />
-          <h2 className="principal align-items-center justify-content-center d-flex  mt-5">
-          Tenha uma leitura leve e
-          <br /> tranquila com <br /> Bibliotech
-        </h2>
-      </div>
-    
-     
-      
-     
-     
-     
-      <div className="frase  bottom-0 w-100 top-100 h-25 align-items-center justify-content-center d-flex mt-0 ">
-      <h1 className=" palavra position-absolute align-items-center justify-content-center d-flex ">
-          {" "}
-          Bibliotec
-          <br />
-        </h1>
-        <h2 className=" frase-2  align-content-center justify-content-center fs-4 text-center text-md-start">
-          Seu universo literário organizado em um só lugar!
-        </h2>
+    <>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
-      </div>
-    
-  <div className="  col-md-6 d-flex w-100 top-100 h-100 align-items-center justify-content-center d-flex flex-column ">
-     
-        <div className=" icone-livro d-flex align-items-center  ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100"
-            height="100"
-            fill="currentColor"
-            className="bi bi-book-fill mt-5 d-none d-md-block d-block"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
-          </svg>
-          <div className="col-12 col-md-10">
-                <h5 className="fs-4 fs-md-3 fw-semibold text-center text-md-start m-4">
-                  Cadastro e Organização de Livros
-                </h5>
-                <p className="text-dark text-center text-md-start fs-6 lh-base m-4">
-                  Gerencie sua biblioteca de forma simples e eficiente! <br />
-                  Nosso sistema permite cadastrar livros com informações detalhadas, como título, autor, categoria, ano
-                  de publicação e número de páginas. <br />
-                  Encontre facilmente qualquer livro através da nossa busca avançada e mantenha sua coleção sempre
-                  organizada.
+      <div className="bg-pattern">
+        {/* Hero Section - USANDO BOOTSTRAP PARA POSICIONAMENTO */}
+        <section className="vh-100 position-relative d-flex align-items-center">
+          <div className="container-fluid">
+            <div className="row h-100 align-items-center">
+              <div className="col-lg-6">
+                <div
+                  className="position-absolute top-50 start-50 translate-middle text-center"
+                  style={{ left: "35%", zIndex: 2, color: "var(--accent)" }}
+                >
+                  <h1 className="display-4 fw-bold text-accent-custom mb-4 fade-in">
+                    Tenha uma leitura leve e<br />
+                    tranquila com
+                    <br />
+                    <span className="text-primary-custom">Bibliotech</span>
+                  </h1>
+                  <p className="lead text-muted-custom mb-4">Seu universo literário organizado em um só lugar!</p>
+                </div>
+              </div>
+
+              <div className="d-flex flex-row" style={{ height: "100vh" }}>
+  {/* Lado Esquerdo: Texto com fundo sólido */}
+  <div
+    className="d-flex flex-column justify-content-center align-items-center"
+    style={{
+      backgroundColor: "#a18478", // tom terroso suave
+      width: "50%",
+      color: "#fff",
+      padding: "2rem",
+    }}
+  >
+    <img
+      src="/src/assets/Black White Minimalist Book Club Logo (1).png" // um SVG decorativo como na imagem
+      alt="Decorativo"
+      style={{ width: "60px", marginBottom: "1rem" }}
+    />
+   
+      
+   
+  </div>
+
+  {/* Lado Direito: Imagem */}
+  <div style={{ width: "50%", position: "relative" }}>
+    <img
+      src="/src/assets/imagem projeto.jpg"
+      alt="Biblioteca"
+      className="img-fluid"
+      style={{
+        objectFit: "cover",
+        height: "100%",
+        width: "100%",
+        borderRadius: "0 0 0 80px",
+      }}
+    />
+  </div>
+</div>
+
+            </div>
+          </div>
+
+          {/* Decorative leaf - USANDO BOOTSTRAP - AUMENTADO O TAMANHO */}
+        
+        </section>
+
+        {/* Brand Section - USANDO BOOTSTRAP PARA MARGIN E TEXT-ALIGN */}
+        <section className="py-5 bg-secondary-custom">
+          <div className="container text-center">
+            <h1 className="display-2 fw-bold text-dark-custom mb-3">Bibliotech</h1>
+            <p className="lead text-primary-custom fst-italic">Seu universo literário organizado em um só lugar!</p>
+          </div>
+        </section>
+
+        {/* Features Section - USANDO BOOTSTRAP PARA MARGINS */}
+        <section className="py-5">
+          <div className="container">
+            {/* Feature 1 - USANDO BOOTSTRAP PARA MARGIN-BOTTOM - ÍCONE MAIOR */}
+            <div className="row align-items-center mb-5">
+              <div className="col-md-2 text-center mb-3 mb-md-0">
+                <i className="bi bi-book-fill text-accent-custom" style={{ fontSize: "5rem" }}></i>
+              </div>
+              <div className="col-md-10">
+                <h3 className="fw-semibold text-dark-custom mb-3">Cadastro e Organização de Livros</h3>
+                <p className="text-muted-custom lh-base">
+                  Gerencie sua biblioteca de forma simples e eficiente! Nosso sistema permite cadastrar livros com
+                  informações detalhadas, como título, autor, categoria, ano de publicação e número de páginas.
                 </p>
               </div>
             </div>
 
-          
-            <div className="row align-items-center px-3">
-              <div className="col-12 col-md-10 order-md-1 order-2">
-                <h5 className="fs-4 fs-md-3 fw-semibold text-center text-md-end mb-3 icone-livro">
-                  Controle de Progresso de Leitura
-                </h5>
-                <p className="text-center text-md-end fs-6 lh-base">
-                  Acompanhe seu progresso de leitura de forma prática e intuitiva! <br />
-                  Com nosso sistema, você pode registrar o andamento de cada livro, incluindo a página atual e o tempo
-                  estimado para conclusão. <br />
-                  Além disso, você pode adicionar anotações e comentários para enriquecer sua experiência de leitura.
+            {/* Feature 2 - USANDO BOOTSTRAP PARA TEXT-ALIGN E MARGINS - ÍCONE MAIOR */}
+            <div className="row align-items-center mb-5">
+              <div className="col-md-10 order-md-1">
+                <h3 className="fw-semibold text-dark-custom mb-3 text-md-end">Controle de Progresso de Leitura</h3>
+                <p className="text-muted-custom lh-base text-md-end">
+                  Acompanhe seu progresso de leitura de forma prática e intuitiva! Com nosso sistema, você pode
+                  registrar o andamento de cada livro, incluindo a página atual e o tempo estimado para conclusão.
                 </p>
               </div>
-              <div className="icone-livro col-12 col-md-2 text-center order-md-2 order-1 mb-3 mb-md-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="80"
-                  height="80"
-                  className="d-block d-md-none mb-3 mb-md-0"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"
-                  />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="100"
-                  height="100"
-                  className="d-none d-md-block "
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"
-                  />
-                </svg>
+              <div className="col-md-2 text-center order-md-2 mb-3 mb-md-0">
+                <i className="bi bi-graph-up text-accent-custom" style={{ fontSize: "5rem" }}></i>
               </div>
-         </div>
-              <Footer />
-    </div>
-    </div>
-  );
-};
+            </div>
 
-export default Home;
+            {/* Feature 3 - USANDO BOOTSTRAP PARA MARGINS - ÍCONE MAIOR */}
+            <div className="row align-items-center mb-5">
+              <div className="col-md-2 text-center mb-3 mb-md-0">
+                <i className="bi bi-star-fill text-accent-custom" style={{ fontSize: "5rem" }}></i>
+              </div>
+              <div className="col-md-10">
+                <h3 className="fw-semibold text-dark-custom mb-3">Sistema de Avaliações</h3>
+                <p className="text-muted-custom lh-base">
+                  Avalie seus livros favoritos e compartilhe suas opiniões! Com nosso sistema de estrelas, você pode
+                  classificar cada livro lido e manter um histórico das suas preferências literárias.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section - USANDO BOOTSTRAP PARA TEXT-ALIGN E MARGINS */}
+        <section className="py-5 bg-dark-custom">
+          <div className="container text-center">
+            <h2 className="text-accent-custom mb-3">Pronto para começar?</h2>
+            <p className="text-muted-custom mb-4">
+              Junte-se a milhares de leitores que já organizam suas bibliotecas conosco!
+            </p>
+            <div className="d-flex gap-3 justify-content-center flex-wrap">
+              <button className="btn btn-primary-custom btn-lg">Cadastrar Agora</button>
+              <button className="btn btn-outline-custom btn-lg">Explorar Livros</button>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
+  )
+}
+
+export default Home

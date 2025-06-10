@@ -1,12 +1,7 @@
+"use client"
 
 import { useEffect, useState } from "react"
-import Grafico from "../components/grafico/Grafico"
-import { Link } from "react-router";
-import Footer from "../components/footer/Footer";
-
-import "bootstrap/dist/css/bootstrap.min.css"
-import * as bootstrap from "bootstrap"
-
+import Footer from "../components/footer/Footer"
 
 const Books = [
   {
@@ -51,200 +46,212 @@ const Books = [
   },
 ]
 
-const ProgressoLivros = () => {
+const ProgressaoDeLeitura = () => {
   const [books, setBooks] = useState(Books)
   const [selectedBook, setSelectedBook] = useState(null)
 
   useEffect(() => {
     document.title = "Progresso de Leitura"
-
-  
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl))
   }, [])
 
-  
   const handleRatingChange = (bookId, newRating) => {
     setBooks((prevBooks) => prevBooks.map((book) => (book.id === bookId ? { ...book, avaliacao: newRating } : book)))
-    
     console.log(`Livro ID ${bookId} avaliado com ${newRating} estrelas`)
   }
 
-
   const openBookDetails = (book) => {
     setSelectedBook(book)
-    
-    const modal = new bootstrap.Modal(document.getElementById("bookDetailsModal"))
-    modal.show()
+  }
+
+  const closeModal = () => {
+    setSelectedBook(null)
   }
 
   return (
-    <div className="container py-4">
-      <h1 className="text-center mb-4">Progresso de Leitura</h1>
+    <>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
-      <div className="row">
-        {books.map((livro) => (
-          <div key={livro.id} className="col-md-6 col-lg-3 mb-4">
-            <div
-              className="card h-100 shadow-sm"
-              style={{ backgroundColor: "#bca397", color: "#a7866454", cursor: "pointer" }}
-              onClick={() => openBookDetails(livro)}
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              title="Clique para ver detalhes"
-            >
-              <div style={{ height: "200px", overflow: "hidden" }}>
-                <img
-                  src={livro.imagem || "/placeholder.svg"}
-                  alt={livro.titulo}
-                  className="card-img-top img-fluid h-100 w-100"
-                  style={{ objectFit: "cover", objectPosition: "center top" }}
-                />
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">{livro.titulo}</h5>
-                <p className="card-text text-light opacity-75 mb-1">Autor: {livro.autor}</p>
-                <div className="mb-2">
-                  <p className="card-text mb-1">Avaliação:</p>
-                  <div className="d-flex align-items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        type="button"
-                        className="bg-transparent border-0 p-0 me-1"
-                        onClick={(e) => {
-                          e.stopPropagation() 
-                          handleRatingChange(livro.id, star)
-                        }}
-                        aria-label={`Avaliar com ${star} ${star === 1 ? "estrela" : "estrelas"}`}
-                        style={{ fontSize: "1.5rem", color: star <= livro.avaliacao ? "#ffd700" : "#e0e0e0" }}
-                      >
-                        ★
-                      </button>
-                    ))}
-                    <span className="ms-2 small text-light opacity-75">({livro.avaliacao})</span>
+      <div className="bg-pattern min-vh-100">
+        <div className="container py-5">
+          {/* Header */}
+          <div className="text-center mb-5">
+            <h1 className="display-4 fw-bold text-accent-custom mb-3">
+              <i className="bi bi-graph-up me-3"></i>
+              Progresso de Leitura
+            </h1>
+            <p className="lead text-muted-custom">Acompanhe sua jornada literária</p>
+          </div>
+
+          {/* Books Grid */}
+          <div className="row g-4">
+            {books.map((livro) => (
+              <div key={livro.id} className="col-md-6 col-lg-3">
+                <div
+                  className="card card-custom h-100 shadow-custom border-custom fade-in"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => openBookDetails(livro)}
+                >
+                  <div style={{ height: "200px", overflow: "hidden" }}>
+                    <img
+                      src={livro.imagem || "/placeholder.svg?height=200&width=150"}
+                      alt={livro.titulo}
+                      className="card-img-top h-100 w-100"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title text-accent-custom mb-2">{livro.titulo}</h5>
+                    <p className="card-text text-muted-custom mb-2">
+                      <i className="bi bi-person me-1"></i>
+                      {livro.autor}
+                    </p>
+
+                    {/* Rating */}
+                    <div className="mb-3">
+                      <p className="text-accent-custom mb-1 small">Avaliação:</p>
+                      <div className="star-rating">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <span
+                            key={star}
+                            className={`star ${star <= livro.avaliacao ? "filled" : ""}`}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleRatingChange(livro.id, star)
+                            }}
+                          >
+                            ★
+                          </span>
+                        ))}
+                        <span className="ms-2 small text-muted-custom">({livro.avaliacao})</span>
+                      </div>
+                    </div>
+
+                    {/* Progress */}
+                    <div className="mt-auto">
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <small className="text-accent-custom">Progresso:</small>
+                        <small className="text-muted-custom">{livro.progresso}%</small>
+                      </div>
+                      <div className="progress" style={{ height: "8px" }}>
+                        <div
+                          className="progress-bar bg-primary-custom"
+                          role="progressbar"
+                          style={{ width: `${livro.progresso}%` }}
+                          aria-valuenow={livro.progresso}
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                      {livro.progresso === 100 && (
+                        <div className="text-center mt-2">
+                          <span className="badge bg-primary-custom">
+                            <i className="bi bi-check-circle me-1"></i>
+                            Concluído
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="mt-3">
-                  <Grafico progresso={livro.progresso} />
-                  <div className="text-end mt-1">
-                    <small className="text-dark opacity-75">{livro.progresso}% concluído</small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Modal */}
+        {selectedBook && (
+          <div className="modal-backdrop-custom position-fixed top-0 start-0 w-100 h-100" onClick={closeModal}>
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-8">
+                  <div className="modal-content-custom rounded shadow-custom" onClick={(e) => e.stopPropagation()}>
+                    {/* Modal Header */}
+                    <div className="d-flex justify-content-between align-items-center p-4 border-bottom border-custom">
+                      <h4 className="text-accent-custom fw-bold mb-0">{selectedBook.titulo}</h4>
+                      <button type="button" className="btn btn-outline-custom btn-sm" onClick={closeModal}>
+                        <i className="bi bi-x-lg"></i>
+                      </button>
+                    </div>
+
+                    {/* Modal Body */}
+                    <div className="p-4">
+                      <div className="row">
+                        <div className="col-md-4 mb-4 mb-md-0">
+                          <img
+                            src={selectedBook.imagem || "/placeholder.svg?height=400&width=300"}
+                            alt={selectedBook.titulo}
+                            className="img-fluid rounded shadow-custom"
+                            style={{ maxHeight: "300px", width: "100%", objectFit: "cover" }}
+                          />
+
+                          {/* Progress Section */}
+                          <div className="mt-3">
+                            <h6 className="text-accent-custom">Progresso de Leitura:</h6>
+                            <div className="progress mb-2" style={{ height: "12px" }}>
+                              <div
+                                className="progress-bar bg-primary-custom"
+                                role="progressbar"
+                                style={{ width: `${selectedBook.progresso}%` }}
+                                aria-valuenow={selectedBook.progresso}
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                              >
+                                {selectedBook.progresso}%
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Rating Section */}
+                          <div className="mt-3">
+                            <h6 className="text-accent-custom">Avaliação:</h6>
+                            <div className="star-rating">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <span key={star} className={`star ${star <= selectedBook.avaliacao ? "filled" : ""}`}>
+                                  ★
+                                </span>
+                              ))}
+                              <span className="ms-2 text-muted-custom">({selectedBook.avaliacao}/5)</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="col-md-8">
+                          <h5 className="text-accent-custom mb-3">Sobre o Livro</h5>
+                          <p className="text-muted-custom mb-3">
+                            <strong>Autor:</strong> {selectedBook.autor}
+                          </p>
+
+                          <div className="mb-4">
+                            <button className="btn btn-primary-custom">
+                              <i className="bi bi-play-circle me-2"></i>
+                              {selectedBook.progresso < 100 ? "Continuar Lendo" : "Reler Livro"}
+                            </button>
+                          </div>
+
+                          <h6 className="text-accent-custom mb-2">Resumo:</h6>
+                          <p className="text-light lh-base">{selectedBook.resumo}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Modal Footer */}
+                    <div className="d-flex justify-content-end p-4 border-top border-custom">
+                      <button type="button" className="btn btn-outline-custom" onClick={closeModal}>
+                        Fechar
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ))}
+        )}
+
+        <Footer />
       </div>
-
-      
-      <div
-        className="modal fade " 
-        id="bookDetailsModal"
-        tabIndex="-1"
-        aria-labelledby="bookDetailsModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-lg" >
-          <div className="modal-content" style={{ backgroundColor: "#bba597f8"}}>
-            {selectedBook && (
-              <>
-                <div className="modal-header" style={{ backgroundColor: "#876b5d", color: "white" }}>
-                  <h5 className="modal-title" id="bookDetailsModalLabel">
-                    {selectedBook.titulo}
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close btn-close-white"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <div className="row">
-                    <div className="col-md-4 mb-3 mb-md-0">
-                      <img
-                        src={selectedBook.imagem || "/placeholder.svg"}
-                        alt={selectedBook.titulo}
-                        className="img-fluid rounded"
-                        style={{ maxHeight: "300px", width: "100%", objectFit: "cover" }}
-                      />
-                      <div className="mt-3">
-                        <h6>Progresso de Leitura:</h6>
-                        <div className="progress">
-                          <div
-                            className="progress-bar"
-                            role="progressbar"
-                            style={{ width: `${selectedBook.progresso}%`, backgroundColor: "#876b5d" }}
-                            aria-valuenow={selectedBook.progresso}
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          >
-                            {selectedBook.progresso}%
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mt-3">
-                        <h6>Avaliação:</h6>
-                        <div className="d-flex align-items-center">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <span
-                              key={star}
-                              style={{
-                                fontSize: "1.5rem",
-                                color: star <= selectedBook.avaliacao ? "#ffd700" : "#e0e0e0",
-                              }}
-                            >
-                              ★
-                            </span>
-                          ))}
-                          <span className="ms-2">({selectedBook.avaliacao}/5)</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-8">
-                      <h5>Sobre o Livro</h5>
-                      <p>
-                        <strong>Autor:</strong> {selectedBook.autor}
-                      </p>
-
-                      <div className="mb-4">
-                        <button
-                          className="btn btn-primary"
-                          style={{ backgroundColor: "#876b5d", borderColor: "#876b5d" }}
-                        >
-                          {selectedBook.progresso < 100 ? "Continuar Lendo" : "Reler Livro"}
-                        </button>
-                      </div>
-
-                      <h6>Resumo:</h6>
-                      <p className="text-muted">{selectedBook.resumo}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                    Fechar
-                  </button>
-                
-                </div>
-              
-              </>
-          
-          )}
-          
-        </div>
-      
-      </div>
-
-    
-   
-       </div>
-    
-             
-    </div>
-    
+    </>
   )
 }
 
-export default ProgressoLivros
+export default ProgressaoDeLeitura

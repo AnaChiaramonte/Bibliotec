@@ -1,9 +1,9 @@
 "use client"
+
 import { useState } from "react"
 import Footer from "../components/footer/Footer"
-import "./Livro.css"
 
-const Livro = () => {
+const Livros = () => {
   const [selectedCategory, setSelectedCategory] = useState("Romance")
   const [userRating, setUserRating] = useState(0)
   const [feedback, setFeedback] = useState("")
@@ -14,7 +14,6 @@ const Livro = () => {
 
   const categories = ["Romance", "Terror", "Fantasia", "Biografia", "Drama", "Ficção"]
 
-  // Dados dos livros reais organizados por categoria
   const booksByCategory = {
     Romance: {
       title: "É Assim Que Começa",
@@ -78,9 +77,8 @@ const Livro = () => {
     return Array.from({ length: 5 }, (_, index) => (
       <span
         key={index}
-        className={`${index < rating ? "text-warning" : "text-muted"} ${interactive ? "interactive-star" : ""}`}
+        className={`star ${index < rating ? "filled" : ""} ${interactive ? "" : ""}`}
         onClick={interactive ? () => onStarClick(index + 1) : undefined}
-        style={interactive ? { cursor: "pointer" } : {}}
       >
         ★
       </span>
@@ -96,7 +94,6 @@ const Livro = () => {
   const handleStartReading = () => {
     console.log(`Iniciando leitura de ${currentBook.title}...`)
   }
-
 
   const handleSubmitFeedback = (e) => {
     e.preventDefault()
@@ -114,69 +111,38 @@ const Livro = () => {
   }
 
   return (
-    <div className="container-fluid" style={{ backgroundColor: "#876b5d", minHeight: "100vh" }}>
-      {/* Header */}
-      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#876B5D" }}>
-        <div className="container">
-          <a className="navbar-brand text-white" href="#">
-            
-          </a>
+    <>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+      <div className="bg-pattern min-vh-100" style={{ paddingTop: "60px" }}>
+        {/* Removido o navbar duplicado - agora usando apenas o Header global */}
 
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <a className="nav-link text-white active" href="#">
-                  
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                 
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                 
-                </a>
-              </li>
-            </ul>
-            <div className="navbar-nav">
-              <a className="nav-link text-white" href="#">
-                <i className="bi bi-person-circle fs-4"></i>
-              </a>
+        {/* Search Bar */}
+        <div className="container mt-4">
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <div className="input-group">
+                <span className="input-group-text bg-light-custom border-custom">
+                  <i className="bi bi-search text-primary-custom"></i>
+                </span>
+                <input type="text" className="form-control border-custom" placeholder="Pesquisar livros..." />
+              </div>
             </div>
           </div>
         </div>
-      </nav>
 
-      {/* Search Bar */}
-      <div className="container mt-4">
-        <div className="row justify-content-center">
-          <div className="col-md-6">
-            <div className="input-group">
-              <span className="input-group-text">
-                <i className="bi bi-search"></i>
-              </span>
-              <input type="text" className="form-control" placeholder="Pesquisar livros..." />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Categories */}
-      <div className="container mt-4">
-        <div className="row justify-content-center">
-          <div className="col-12">
-            <div className="categories-section">
+        {/* Categories */}
+        <div className="container mt-4">
+          <div className="row justify-content-center">
+            <div className="col-12">
               <div className="d-flex flex-wrap justify-content-center gap-3">
                 {categories.map((category, index) => (
                   <button
                     key={index}
-                    className={`btn btn-lg rounded-pill ${selectedCategory === category ? "category-active" : "category-inactive"}`}
+                    className={`btn btn-lg rounded-pill ${
+                      selectedCategory === category ? "btn-primary-custom" : "btn-outline-custom"
+                    }`}
                     onClick={() => handleCategoryClick(category)}
                   >
                     {category}
@@ -186,106 +152,107 @@ const Livro = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Book Section */}
-      <div className="container mt-5">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            <div className="book-card border-0 shadow-sm">
-              <div className="card-body text-center p-4">
-                {/* Book Cover */}
-                <div className="mb-4">
-                  <img
-                    src={currentBook.image || "/placeholder.svg"}
-                    alt={currentBook.title}
-                    className="img-fluid rounded shadow book-cover"
-                  />
-                </div>
-
-                {/* Book Info */}
-                <div className="book-info-section">
-                  <h2 className="book-title">{currentBook.title}</h2>
-                  <p className="book-author">por {currentBook.author}</p>
-                  <p className="book-publisher">publicado pela editora {currentBook.publisher}</p>
-
-                  <div className="book-description">{currentBook.description}</div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="action-buttons mb-4">
-                  <button className="btn btn-primary btn-lg me-3 start-reading-btn" onClick={handleStartReading}>
-                    <i className="bi bi-play-circle me-2"></i>
-                    Iniciar leitura
-                  </button>
-
-                </div>
-
-                {/* Rating */}
-                <div className="rating-section">
-                  <h5 className="rating-title">Avaliações</h5>
-                  <div className="rating-stars">{renderStars(currentBook.rating)}</div>
-                  <p className="rating-info">
-                    {currentBook.rating}.0 de 5 estrelas ({feedbacks.length} avaliações)
-                  </p>
-                </div>
-
-                {/* User Feedback Section */}
-                <div className="comment-section mt-4">
-                  <div className="user-rating-container mb-3">
-                    <p className="text-white mb-2">Sua avaliação:</p>
-                    <div className="star-rating">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <span
-                          key={star}
-                          className={`rating-star ${userRating >= star ? "active" : ""}`}
-                          onClick={() => setUserRating(star)}
-                        >
-                          ★
-                        </span>
-                      ))}
-                    </div>
+        {/* Book Section */}
+        <div className="container mt-5 pb-5">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="card card-custom border-custom shadow-custom">
+                <div className="card-body text-center p-4">
+                  {/* Book Cover */}
+                  <div className="mb-4">
+                    <img
+                      src={currentBook.image || "/placeholder.svg?height=400&width=300"}
+                      alt={currentBook.title}
+                      className="img-fluid rounded shadow-custom"
+                      style={{ maxHeight: "400px", objectFit: "cover" }}
+                    />
                   </div>
 
-                  <textarea
-                    className="comment-box"
-                    placeholder="Deixe seu comentário sobre o livro..."
-                    value={feedback}
-                    onChange={(e) => setFeedback(e.target.value)}
-                  ></textarea>
+                  {/* Book Info */}
+                  <div className="mb-4">
+                    <h2 className="text-accent-custom fw-bold mb-2">{currentBook.title}</h2>
+                    <p className="text-muted-custom fs-5 mb-1">por {currentBook.author}</p>
+                    <p className="text-muted-custom mb-3">publicado pela editora {currentBook.publisher}</p>
+                    <p className="text-light lh-base">{currentBook.description}</p>
+                  </div>
 
-                  <button
-                    className="submit-comment-btn mt-3"
-                    onClick={handleSubmitFeedback}
-                    disabled={!feedback.trim() || userRating === 0}
-                  >
-                    Enviar
-                  </button>
-                </div>
+                  {/* Action Buttons */}
+                  <div className="mb-4">
+                    <button className="btn btn-primary-custom btn-lg" onClick={handleStartReading}>
+                      <i className="bi bi-play-circle me-2"></i>
+                      Iniciar leitura
+                    </button>
+                  </div>
 
-                {/* Display Feedbacks */}
-                <div className="feedbacks-list mt-4">
-                  <h6 className="text-white mb-3">Comentários dos leitores:</h6>
-                  {feedbacks.map((fb) => (
-                    <div key={fb.id} className="feedback-item">
-                      <div className="d-flex justify-content-between align-items-start">
-                        <strong className="text-warning">{fb.user}</strong>
-                        <div className="feedback-stars">{renderStars(fb.rating)}</div>
+                  {/* Rating */}
+                  <div className="mb-4">
+                    <h5 className="text-accent-custom mb-3">Avaliações</h5>
+                    <div className="star-rating mb-2">{renderStars(currentBook.rating)}</div>
+                    <p className="text-muted-custom">
+                      {currentBook.rating}.0 de 5 estrelas ({feedbacks.length} avaliações)
+                    </p>
+                  </div>
+
+                  {/* User Feedback Section */}
+                  <div className="mb-4">
+                    <div className="mb-3">
+                      <p className="text-accent-custom mb-2">Sua avaliação:</p>
+                      <div className="star-rating">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <span
+                            key={star}
+                            className={`star ${userRating >= star ? "filled" : ""}`}
+                            onClick={() => setUserRating(star)}
+                          >
+                            ★
+                          </span>
+                        ))}
                       </div>
-                      <p className="text-light mt-2 mb-0">{fb.comment}</p>
                     </div>
-                  ))}
+
+                    <textarea
+                      className="form-control mb-3 bg-light-custom border-custom"
+                      rows="3"
+                      placeholder="Deixe seu comentário sobre o livro..."
+                      value={feedback}
+                      onChange={(e) => setFeedback(e.target.value)}
+                    ></textarea>
+
+                    <button
+                      className="btn btn-primary-custom"
+                      onClick={handleSubmitFeedback}
+                      disabled={!feedback.trim() || userRating === 0}
+                    >
+                      Enviar Comentário
+                    </button>
+                  </div>
+
+                  {/* Display Feedbacks */}
+                  <div>
+                    <h6 className="text-accent-custom mb-3">Comentários dos leitores:</h6>
+                    {feedbacks.map((fb) => (
+                      <div key={fb.id} className="card bg-secondary-custom border-custom mb-3">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between align-items-start mb-2">
+                            <strong className="text-primary-custom">{fb.user}</strong>
+                            <div className="star-rating">{renderStars(fb.rating)}</div>
+                          </div>
+                          <p className="text-dark-custom mb-0">{fb.comment}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-     
-      </div >
-    
-    </div>
-    
+
+        <Footer />
+      </div>
+    </>
   )
 }
 
-export default Livro
+export default Livros

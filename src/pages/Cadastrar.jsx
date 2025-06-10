@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+"use client"
 
-import { Link, useNavigate } from "react-router";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router"
 
 const Cadastrar = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [dia, setDia] = useState("");
-  const [senha, setSenha] = useState("");
-  const [mes, setMes] = useState("");
-  const [ano, setAno] = useState("");
-  const navigate = useNavigate();
+  const [nome, setNome] = useState("")
+  const [email, setEmail] = useState("")
+  const [dia, setDia] = useState("")
+  const [senha, setSenha] = useState("")
+  const [mes, setMes] = useState("")
+  const [ano, setAno] = useState("")
+  const navigate = useNavigate()
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL
     try {
       const resposta = await fetch(`${apiUrl}/Users/register`, {
         method: "POST",
@@ -22,20 +23,20 @@ const Cadastrar = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: email, password: senha }),
-      });
+      })
 
       if (!resposta.ok) {
-        const erro = await resposta.json();
-        erro.message || "Email ou senha inválidos";
-        return;
+        const erro = await resposta.json()
+        erro.message || "Email ou senha inválidos"
+        return
       }
 
-      alert("Cadastro realizado com sucesso!");
-      navigate("/login");
+      alert("Cadastro realizado com sucesso!")
+      navigate("/login")
     } catch (error) {
-      console.error("Erro ao cadastrar:", error);
-      alert("Erro ao cadastrar!");
-      return; // Interrompe a execução caso ocorra um erro
+      console.error("Erro ao cadastrar:", error)
+      alert("Erro ao cadastrar!")
+      return
     }
 
     if (nome && email) {
@@ -45,88 +46,109 @@ const Cadastrar = () => {
           nome,
           email,
           nascimento: `${dia}/${mes}/${ano}`,
-        })
-      );
-      navigate("/");
+        }),
+      )
+      navigate("/")
     }
-  };
+  }
 
   return (
     <>
-      <div className="container d-flex flex-column align-items-center justify-content-center mt-5 m-auto">
-        <h2 className="mb-4 text-cadastrar">Cadastrar-se</h2>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-        <form
-          onSubmit={handleLogin}
-          className="w-100 "
-          style={{ maxWidth: "400px" }}
-        >
-          <div className="mb-3">
-            <input
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              className="form-control"
-              type="text"
-              name="frmNome"
-              id="frmNome"
-              placeholder="Nome"
-              required
-            />
-          </div>
+      <div className="min-vh-100 d-flex align-items-center justify-content-center bg-pattern">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-6 col-lg-4">
+              <div className="card shadow-custom border-custom">
+                <div className="card-body p-4">
+                  <div className="text-center mb-4">
+                    <h2 className="text-accent-custom fw-bold">Cadastrar-se</h2>
+                    <p className="text-muted-custom">Crie sua conta para começar</p>
+                  </div>
 
-          <div className="mb-3">
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              type="email"
-              name="frmEmail"
-              id="frmEmail"
-              placeholder="Email"
-              required
-            />
-          </div>
+                  <form onSubmit={handleLogin}>
+                    <div className="mb-3">
+                      <input
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        className="form-control"
+                        type="text"
+                        name="frmNome"
+                        id="frmNome"
+                        placeholder="Nome completo"
+                        required
+                      />
+                    </div>
 
-          <div className="mb-4 text-start">
-            <input
-              type="password"
-              id="frmSenha"
-              className="form-control"
-              placeholder="Sua senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-            />
-          </div>
+                    <div className="mb-3">
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="form-control"
+                        type="email"
+                        name="frmEmail"
+                        id="frmEmail"
+                        placeholder="Email"
+                        required
+                      />
+                    </div>
 
-          <div className="mb-3 m-0">
-            <label htmlFor="frmNascimento " className="form-label text-light">
-              Data de Nascimento
-            </label>
-            <input
-              value={`${ano}-${mes}-${dia}`}
-              onChange={(e) => {
-                const [year, month, day] = e.target.value.split("-");
-                setAno(year);
-                setMes(month);
-                setDia(day);
-              }}
-              className="form-control button-color"
-              type="date"
-              name="frmNascimento"
-              id="frmNascimento"
-              required
-            />
-          </div>
+                    <div className="mb-3">
+                      <input
+                        type="password"
+                        id="frmSenha"
+                        className="form-control"
+                        placeholder="Sua senha"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
+                        required
+                      />
+                    </div>
 
-          <div className="d-flex justify-content-center">
-            <button className=" btn  w-100" style={{ background: "#E4CFC4" }}>
-              Cadastrar
-            </button>
+                    <div className="mb-4">
+                      <label htmlFor="frmNascimento" className="form-label text-primary-custom fw-semibold">
+                        Data de Nascimento
+                      </label>
+                      <input
+                        value={`${ano}-${mes}-${dia}`}
+                        onChange={(e) => {
+                          const [year, month, day] = e.target.value.split("-")
+                          setAno(year)
+                          setMes(month)
+                          setDia(day)
+                        }}
+                        className="form-control"
+                        type="date"
+                        name="frmNascimento"
+                        id="frmNascimento"
+                        required
+                      />
+                    </div>
+
+                    <div className="d-grid mb-3">
+                      <button type="submit" className="btn btn-primary-custom btn-lg">
+                        Cadastrar
+                      </button>
+                    </div>
+
+                    <div className="text-center">
+                      <p className="text-muted-custom mb-0">
+                        Já tem uma conta?{" "}
+                        <Link to="/login" className="text-primary-custom text-decoration-none fw-semibold">
+                          Faça login
+                        </Link>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Cadastrar;
+export default Cadastrar
