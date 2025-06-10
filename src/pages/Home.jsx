@@ -40,9 +40,9 @@ const Home = () => {
     }}
   >
     <img
-      src="/src/assets/Black White Minimalist Book Club Logo (1).png" // um SVG decorativo como na imagem
+      src="/src/assets/Black White Minimalist Book Club Logo (1).png" 
       alt="Decorativo"
-      style={{ width: "60px", marginBottom: "1rem" }}
+      className="grafico-container"
     />
    
       
@@ -50,7 +50,7 @@ const Home = () => {
   </div>
 
   {/* Lado Direito: Imagem */}
-  <div style={{ width: "50%", position: "relative" }}>
+  <div style={{ width: "50%", position: "relative", height:"" }}>
     <img
       src="/src/assets/imagem projeto.jpg"
       alt="Biblioteca"
@@ -59,7 +59,7 @@ const Home = () => {
         objectFit: "cover",
         height: "100%",
         width: "100%",
-        borderRadius: "0 0 0 80px",
+        borderRadius: "0 0 0 5px",
       }}
     />
   </div>
@@ -76,12 +76,12 @@ const Home = () => {
         <section className="py-5 bg-secondary-custom">
           <div className="container text-center">
             <h1 className="display-2 fw-bold text-dark-custom mb-3">Bibliotech</h1>
-            <p className="lead text-primary-custom fst-italic">Seu universo literário organizado em um só lugar!</p>
+            <p className="lead text-dark-custom fst-italic">Seu universo literário organizado em um só lugar!</p>
           </div>
         </section>
 
         {/* Features Section - USANDO BOOTSTRAP PARA MARGINS */}
-        <section className="py-5">
+        <section className="py-5 bg-marrom-escuro">
           <div className="container">
             {/* Feature 1 - USANDO BOOTSTRAP PARA MARGIN-BOTTOM - ÍCONE MAIOR */}
             <div className="row align-items-center mb-5">
