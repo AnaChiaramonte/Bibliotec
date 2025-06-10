@@ -53,8 +53,8 @@ const Cadastrar = () => {
 
   return (
     <>
-      <div className="container d-flex flex-column align-items-center justify-content-center mt-5 m-auto">
-        <h2 className="mb-4 text-cadastrar">Cadastrar-se</h2>
+      <div className="container d-flex  flex-column align-items-center justify-content-center mt-5 m-auto">
+        <h2 className="mb-4  mt-5 text-cadastrar text-light">Cadastrar-se</h2>
 
         <form
           onSubmit={handleLogin}

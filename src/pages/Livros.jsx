@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react"; // Import useEffect
+import { useState } from "react"; // Import useEffect
 import Footer from "../components/footer/Footer";
 import "./Livro.css";
 
@@ -17,9 +17,8 @@ const Livro = () => {
   const [error, setError] = useState(null); // State for error handling
 
   const categories = ["Romance", "Terror", "Fantasia", "Biografia", "Drama", "Ficção"];
-
-  // Your API base URL (adjust if needed)
-  const API_BASE_URL = "https://localhost:7196/api/Livros"; // Replace with your actual API URL
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://bibliotech.somee.com"; // Use environment variable or fallback URL
+  
 
   // Dummy book data (keep this for fallback/initial display if needed)
   const booksByCategory = {

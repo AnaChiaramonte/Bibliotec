@@ -1,39 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
-import { Link } from "react-router"; 
+import { Link, useNavigate } from "react-router-dom";
 
-
-
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
-
   const navigate = useNavigate();
 
-  const fazerLogin = (e) => {
+  const fazerLogin = async (e) => {
     e.preventDefault();
-
-    // Validação do e-mail
-    if (!email.includes("@")) {
-      setMensagem("Digite um e-mail válido.");
-      return;
-    }
-
-    // Validação da senha
-    if (senha.length < 8) {
-      setMensagem("A senha deve ter pelo menos 8 caracteres.");
-      return;
-    }
-    
-
-    // Login local sem API
-    if (email === "admin@admin.com" && senha === "12345678") {
-      navigate("/Adm");
-    
-    } else {
-      setMensagem("Email ou senha inválidos.");
 
     const apiUrl = import.meta.env.VITE_API_URL;
     console.log("API URL:", apiUrl);
@@ -53,32 +28,20 @@ function Login() {
         try {
           const erro = await resposta.json();
           erroMsg = erro.message || erroMsg;
-        } catch {}
+        } catch (error) {
+          console.error("Erro ao processar resposta:", error);
+        }
         setMensagem(erroMsg);
         return;
       }
 
       const dados = await resposta.json();
-      console.log("Login OK:", dados);
-
-      // Salva token e dados do usuário
-      localStorage.setItem("token", dados.token);
-      localStorage.setItem("user", JSON.stringify(dados));
-
-      // Pega role do usuário
-      const role = dados.role || dados.roles?.[0];
-      console.log("Role do usuário:", role);
-
-      // Redireciona conforme a role
-      if (role?.toLowerCase() === "admin") {
-        navigate("/adm");
-      } else {
-        navigate("/");
-      }
-
+      console.log("Dados do usuário:", dados);
+      alert("Login realizado com sucesso!");
+      navigate("/Adm");
     } catch (error) {
-      console.error("Erro no login:", error);
-      setMensagem("Erro no login. Tente novamente.");
+      console.error("Erro ao fazer login:", error);
+      setMensagem("Erro ao fazer login. Tente novamente mais tarde.");
     }
   };
 
@@ -90,57 +53,48 @@ function Login() {
         </h2>
         <form onSubmit={fazerLogin}>
           <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
             <input
               type="email"
-              placeholder="Seu e-mail"
+              className="form-control"
+              id="email"
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setMensagem("");
-              }}
-              className="form-control rounded-5"
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-3">
+            <label htmlFor="senha" className="form-label">
+              Senha
+            </label>
             <input
               type="password"
-              placeholder="Sua senha"
+              className="form-control"
+              id="senha"
               value={senha}
-              onChange={(e) => {
-                setSenha(e.target.value);
-                setMensagem("");
-              }}
-              className="form-control rounded-5"
+              onChange={(e) => setSenha(e.target.value)}
+              required
             />
           </div>
-          <div className="form-check mb-3">
-            <input type="checkbox" className="form-check-input" id="rememberMe" />
-            <label className="form-check-label" htmlFor="rememberMe">
-              Lembrar-me
-            </label>
-          </div>
-          <div className="d-flex justify-content-center mt-4">
-            <button type="submit" className="btn w-100" style={{ background: "#E4CFC4" }}>
-              Entrar
-            </button>
-          </div>
+          {mensagem && <p className="text-danger">{mensagem}</p>}
+          <button type="submit" className="btn btn-primary w-100">
+            Entrar
+          </button>
         </form>
-
-        {mensagem && (
-          <p className="text-center mt-3 text-danger" style={{ fontWeight: "bold" }}>
-            {mensagem}
-          </p>
-        )}
-
-        <div className="d-flex justify-content-center">
-          <Link to={"/cadastrar"} className="text-light dropdown-item my-3 text-center">
-            <p style={{ color: "#c1b2aa" }}>Cadastrar-se</p>
+        <div className="text-center mt-3">
+        <p>
+          Não tem uma conta?{" "}
+          <Link to="/Cadastrar" className="text-decoration-none text-primary">
+            Cadastre-se
           </Link>
+        </p>
         </div>
       </div>
-      
+     
     </div>
   );
-}
+};
 
 export default Login;
