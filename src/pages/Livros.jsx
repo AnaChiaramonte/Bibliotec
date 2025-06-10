@@ -1,22 +1,27 @@
-"use client"
-import { useState } from "react"
-import Footer from "../components/footer/Footer"
-import "./Livro.css"
+"use client";
+import { useState, useEffect } from "react"; // Import useEffect
+import Footer from "../components/footer/Footer";
+import "./Livro.css";
 
 const Livro = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Romance")
-  const [userRating, setUserRating] = useState(0)
-  const [feedback, setFeedback] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("Romance");
+  const [userRating, setUserRating] = useState(0);
+  const [feedback, setFeedback] = useState("");
   const [feedbacks, setFeedbacks] = useState([
     { id: 1, user: "Maria Silva", rating: 5, comment: "Livro incrível! Não consegui parar de ler." },
     { id: 2, user: "João Santos", rating: 4, comment: "História envolvente, recomendo!" },
-  ])
+  ]);
+  const [searchTerm, setSearchTerm] = useState(""); // State for search input
+  const [searchResults, setSearchResults] = useState([]); // State for search results
+  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [error, setError] = useState(null); // State for error handling
 
-  const categories = ["Romance", "Terror", "Fantasia", "Biografia", "Drama", "Ficção"]
+  const categories = ["Romance", "Terror", "Fantasia", "Biografia", "Drama", "Ficção"];
 
- 
+  // Your API base URL (adjust if needed)
+  const API_BASE_URL = "https://localhost:7196/api/Livros"; // Replace with your actual API URL
 
-  // Dados dos livros reais organizados por categoria
+  // Dummy book data (keep this for fallback/initial display if needed)
   const booksByCategory = {
     Romance: {
       title: "É Assim Que Começa",
@@ -72,9 +77,9 @@ const Livro = () => {
         "Harry Potter é um garoto órfão que vive infeliz com seus tios até descobrir que é um bruxo e ser convidado para estudar na Escola de Magia e Bruxaria de Hogwarts. Lá ele descobre a verdade sobre seus pais e seu destino.",
       rating: 5,
     },
-  }
+  };
 
-  const currentBook = booksByCategory[selectedCategory]
+  const currentBook = booksByCategory[selectedCategory];
 
   const renderStars = (rating, interactive = false, onStarClick = null) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -86,67 +91,102 @@ const Livro = () => {
       >
         ★
       </span>
-    ))
-  }
-
-  
-
+    ));
+  };
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category)
-    setUserRating(0)
-    setFeedback("")
-  }
+    setSelectedCategory(category);
+    setUserRating(0);
+    setFeedback("");
+    setSearchResults([]); // Clear search results when switching categories
+    setSearchTerm(""); // Clear search term as well
+  };
 
   const handleStartReading = () => {
-    const savedBooks = JSON.parse(localStorage.getItem("livrosEmProgresso")) || []
-  
+    const savedBooks = JSON.parse(localStorage.getItem("livrosEmProgresso")) || [];
+
     const livroAtual = {
-      id: selectedCategory,
+      id: selectedCategory, // This ID might need to be dynamic if coming from API
       titulo: currentBook.title,
       autor: currentBook.author,
       imagem: currentBook.image,
       progresso: 0,
       avaliacao: currentBook.rating,
-      descricao: currentBook.description
-    }
-  
-    const livroJaExiste = savedBooks.some(livro => livro.id === livroAtual.id)
-  
-    if (!livroJaExiste) {
-      savedBooks.push(livroAtual)
-      localStorage.setItem("livrosEmProgresso", JSON.stringify(savedBooks))
-      alert(`"${currentBook.title}" foi adicionado ao seu progresso de leitura!`)
-    } else {
-      alert("Esse livro já está no seu progresso de leitura!")
-    }
-  }
-  
+      descricao: currentBook.description,
+    };
 
+    const livroJaExiste = savedBooks.some((livro) => livro.id === livroAtual.id);
+
+    if (!livroJaExiste) {
+      savedBooks.push(livroAtual);
+      localStorage.setItem("livrosEmProgresso", JSON.stringify(savedBooks));
+      alert(`${currentBook.title} foi adicionado ao seu progresso de leitura!`);
+    } else {
+      alert("Esse livro já está no seu progresso de leitura!");
+    }
+  };
 
   const handleSubmitFeedback = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (feedback.trim() && userRating > 0) {
       const newFeedback = {
         id: feedbacks.length + 1,
         user: "Usuário Atual",
         rating: userRating,
         comment: feedback.trim(),
-      }
-      setFeedbacks([newFeedback, ...feedbacks])
-      setFeedback("")
-      setUserRating(0)
+      };
+      setFeedbacks([newFeedback, ...feedbacks]);
+      setFeedback("");
+      setUserRating(0);
     }
-  }
+  };
+
+  // --- NEW SEARCH LOGIC ---
+  const handleSearch = async () => {
+    if (!searchTerm.trim()) {
+      setSearchResults([]); // Clear results if search term is empty
+      return;
+    }
+
+    setLoading(true);
+    setError(null); // Clear previous errors
+    try {
+      // It's recommended to use a library like axios for API calls, but fetch works too.
+      // Make sure your API is running and accessible at API_BASE_URL
+      const response = await fetch(`${API_BASE_URL}/searchByTitle?title=${encodeURIComponent(searchTerm)}`);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          setSearchResults([]); // No books found for the search term
+          return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setSearchResults(data);
+    } catch (e) {
+      console.error("Error fetching search results:", e);
+      setError("Não foi possível buscar os livros. Tente novamente mais tarde.");
+      setSearchResults([]); // Clear results on error
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+  // --- END NEW SEARCH LOGIC ---
 
   return (
     <div className="container-fluid" style={{ backgroundColor: "#876b5d", minHeight: "100vh" }}>
       {/* Header */}
       <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#876B5D" }}>
         <div className="container">
-          <a className="navbar-brand text-white" href="#">
-            
-          </a>
+          <a className="navbar-brand text-white" href="#"></a>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
@@ -154,29 +194,14 @@ const Livro = () => {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <a className="nav-link text-white active" href="#">
-                  
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                 
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                 
-                </a>
-              </li>
+          
+            
+           
             </ul>
-            <div className="navbar-nav">
-              <a className="nav-link text-white" href="#">
-                <i className="bi bi-person-circle fs-4"></i>
-              </a>
+            
             </div>
           </div>
-        </div>
+   
       </nav>
 
       {/* Search Bar */}
@@ -187,7 +212,17 @@ const Livro = () => {
               <span className="input-group-text">
                 <i className="bi bi-search"></i>
               </span>
-              <input type="text" className="form-control" placeholder="Pesquisar livros..." />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Pesquisar livros..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown} // Add onKeyDown to trigger search on Enter
+              />
+              <button className="btn btn-outline-secondary" type="button" onClick={handleSearch}>
+                Buscar
+              </button>
             </div>
           </div>
         </div>
@@ -214,104 +249,152 @@ const Livro = () => {
         </div>
       </div>
 
-      {/* Book Section */}
+      {/* Display Search Results or Default Category View */}
       <div className="container mt-5">
         <div className="row justify-content-center">
           <div className="col-lg-8">
-            <div className="book-card border-0 shadow-sm">
-              <div className="card-body text-center p-4">
-                {/* Book Cover */}
-                <div className="mb-4">
-                  <img
-                    src={currentBook.image || "/placeholder.svg"}
-                    alt={currentBook.title}
-                    className="img-fluid rounded shadow book-cover"
-                  />
-                </div>
+            {loading && <p className="text-white text-center">Carregando...</p>}
+            {error && <p className="text-danger text-center">{error}</p>}
 
-                {/* Book Info */}
-                <div className="book-info-section">
-                  <h2 className="book-title">{currentBook.title}</h2>
-                  <p className="book-author">por {currentBook.author}</p>
-                  <p className="book-publisher">publicado pela editora {currentBook.publisher}</p>
-
-                  <div className="book-description">{currentBook.description}</div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="action-buttons mb-4">
-                  <button className="btn btn-primary btn-lg me-3 start-reading-btn" onClick={handleStartReading}>
-                    <i className="bi bi-play-circle me-2"></i>
-                    
-                    Iniciar leitura
-                  </button>
-
-                </div>
-
-                {/* Rating */}
-                <div className="rating-section">
-                  <h5 className="rating-title">Avaliações</h5>
-                  <div className="rating-stars">{renderStars(currentBook.rating)}</div>
-                  <p className="rating-info">
-                    {currentBook.rating}.0 de 5 estrelas ({feedbacks.length} avaliações)
-                  </p>
-                </div>
-
-                {/* User Feedback Section */}
-                <div className="comment-section mt-4">
-                  <div className="user-rating-container mb-3">
-                    <p className="text-white mb-2">Sua avaliação:</p>
-                    <div className="star-rating">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <span
-                          key={star}
-                          className={`rating-star ${userRating >= star ? "active" : ""}`}
-                          onClick={() => setUserRating(star)}
-                        >
-                          ★
-                        </span>
-                      ))}
+            {!loading && !error && searchResults.length > 0 && (
+              <div className="search-results-section">
+                <h3 className="text-white text-center mb-4">Resultados da Pesquisa</h3>
+                {searchResults.map((book) => (
+                  <div key={book.livrosId} className="book-card border-0 shadow-sm mb-4">
+                    <div className="card-body text-center p-4">
+                      <div className="mb-4">
+                        {/* You might need to adjust the image path based on your API response */}
+                        <img
+                          src={book.image || "/placeholder.svg"} // Assuming your API returns an 'image' field
+                          alt={book.titulo}
+                          className="img-fluid rounded shadow book-cover"
+                        />
+                      </div>
+                      <div className="book-info-section">
+                        <h2 className="book-title">{book.titulo}</h2>
+                        <p className="book-author">por {book.autor}</p>
+                        {/* Add publisher if your API returns it */}
+                        {/* <p className="book-publisher">publicado pela editora {book.publisher}</p> */}
+                        <div className="book-description">{book.description || "Descrição não disponível."}</div>
+                      </div>
+                      {/* You can add more book details here from the API response */}
+                      <div className="action-buttons mb-4">
+                        <button className="btn btn-primary btn-lg me-3 start-reading-btn" onClick={() => handleStartReading(book)}>
+                          <i className="bi bi-play-circle me-2"></i>
+                          Iniciar leitura
+                        </button>
+                      </div>
+                      {/* Rating section for search results - might need to fetch average rating from API */}
+                      <div className="rating-section">
+                        <h5 className="rating-title">Avaliações</h5>
+                        <div className="rating-stars">{renderStars(book.rating || 0)}</div> {/* Assuming rating from API */}
+                        <p className="rating-info">
+                          {book.rating || 0}.0 de 5 estrelas (N/A avaliações)
+                        </p>
+                      </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            )}
 
-                  <textarea
-                    className="comment-box"
-                    placeholder="Deixe seu comentário sobre o livro..."
-                    value={feedback}
-                    onChange={(e) => setFeedback(e.target.value)}
-                  ></textarea>
+            {!loading && !error && searchResults.length === 0 && searchTerm.trim() && (
+              <p className="text-white text-center">Nenhum livro encontrado para "${searchTerm}".</p>
+            )}
 
-                  <button
-                    className="submit-comment-btn mt-3"
-                    onClick={handleSubmitFeedback}
-                    disabled={!feedback.trim() || userRating === 0}
-                  >
-                    Enviar
-                  </button>
-                </div>
+            {/* Display default category view only if no search results and no search term */}
+            {!loading && !error && searchResults.length === 0 && !searchTerm.trim() && (
+              <div className="book-card border-0 shadow-sm">
+                <div className="card-body text-center p-4">
+                  {/* Book Cover */}
+                  <div className="mb-4">
+                    <img
+                      src={currentBook.image || "/placeholder.svg"}
+                      alt={currentBook.title}
+                      className="img-fluid rounded shadow book-cover"
+                    />
+                  </div>
 
-                {/* Display Feedbacks */}
-                <div className="feedbacks-list mt-4">
-                  <h6 className="text-white mb-3">Comentários dos leitores:</h6>
-                  {feedbacks.map((fb) => (
-                    <div key={fb.id} className="feedback-item">
-                      <div className="d-flex justify-content-between align-items-start">
-                        <strong className="text-warning">{fb.user}</strong>
-                        <div className="feedback-stars">{renderStars(fb.rating)}</div>
+                  {/* Book Info */}
+                  <div className="book-info-section">
+                    <h2 className="book-title">{currentBook.title}</h2>
+                    <p className="book-author">por {currentBook.author}</p>
+                    <p className="book-publisher">publicado pela editora {currentBook.publisher}</p>
+
+                    <div className="book-description">{currentBook.description}</div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="action-buttons mb-4">
+                    <button className="btn btn-primary btn-lg me-3 start-reading-btn" onClick={handleStartReading}>
+                      <i className="bi bi-play-circle me-2"></i>
+                      Iniciar leitura
+                    </button>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="rating-section">
+                    <h5 className="rating-title">Avaliações</h5>
+                    <div className="rating-stars">{renderStars(currentBook.rating)}</div>
+                    <p className="rating-info">
+                      {currentBook.rating}.0 de 5 estrelas ({feedbacks.length} avaliações)
+                    </p>
+                  </div>
+
+                  {/* User Feedback Section */}
+                  <div className="comment-section mt-4">
+                    <div className="user-rating-container mb-3">
+                      <p className="text-white mb-2">Sua avaliação:</p>
+                      <div className="star-rating">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <span
+                            key={star}
+                            className={`rating-star ${userRating >= star ? "active" : ""}`}
+                            onClick={() => setUserRating(star)}
+                          >
+                            ★
+                          </span>
+                        ))}
                       </div>
-                      <p className="text-light mt-2 mb-0">{fb.comment}</p>
                     </div>
-                  ))}
+
+                    <textarea
+                      className="comment-box"
+                      placeholder="Deixe seu comentário sobre o livro..."
+                      value={feedback}
+                      onChange={(e) => setFeedback(e.target.value)}
+                    ></textarea>
+
+                    <button
+                      className="submit-comment-btn mt-3"
+                      onClick={handleSubmitFeedback}
+                      disabled={!feedback.trim() || userRating === 0}
+                    >
+                      Enviar
+                    </button>
+                  </div>
+
+                  {/* Display Feedbacks */}
+                  <div className="feedbacks-list mt-4">
+                    <h6 className="text-white mb-3">Comentários dos leitores:</h6>
+                    {feedbacks.map((fb) => (
+                      <div key={fb.id} className="feedback-item">
+                        <div className="d-flex justify-content-between align-items-start">
+                          <strong className="text-warning">{fb.user}</strong>
+                          <div className="feedback-stars">{renderStars(fb.rating)}</div>
+                        </div>
+                        <p className="text-light mt-2 mb-0">{fb.comment}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
-      </div >
-    
+      </div>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Livro
+export default Livro;
