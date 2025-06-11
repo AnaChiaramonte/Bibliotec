@@ -123,6 +123,7 @@ const Cadastrar = () => {
                         Cadastrar
                       </button>
                     </div>
+                    
 
                     <div className="text-center">
                       <p className="text-muted-custom mb-0">
@@ -133,13 +134,13 @@ const Cadastrar = () => {
                       </p>
                     </div>
                   </form>
+
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+                </>
+             
+           
+       
+        
   )
 }
 
