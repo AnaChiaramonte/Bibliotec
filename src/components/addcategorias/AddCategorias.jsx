@@ -1,27 +1,17 @@
 // src/components/addcategorias/AddCategorias.jsx
 import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Importa o CSS do Bootstrap
-import "bootstrap-icons/font/bootstrap-icons.css"; // Importa os ícones do Bootstrap
 
 const AddCategorias = ({ show, onClose, onSave }) => {
-  // Estado único para a categoria, incluindo nome e descrição
   const [categoria, setCategoria] = useState({
     nome: "",
-    descricao: "",
-    // Removi 'categoriaBase' daqui, pois ele parece ser parte de uma lógica de IDs local,
-    // e o foco é adicionar uma categoria com nome e descrição para uma API externa.
-    // Se 'categoriaBase' for realmente um campo que a API espera, adicione-o de volta
-    // e ajuste a lógica de envio no handleSubmit.
+    descricao: "", // Esta é a descrição que você usa no formulário
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // A URL base da API está correta
-  // const API_BASE_URL = import.meta.env.VITE_API_URL || "https://bibliotech.somee.com";
-  // Não está sendo usada diretamente aqui, mas é bom manter a linha de referência.
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "https://bibliotech.somee.com";
 
-  // O bloco useEffect para resetar o formulário quando o modal é fechado está correto.
   useEffect(() => {
     if (!show) {
       setCategoria({
@@ -33,7 +23,6 @@ const AddCategorias = ({ show, onClose, onSave }) => {
     }
   }, [show]);
 
-  // Função única para lidar com as mudanças nos inputs do formulário
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCategoria({
@@ -41,7 +30,6 @@ const AddCategorias = ({ show, onClose, onSave }) => {
       [name]: value,
     });
 
-    // Limpa o erro específico do campo quando o usuário começa a digitar
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -50,7 +38,6 @@ const AddCategorias = ({ show, onClose, onSave }) => {
     }
   };
 
-  // Função única para validar o formulário
   const validate = () => {
     const newErrors = {};
     if (!categoria.nome.trim()) {
@@ -60,7 +47,6 @@ const AddCategorias = ({ show, onClose, onSave }) => {
     } else if (categoria.nome.trim().length > 50) {
       newErrors.nome = "Nome deve ter no máximo 50 caracteres";
     }
-    // A validação da descrição é opcional, mas o limite de caracteres é bom.
     if (categoria.descricao && categoria.descricao.length > 200) {
       newErrors.descricao = "Descrição deve ter no máximo 200 caracteres";
     }
@@ -68,61 +54,51 @@ const AddCategorias = ({ show, onClose, onSave }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Função única para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return; // Se a validação falhar, para a execução
+    if (!validate()) return;
 
-    setIsLoading(true); // Ativa o estado de carregamento
+    setIsLoading(true);
 
     try {
-      // Objeto da categoria a ser enviado para a API
-      const categoriaParaAPI = {
-        nome: categoria.nome.trim(),
-        // Assumindo que a API espera 'genero' como o próprio nome da categoria
-        genero: categoria.nome.trim(),
-        // Incluir a descrição se ela for relevante para a API
-        descricao: categoria.descricao.trim(),
-      };
+    
+      const categoriaParaAPI = { // <--- COLOQUE/VERIFIQUE O CÓDIGO A PARTIR DAQUI
+       
+        nome: categoria.nome.trim(), // Este será o nome exibido nos botões de categoria e no dropdown de livros
+        genero: categoria.nome.trim(), // <--- CHAVE! ENVIE O MESMO NOME PARA O CAMPO 'genero' DA CATEGORIA
+        
+       
+      }; // <--- ATÉ AQUI
 
-      // Chama a função onSave passada via props (provavelmente para fazer a requisição à API)
-      await onSave(categoriaParaAPI);
+      await onSave(categoriaParaAPI); // Isso chamará sua função 'handleSaveCategory' no Adm.jsx
 
-      // Resetar o formulário e fechar o modal após o sucesso
       setCategoria({
         nome: "",
         descricao: "",
       });
-      setErrors({}); // Limpa os erros após o sucesso
-      onClose(); // Fecha o modal
+      onClose();
     } catch (error) {
       console.error("Erro ao salvar categoria:", error);
-      // Exibe uma mensagem de erro para o usuário
       alert(`Erro ao adicionar categoria: ${error.message || 'Verifique o console para mais detalhes.'}`);
     } finally {
-      setIsLoading(false); // Desativa o estado de carregamento, independentemente do resultado
+      setIsLoading(false);
     }
   };
 
-  // Se 'show' for false, não renderiza o modal
   if (!show) return null;
 
   return (
-    // Um único modal-backdrop e sua estrutura de conteúdo
-    <div className="modal-backdrop-custom position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" onClick={onClose}>
+    <div className="modal-backdrop">
       <div
-        className="modal-content-custom rounded shadow-custom fade-in" // Removi mw-100 e w-90 pois max-width já define o tamanho
+        className="modal-content-custom rounded shadow-lg w-90 mw-100"
         style={{ maxWidth: "500px", maxHeight: "90vh", overflowY: "auto" }}
-        onClick={(e) => e.stopPropagation()} // Impede que o clique dentro do modal feche-o
       >
-        <div className="d-flex justify-content-between align-items-center p-4 border-bottom border-custom bg-custom-light">
-          <h5 className="text-accent-custom fw-bold m-0">
+        <div className="d-flex justify-content-between align-items-center p-3 border-bottom border-custom bg-custom-light">
+          <h5 className="text-custom-dark fw-bold m-0">
             <i className="bi bi-plus-circle me-2"></i>
             Adicionar Nova Categoria
           </h5>
-          <button type="button" className="btn btn-outline-custom btn-sm" onClick={onClose}>
-            <i className="bi bi-x-lg"></i>
-          </button>
+          <button type="button" className="btn-close" onClick={onClose}></button>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -140,7 +116,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                   name="nome"
                   value={categoria.nome}
                   onChange={handleChange}
-                  placeholder="Ex: Ficção Científica, Romance Policial, etc."
+                  placeholder="Ex: Fantasia Épica, Suspense Policial, etc."
                   maxLength="50"
                 />
                 {errors.nome && <div className="invalid-feedback">{errors.nome}</div>}
@@ -155,7 +131,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                 <textarea
                   className={`form-control ${errors.descricao ? "is-invalid" : ""}`}
                   id="descricao"
-                  name="descricao"
+                  name="descricao" // Mantém 'descricao' para o estado do seu formulário
                   rows="3"
                   value={categoria.descricao}
                   onChange={handleChange}

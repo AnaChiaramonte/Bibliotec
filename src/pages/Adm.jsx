@@ -275,7 +275,7 @@ const Adm = () => {
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
-      <div className="container-fluid bg-light min-vh-100">
+      <div className="container-fluid main-bg min-vh-100">
         <div className="p-4">
           {/* HEADER */}
           <div className="mb-4 d-flex justify-content-between align-items-center">
@@ -299,7 +299,7 @@ const Adm = () => {
               </button>
             </div>
 
-            <div className="card border-0 shadow-sm">
+            <div className="card border-custom shadow-sm">
               <div className="table-responsive">
                 <table className="table table-hover mb-0">
                   <thead className="table-light">
