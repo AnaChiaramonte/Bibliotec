@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-
-const EditarLivros = ({ show, onClose, onSave, livro }) => {
+const Editar = ({ show, onClose, onSave, livro }) => {
   const [livroEditado, setLivroEditado] = useState({
+    livrosId: "", // ID é importante para a requisição PUT
     titulo: "",
     autor: "",
     genero: "",
@@ -10,112 +10,91 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
     anoPublicacao: "",
     editora: "",
     descricao: "",
-  })
+    // imagemCapaUrl: "", // Adicionar se você tiver este campo
+  });
 
-  const [errors, setErrors] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Lista de gêneros para o select
+  // Gêneros devem vir da API de categorias ou ser uma lista mais abrangente
   const generos = [
-    "Ficção",
-    "Não ficção",
-    "Ficção científica",
-    "Fantasia",
-    "Romance",
-    "Mistério",
-    "Terror",
-    "Biografia",
-    "História",
-    "Autoajuda",
-  ]
+    "Ficção", "Não ficção", "Ficção científica", "Fantasia", "Romance",
+    "Mistério", "Terror", "Biografia", "História", "Autoajuda",
+    "Drama",
+  ];
 
-  // Preenche o formulário quando o livro é passado como prop
   useEffect(() => {
-    if (livro && show) {
+    if (show && livro) {
       setLivroEditado({
-        titulo: livro.title || "",
-        autor: livro.author || "",
-        genero: livro.genre || "",
+        livrosId: livro.livrosId || "", // Garante que o ID esteja presente
+        titulo: livro.titulo || "",
+        autor: livro.autor || "",
+        genero: livro.genero || "",
         isbn: livro.isbn || "",
         anoPublicacao: livro.anoPublicacao || "",
         editora: livro.editora || "",
         descricao: livro.descricao || "",
-      })
-      setErrors({})
+        // imagemCapaUrl: livro.imagemCapaUrl || "",
+      });
+      setErrors({}); // Limpa erros ao abrir o modal
     }
-  }, [livro, show])
+  }, [show, livro]); // Depende de 'show' e 'livro'
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setLivroEditado({
       ...livroEditado,
       [name]: value,
-    })
-    // Limpa o erro quando o usuário começa a digitar
+    });
     if (errors[name]) {
       setErrors({
         ...errors,
         [name]: null,
-      })
+      });
     }
-  }
+  };
 
   const validate = () => {
-    const newErrors = {}
-    if (!livroEditado.titulo.trim()) newErrors.titulo = "Título é obrigatório"
-    if (!livroEditado.autor.trim()) newErrors.autor = "Autor é obrigatório"
-    if (!livroEditado.genero) newErrors.genero = "Gênero é obrigatório"
+    const newErrors = {};
+    if (!livroEditado.titulo.trim()) newErrors.titulo = "Título é obrigatório";
+    if (!livroEditado.autor.trim()) newErrors.autor = "Autor é obrigatório";
+    if (!livroEditado.genero) newErrors.genero = "Gênero é obrigatório";
 
-    // Validação opcional para ISBN (formato básico)
     if (livroEditado.isbn && !/^[0-9-]{10,17}$/.test(livroEditado.isbn)) {
-      newErrors.isbn = "ISBN inválido"
+      newErrors.isbn = "ISBN inválido";
     }
 
-    // Validação opcional para ano (entre 1800 e ano atual)
-    const anoAtual = new Date().getFullYear()
+    const anoAtual = new Date().getFullYear();
     if (livroEditado.anoPublicacao && (livroEditado.anoPublicacao < 1800 || livroEditado.anoPublicacao > anoAtual)) {
-      newErrors.anoPublicacao = `Ano deve ser entre 1800 e ${anoAtual}`
+      newErrors.anoPublicacao = `Ano deve ser entre 1800 e ${anoAtual}`;
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!validate()) return
+    if (!validate()) return;
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
-      // Simulando uma chamada de API
-      await new Promise((resolve) => setTimeout(resolve, 800))
+      // onSave é uma prop que chama a função handleSaveEdit do Adm.jsx
+      // e ela já faz a requisição PUT para a API com o token
+      await onSave(livroEditado); // Passa o livro editado para a função onSave do pai
 
-      // Mantém o ID original do livro
-      const livroAtualizado = {
-        ...livroEditado,
-        id: livro.id,
-      }
-
-      // Chama a função de callback passada pelo componente pai
-      onSave(livroAtualizado)
-
-      onClose()
+      onClose(); // Fecha o modal
     } catch (error) {
-      console.error("Erro ao atualizar livro:", error)
+      console.error("Erro ao salvar edição do livro (no componente EditarLivros):", error);
+      alert("Falha ao editar livro. Verifique o console para mais detalhes.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const handleClose = () => {
-    setErrors({})
-    onClose()
-  }
-
-  // Se o modal não estiver visível, não renderiza nada
-  if (!show || !livro) return null
+  if (!show) return null;
 
   return (
     <div className="modal-backdrop">
@@ -123,32 +102,14 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
         className="modal-content-custom rounded shadow-lg w-90 mw-100"
         style={{ maxWidth: "600px", maxHeight: "90vh", overflowY: "auto" }}
       >
-        {/* Header */}
         <div className="d-flex justify-content-between align-items-center p-3 border-bottom border-custom bg-custom-light">
-          <div className="d-flex align-items-center">
-            <h5 className="text-custom-dark fw-bold m-0 me-2">
-              <i className="bi bi-pencil-square me-2"></i>
-              Editar Livro
-            </h5>
-            <span className="badge badge-id">ID: {livro.id}</span>
-          </div>
-          <button type="button" className="btn-close" onClick={handleClose}></button>
+          <h5 className="text-custom-dark fw-bold m-0">Editar Livro</h5>
+          <button type="button" className="btn-close" onClick={onClose} disabled={isLoading}></button>
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Body */}
           <div className="p-3 bg-custom-light">
-            {/* Aviso sobre alterações */}
-            <div className="alert alert-warning mb-3">
-              <small>
-                <i className="bi bi-exclamation-triangle me-1"></i>
-                <strong>Atenção:</strong> As alterações feitas aqui serão permanentes. Verifique todas as informações
-                antes de salvar.
-              </small>
-            </div>
-
             <div className="row g-3">
-              {/* Título */}
               <div className="col-12">
                 <label htmlFor="titulo" className="form-label text-custom-dark fw-semibold">
                   Título <span className="text-danger">*</span>
@@ -161,11 +122,11 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   value={livroEditado.titulo}
                   onChange={handleChange}
                   placeholder="Digite o título do livro"
+                  disabled={isLoading}
                 />
                 {errors.titulo && <div className="invalid-feedback">{errors.titulo}</div>}
               </div>
 
-              {/* Autor */}
               <div className="col-md-6">
                 <label htmlFor="autor" className="form-label text-custom-dark fw-semibold">
                   Autor <span className="text-danger">*</span>
@@ -178,11 +139,11 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   value={livroEditado.autor}
                   onChange={handleChange}
                   placeholder="Nome do autor"
+                  disabled={isLoading}
                 />
                 {errors.autor && <div className="invalid-feedback">{errors.autor}</div>}
               </div>
 
-              {/* Gênero */}
               <div className="col-md-6">
                 <label htmlFor="genero" className="form-label text-custom-dark fw-semibold">
                   Gênero <span className="text-danger">*</span>
@@ -193,6 +154,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   name="genero"
                   value={livroEditado.genero}
                   onChange={handleChange}
+                  disabled={isLoading}
                 >
                   <option value="">Selecione um gênero</option>
                   {generos.map((genero) => (
@@ -204,7 +166,6 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 {errors.genero && <div className="invalid-feedback">{errors.genero}</div>}
               </div>
 
-              {/* ISBN */}
               <div className="col-md-6">
                 <label htmlFor="isbn" className="form-label text-custom-dark fw-semibold">
                   ISBN
@@ -217,11 +178,11 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   value={livroEditado.isbn}
                   onChange={handleChange}
                   placeholder="Ex: 978-3-16-148410-0"
+                  disabled={isLoading}
                 />
                 {errors.isbn && <div className="invalid-feedback">{errors.isbn}</div>}
               </div>
 
-              {/* Ano de Publicação */}
               <div className="col-md-6">
                 <label htmlFor="anoPublicacao" className="form-label text-custom-dark fw-semibold">
                   Ano de Publicação
@@ -234,11 +195,11 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   value={livroEditado.anoPublicacao}
                   onChange={handleChange}
                   placeholder="Ex: 2023"
+                  disabled={isLoading}
                 />
                 {errors.anoPublicacao && <div className="invalid-feedback">{errors.anoPublicacao}</div>}
               </div>
 
-              {/* Editora */}
               <div className="col-12">
                 <label htmlFor="editora" className="form-label text-custom-dark fw-semibold">
                   Editora
@@ -251,10 +212,10 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   value={livroEditado.editora}
                   onChange={handleChange}
                   placeholder="Nome da editora"
+                  disabled={isLoading}
                 />
               </div>
 
-              {/* Descrição */}
               <div className="col-12">
                 <label htmlFor="descricao" className="form-label text-custom-dark fw-semibold">
                   Descrição
@@ -267,35 +228,51 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                   value={livroEditado.descricao}
                   onChange={handleChange}
                   placeholder="Breve descrição do livro"
+                  disabled={isLoading}
                 ></textarea>
               </div>
+
+              {/* Adicionar campo para URL da imagem se sua API aceitar */}
+              {/* <div className="col-12">
+                <label htmlFor="imagemCapaUrl" className="form-label text-custom-dark fw-semibold">
+                  URL da Imagem da Capa
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="imagemCapaUrl"
+                  name="imagemCapaUrl"
+                  value={livroEditado.imagemCapaUrl}
+                  onChange={handleChange}
+                  placeholder="Ex: https://seusite.com/imagens/capa.jpg"
+                  disabled={isLoading}
+                />
+              </div> */}
+
             </div>
           </div>
 
-          {/* Footer */}
           <div className="d-flex justify-content-end gap-2 p-3 border-top border-custom bg-custom-light">
-            <button type="button" className="btn btn-outline-secondary" onClick={handleClose}>
-              <i className="bi bi-x-lg me-1"></i>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={onClose}
+              disabled={isLoading}
+            >
               Cancelar
             </button>
-            <button type="submit" className="btn btn-primary" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                  Salvando...
-                </>
-              ) : (
-                <>
-                  <i className="bi bi-check-lg me-1"></i>
-                  Salvar Alterações
-                </>
-              )}
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={isLoading}
+            >
+              {isLoading ? "Salvando..." : "Salvar Alterações"}
             </button>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EditarLivros
+export default Editar;

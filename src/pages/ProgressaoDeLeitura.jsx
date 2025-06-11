@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Grafico from "../components/grafico/Grafico";
 import Footer from "../components/footer/Footer";
-import { Link } from "react-router-dom"; // Corrigido o import do Link
+import { Link } from "react-router"; // Corrigido o import do Link
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
