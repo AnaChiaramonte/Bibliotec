@@ -123,18 +123,7 @@ const Home = () => {
         </section>
 
        
-        <section className="py-5 bg-dark-custom">
-          <div className="container text-center">
-            <h2 className="text-accent-custom mb-3">Pronto para começar?</h2>
-            <p className="text-muted-custom mb-4">
-              Junte-se a milhares de leitores que já organizam suas bibliotecas conosco!
-            </p>
-            <div className="d-flex gap-3 justify-content-center flex-wrap">
-              <button className="btn btn-primary-custom btn-lg">Cadastrar Agora</button>
-              <button className="btn btn-outline-custom btn-lg">Explorar Livros</button>
-            </div>
-          </div>
-        </section>
+        
 
         <Footer />
       </div>
