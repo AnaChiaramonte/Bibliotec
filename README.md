@@ -35,3 +35,27 @@ Este projeto permite que desenvolvedores criem plataformas de biblioteca dinâmi
 
 🌸 **Desenvolvimento Rápido**: Utiliza o Vite para tempos de build rápidos e substituição de módulo a quente, acelerando seu ciclo de desenvolvimento.
 
+## Tecnologia Ultilizadas 
+Boostrap, React, Vite, c#
+
+## Instruções de Deploy
+Frontend (Vercel)
+Vincule o repositório do GitHub ao Vercel
+Configure as variáveis de ambiente necessárias
+Deploy automático via push na branch main
+API
+
+
+
+## Configure variáveis de ambiente e build no painel da hospedagem
+
+  ## Funcionalidades Implementadas
+ Cadastro de usuários
+
+ Login com autenticação JWT
+
+ Consumo da API no frontend
+
+ Responsividade mobile
+
+ Deploy automático com CI/CD
