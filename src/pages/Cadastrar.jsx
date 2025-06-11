@@ -15,7 +15,7 @@ const Cadastrar = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL
     try {
-      const resposta = await fetch(`${apiUrl}/Users/register`, {
+      const resposta = await fetch(`${apiUrl}/api/Usuarios/registrar`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,32 +52,26 @@ const Cadastrar = () => {
 
   return (
     <>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <div className="container d-flex  flex-column align-items-center justify-content-center mt-5 m-auto">
+        <h2 className="mb-4  mt-5 text-cadastrar text-light">Cadastrar-se</h2>
 
-      <div className="min-vh-100 d-flex align-items-center justify-content-center bg-pattern">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6 col-lg-4">
-              <div className="card shadow-custom border-custom">
-                <div className="card-body p-4">
-                  <div className="text-center mb-4">
-                    <h2 className="text-accent-custom fw-bold">Cadastrar-se</h2>
-                    <p className="text-muted-custom">Crie sua conta para começar</p>
-                  </div>
-
-                  <form onSubmit={handleLogin}>
-                    <div className="mb-3">
-                      <input
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                        className="form-control"
-                        type="text"
-                        name="frmNome"
-                        id="frmNome"
-                        placeholder="Nome completo"
-                        required
-                      />
-                    </div>
+        <form
+          onSubmit={handleLogin}
+          className="w-100 "
+          style={{ maxWidth: "400px" }}
+        >
+          <div className="mb-3">
+            <input
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="form-control"
+              type="text"
+              name="frmNome"
+              id="frmNome"
+              placeholder="Nome"
+              required
+            />
+          </div>
 
                     <div className="mb-3">
                       <input

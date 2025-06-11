@@ -1,102 +1,173 @@
-import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
-  const [email, setEmail] = useState("")
-  const [senha, setSenha] = useState("")
-  const [mensagem, setMensagem] = useState("")
-  const [loading, setLoading] = useState(false)
-
-  const navigate = useNavigate()
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const navigate = useNavigate();
 
   const fazerLogin = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
 
-    if (!email.includes("@")) {
-      setMensagem("Digite um e-mail válido.")
-      setLoading(false)
-      return
-    }
+    const apiUrl = import.meta.env.VITE_API_URL || "https://bibliotech.somee.com";
+    console.log("API URL usada para login:", apiUrl);
 
-    if (senha.length < 8) {
-      setMensagem("A senha deve ter pelo menos 8 caracteres.")
-      setLoading(false)
-      return
-    }
+    try {
+      const resposta = await fetch(`${apiUrl}/api/Usuarios/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: senha,
+        }),
+      });
 
-    setTimeout(() => {
-      if (email === "admin@admin.com" && senha === "12345678") {
-        navigate("/Adm")
-      } else {
-        setMensagem("Email ou senha inválidos.")
+      // **LER O CORPO DA RESPOSTA APENAS UMA VEZ**
+      // Obtenha o texto bruto da resposta primeiro.
+      // Isso é seguro mesmo se a resposta for JSON, pois JSON é um tipo de texto.
+      const respostaText = await resposta.text(); 
+      let dadosOuErro;
+
+      try {
+        // Tenta parsear o texto como JSON
+        dadosOuErro = JSON.parse(respostaText);
+      } catch (parseError) {
+        // Se falhar ao parsear como JSON, o corpo é texto puro
+        dadosOuErro = { message: respostaText }; // Encapsula o texto puro em um objeto para consistência
       }
-      setLoading(false)
-    }, 1000)
-  }
+
+      if (!resposta.ok) { // Se a resposta não for 2xx (ex: 401, 400, 500)
+        let erroMsg = "Email ou senha inválidos."; // Mensagem padrão para falha de login
+
+        // Se o JSON parseou com sucesso e tem uma mensagem
+        if (dadosOuErro && dadosOuErro.message) {
+            erroMsg = dadosOuErro.message;
+        } else if (dadosOuErro && typeof dadosOuErro.message === 'string') {
+            // Caso seja apenas a string pura ("Senha incorreta.")
+            erroMsg = dadosOuErro.message;
+        }
+        
+        setMensagem(erroMsg);
+        return;
+      }
+
+      // Se a resposta.ok for true (status 200), então 'dadosOuErro' contém os dados de sucesso
+      const dados = dadosOuErro; // Renomeia para clareza
+
+      console.log("Dados do usuário recebidos da API:", dados);
+
+      // ***** LÓGICA PARA LER A ROLE DO JWT *****
+      if (dados.token) {
+        try {
+          const tokenPayloadEncoded = dados.token.split('.')[1];
+          const tokenPayload = JSON.parse(atob(tokenPayloadEncoded));
+
+          console.log("Payload do JWT decodificado:", tokenPayload);
+
+          let userRoles = [];
+          const roleClaimKey = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+
+          if (tokenPayload[roleClaimKey]) {
+            if (Array.isArray(tokenPayload[roleClaimKey])) {
+              userRoles = tokenPayload[roleClaimKey];
+            } else if (typeof tokenPayload[roleClaimKey] === 'string') {
+              userRoles = [tokenPayload[roleClaimKey]];
+            }
+          }
+          else if (tokenPayload.role) {
+             if (Array.isArray(tokenPayload.role)) {
+                userRoles = tokenPayload.role;
+            } else if (typeof tokenPayload.role === 'string') {
+                userRoles = [tokenPayload.role];
+            }
+          } else if (tokenPayload.roles) {
+              if (Array.isArray(tokenPayload.roles)) {
+                userRoles = tokenPayload.roles;
+            } else if (typeof tokenPayload.roles === 'string') {
+                userRoles = [tokenPayload.roles];
+            }
+          }
+          
+          console.log("Roles identificadas do usuário:", userRoles);
+
+          const isAdmin = userRoles.includes("Admin");
+
+          localStorage.setItem("userToken", dados.token);
+          localStorage.setItem("userRoles", JSON.stringify(userRoles));
+
+
+          if (isAdmin) {
+            alert("Login realizado com sucesso! Bem-vindo, administrador.");
+            navigate("/Adm");
+          } else {
+            alert("Login realizado com sucesso! Bem-vindo.");
+            navigate("/");
+          }
+
+        } catch (jwtError) {
+          console.error("Erro ao decodificar ou processar o JWT:", jwtError);
+          setMensagem("Erro ao processar dados de login. Tente novamente mais tarde.");
+          alert("Login realizado com sucesso! Bem-vindo."); // Apenas como fallback
+          navigate("/");
+        }
+      } else {
+        console.warn("Nenhum token JWT recebido da API de login.");
+        alert("Login realizado com sucesso! Bem-vindo.");
+        navigate("/");
+      }
+
+    } catch (error) {
+      console.error("Erro geral na requisição de login:", error);
+      setMensagem("Erro ao fazer login. Verifique sua conexão ou tente novamente.");
+    }
+  };
 
   return (
-    <>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-
-      <div className="min-vh-100 d-flex align-items-center justify-content-center bg-pattern">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6 col-lg-4">
-              <div className="card shadow border-0 fade-in">
-                <div className="card-body p-4">
-                  <div className="text-center mb-4">
-                    <i className="bi bi-book-fill text-accent-custom" style={{ fontSize: "3rem" }}></i>
-                    <h2 className="text-accent-custom fw-bold mb-2">Bem-vindo(a)</h2>
-                    <p className="text-muted">Entre na sua conta para continuar</p>
-                  </div>
-
-                  <form onSubmit={fazerLogin}>
-                    <div className="mb-3">
-                      <div className="input-group">
-                        <span className="input-group-text bg-light">
-                          <i className="bi bi-envelope text-primary-custom"></i>
-                        </span>
-                        <input
-                          type="email"
-                          placeholder="Seu e-mail"
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value)
-                            setMensagem("")
-                          }}
-                          className="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="mb-3">
-                      <div className="input-group">
-                        <span className="input-group-text bg-light">
-                          <i className="bi bi-lock text-primary-custom"></i>
-                        </span>
-                        <input
-                          type="password"
-                          placeholder="Sua senha"
-                          value={senha}
-                          onChange={(e) => {
-                            setSenha(e.target.value)
-                            setMensagem("")
-                          }}
-                          className="form-control"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="form-check mb-4">
-                      <input type="checkbox" className="form-check-input" id="rememberMe" />
-                      <label className="form-check-label text-primary-custom" htmlFor="rememberMe">
-                        Lembrar-me
-                      </label>
-                    </div>
+    <div className="container py-5 d-flex justify-content-center align-items-center vh-100">
+      <div className="w-100 p-4" style={{ maxWidth: "400px" }}>
+        <h2 className="text-center m-5" style={{ color: "#E4CFC4" }}>
+          Bem-vindo(a)
+        </h2>
+        <form onSubmit={fazerLogin}>
+          <div className="mb-3">
+            <input
+              type="email"
+              placeholder="Seu e-mail"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setMensagem("");
+              }}
+              className="form-control rounded-5"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              type="password"
+              placeholder="Sua senha"
+              value={senha}
+              onChange={(e) => {
+                setSenha(e.target.value);
+                setMensagem("");
+              }}
+              className="form-control rounded-5"
+              required
+            />
+          </div>
+          <div className="form-check mb-3">
+            <input type="checkbox" className="form-check-input" id="rememberMe" />
+            <label className="form-check-label" htmlFor="rememberMe">
+              Lembrar-me
+            </label>
+          </div>
+          <div className="d-flex justify-content-center mt-4">
+            <button type="submit" className="btn w-100" style={{ background: "#E4CFC4" }}>
+              Entrar
+            </button>
+          </div>
+        </form>
 
                     {mensagem && (
                       <div className="alert alert-danger text-center mb-3" role="alert">
@@ -146,8 +217,8 @@ function Login() {
           </div>
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Login
+export default Login;
