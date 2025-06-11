@@ -38,7 +38,7 @@ const Home = () => {
     }}
   >
     <img
-      src="/src/assets/Black White Minimalist Book Club Logo (1).png" 
+      src="/public/Black White Minimalist Book Club Logo (1).png" 
       alt="Decorativo"
       className="grafico-container"
     />
@@ -50,7 +50,7 @@ const Home = () => {
 
   <div style={{ width: "50%", position: "relative", height:"" }}>
     <img
-      src="/src/assets/imagem projeto.jpg"
+      src="/public/imagem projeto.jpg"
       alt="Biblioteca"
       className="img-fluid"
       style={{

@@ -1,9 +1,19 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import AddLivros from "../components/addlivros/AddLivros"
 import AddCategorias from "../components/addcategorias/AddCategorias"
 import EditarLivros from "../components/editar/Editar"
 
 const Adm = () => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem("isAdmin")
+    if (isAdmin !== "true") {
+      navigate("/login")
+    }
+  }, [navigate])
+
   const [books, setBooks] = useState([
     { id: 1, title: "The Great Gatsby", author: "F.Scott Fitzgerald", genre: "Romance" },
     { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", genre: "Ficção" },
@@ -50,7 +60,8 @@ const Adm = () => {
   }
 
   const handleLogout = () => {
-    console.log("Logout realizado")
+    localStorage.removeItem("isAdmin")
+    navigate("/login")
   }
 
   const handleSaveEdit = (livroAtualizado) => {

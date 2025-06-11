@@ -1,6 +1,9 @@
 import { useState } from "react"
 import Footer from "../components/footer/Footer"
 
+// Simulando usuário logado
+const user = JSON.parse(localStorage.getItem("user")) || { nome: "Usuario" }
+
 const Livros = () => {
   const [selectedCategory, setSelectedCategory] = useState("Romance")
   const [userRating, setUserRating] = useState(0)
@@ -98,7 +101,7 @@ const Livros = () => {
     if (feedback.trim() && userRating > 0) {
       const newFeedback = {
         id: feedbacks.length + 1,
-        user: "Usuário Atual",
+        user: user.nome,
         rating: userRating,
         comment: feedback.trim(),
       }
@@ -114,7 +117,6 @@ const Livros = () => {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
       <div className="bg-pattern min-vh-100" style={{ paddingTop: "60px" }}>
-
         <div className="container mt-4">
           <div className="row justify-content-center">
             <div className="col-md-6">
@@ -153,7 +155,6 @@ const Livros = () => {
             <div className="col-lg-8">
               <div className="card card-custom border-custom shadow-custom">
                 <div className="card-body text-center p-4">
-             
                   <div className="mb-4">
                     <img
                       src={currentBook.image || "/placeholder.svg?height=400&width=300"}

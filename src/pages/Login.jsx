@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -27,6 +27,8 @@ function Login() {
 
     setTimeout(() => {
       if (email === "admin@admin.com" && senha === "12345678") {
+        // Salvar login no localStorage
+        localStorage.setItem("adminLogado", "true")
         navigate("/Adm")
       } else {
         setMensagem("Email ou senha inválidos.")

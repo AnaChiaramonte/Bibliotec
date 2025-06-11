@@ -31,7 +31,7 @@ const Header = () => {
          
           <a className="navbar-brand d-flex align-items-center h-100" href="/">
             <img
-              src="src/assets/Black White Minimalist Book Club Logo.png"
+              src="/public/Black White Minimalist Book Club Logo.png"
               alt="Bibliotech Logo"
               style={{ width: "auto", height: "40px" }}
               className="me-2"
