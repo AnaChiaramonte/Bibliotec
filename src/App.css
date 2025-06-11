@@ -179,7 +179,7 @@ select {
 }
 
 .text-primary-custom {
-  color: var(--dark) !important;
+  color: var(--accent) !important;
 }
 .text-dark-custom {
   color: var(--dark) !important;

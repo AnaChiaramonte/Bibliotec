@@ -160,7 +160,7 @@ const Livro = () => {
     if (feedback.trim() && userRating > 0) {
       const newFeedback = {
         id: feedbacks.length + 1,
-        user: "Usuário Atual",
+        user: user.nome,
         rating: userRating,
         comment: feedback.trim(),
       };
