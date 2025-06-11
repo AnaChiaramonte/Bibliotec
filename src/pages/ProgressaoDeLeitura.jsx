@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import Footer from "../components/footer/Footer"
 
@@ -74,7 +72,7 @@ const ProgressaoDeLeitura = () => {
 
       <div className="bg-pattern min-vh-100">
         <div className="container py-5">
-          {/* Header */}
+        
           <div className="text-center mb-5">
             <h1 className="display-4 fw-bold text-accent-custom mb-3">
               <i className="bi bi-graph-up me-3"></i>
@@ -83,7 +81,6 @@ const ProgressaoDeLeitura = () => {
             <p className="lead text-muted-custom">Acompanhe sua jornada literária</p>
           </div>
 
-          {/* Books Grid */}
           <div className="row g-4">
             {books.map((livro) => (
               <div key={livro.id} className="col-md-6 col-lg-3">
@@ -107,7 +104,6 @@ const ProgressaoDeLeitura = () => {
                       {livro.autor}
                     </p>
 
-                    {/* Rating */}
                     <div className="mb-3">
                       <p className="text-accent-custom mb-1 small">Avaliação:</p>
                       <div className="star-rating">
@@ -127,7 +123,6 @@ const ProgressaoDeLeitura = () => {
                       </div>
                     </div>
 
-                    {/* Progress */}
                     <div className="mt-auto">
                       <div className="d-flex justify-content-between align-items-center mb-2">
                         <small className="text-accent-custom">Progresso:</small>
@@ -159,7 +154,6 @@ const ProgressaoDeLeitura = () => {
           </div>
         </div>
 
-        {/* Modal */}
         {selectedBook && (
           <div className="modal-backdrop-custom position-fixed top-0 start-0 w-100 h-100" onClick={closeModal}>
             <div className="container">
@@ -174,7 +168,6 @@ const ProgressaoDeLeitura = () => {
                       </button>
                     </div>
 
-                    {/* Modal Body */}
                     <div className="p-4">
                       <div className="row">
                         <div className="col-md-4 mb-4 mb-md-0">
@@ -185,7 +178,7 @@ const ProgressaoDeLeitura = () => {
                             style={{ maxHeight: "300px", width: "100%", objectFit: "cover" }}
                           />
 
-                          {/* Progress Section */}
+                         
                           <div className="mt-3">
                             <h6 className="text-accent-custom">Progresso de Leitura:</h6>
                             <div className="progress mb-2" style={{ height: "12px" }}>
@@ -202,7 +195,6 @@ const ProgressaoDeLeitura = () => {
                             </div>
                           </div>
 
-                          {/* Rating Section */}
                           <div className="mt-3">
                             <h6 className="text-accent-custom">Avaliação:</h6>
                             <div className="star-rating">
@@ -235,7 +227,6 @@ const ProgressaoDeLeitura = () => {
                       </div>
                     </div>
 
-                    {/* Modal Footer */}
                     <div className="d-flex justify-content-end p-4 border-top border-custom">
                       <button type="button" className="btn btn-outline-custom" onClick={closeModal}>
                         Fechar

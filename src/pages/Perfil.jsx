@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import { Link } from "react-router"
 
@@ -31,7 +29,7 @@ const Perfil = () => {
       setEmailEditado(user.email || "")
       setSenhaEditada(user.senha || "")
 
-      // Verifica se `user.nascimento` existe e está no formato esperado
+   
       if (user.nascimento && typeof user.nascimento === "string") {
         const [dia, mes, ano] = user.nascimento.split("/")
         setDia(dia || "")
@@ -44,7 +42,7 @@ const Perfil = () => {
   const handleSave = async () => {
     setLoading(true)
 
-    // Simular delay de salvamento
+    
     setTimeout(() => {
       const usuarioAtualizado = {
         ...usuario,
@@ -59,7 +57,7 @@ const Perfil = () => {
       setEditar(true)
       setLoading(false)
 
-      // Toast de sucesso
+      
       const toast = document.createElement("div")
       toast.className = "alert alert-success position-fixed top-0 start-50 translate-middle-x mt-3"
       toast.style.zIndex = "9999"
@@ -92,7 +90,7 @@ const Perfil = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               {usuario.tipo === "admin" ? (
-                // Admin Dashboard
+              
                 <div className="card card-custom shadow-custom border-custom fade-in">
                   <div className="card-body p-4">
                     <div className="text-center mb-4">
@@ -133,10 +131,10 @@ const Perfil = () => {
                   </div>
                 </div>
               ) : (
-                // User Profile
+            
                 <div className="card card-custom shadow-custom border-custom fade-in">
                   <div className="card-body p-4">
-                    {/* Header */}
+              
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
                         <h2 className="text-accent-custom fw-bold mb-1">Meu Perfil</h2>
@@ -152,10 +150,10 @@ const Perfil = () => {
                       </button>
                     </div>
 
-                    {/* Profile Form */}
+            
                     <form onSubmit={(e) => e.preventDefault()}>
                       <div className="row g-3">
-                        {/* Nome */}
+    
                         <div className="col-md-6">
                           <label htmlFor="nome" className="form-label text-accent-custom fw-semibold">
                             <i className="bi bi-person me-2"></i>Nome Completo
@@ -171,7 +169,6 @@ const Perfil = () => {
                           />
                         </div>
 
-                        {/* Email */}
                         <div className="col-md-6">
                           <label htmlFor="email" className="form-label text-accent-custom fw-semibold">
                             <i className="bi bi-envelope me-2"></i>Email
@@ -187,7 +184,6 @@ const Perfil = () => {
                           />
                         </div>
 
-                        {/* Senha */}
                         <div className="col-md-6">
                           <label htmlFor="senha" className="form-label text-accent-custom fw-semibold">
                             <i className="bi bi-lock me-2"></i>Senha
@@ -203,7 +199,6 @@ const Perfil = () => {
                           />
                         </div>
 
-                        {/* Data de Nascimento */}
                         <div className="col-md-6">
                           <label htmlFor="nascimento" className="form-label text-accent-custom fw-semibold">
                             <i className="bi bi-calendar me-2"></i>Data de Nascimento
@@ -224,7 +219,6 @@ const Perfil = () => {
                         </div>
                       </div>
 
-                      {/* Save Button */}
                       {!editar && (
                         <div className="text-center mt-4">
                           <button
@@ -249,7 +243,6 @@ const Perfil = () => {
                       )}
                     </form>
 
-                    {/* User Stats */}
                     <div className="row g-3 mt-4 pt-4 border-top border-custom">
                       <div className="col-md-4 text-center">
                         <div className="bg-secondary-custom rounded p-3">

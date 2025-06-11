@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 
 const EditarLivros = ({ show, onClose, onSave, livro }) => {
@@ -29,7 +27,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
     "Autoajuda",
   ]
 
-  // Preenche o formulário quando o livro é passado como prop
+
   useEffect(() => {
     if (livro && show) {
       setLivroEditado({
@@ -124,7 +122,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 onClick={(e) => e.stopPropagation()}
                 style={{ maxHeight: "90vh", overflowY: "auto" }}
               >
-                {/* Header */}
+               
                 <div className="d-flex justify-content-between align-items-center p-4 border-bottom border-custom">
                   <div className="d-flex align-items-center">
                     <h5 className="text-accent-custom fw-bold m-0 me-3">
@@ -139,9 +137,9 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  {/* Body */}
+                 
                   <div className="p-4">
-                    {/* Warning Alert */}
+             
                     <div className="alert alert-warning border-custom mb-4">
                       <div className="d-flex align-items-center">
                         <i className="bi bi-exclamation-triangle text-warning fs-5 me-2"></i>
@@ -156,7 +154,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                     </div>
 
                     <div className="row g-3">
-                      {/* Título */}
+                    
                       <div className="col-12">
                         <label htmlFor="titulo" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-type me-1"></i>
@@ -174,7 +172,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         {errors.titulo && <div className="text-danger small mt-1">{errors.titulo}</div>}
                       </div>
 
-                      {/* Autor */}
+                    
                       <div className="col-md-6">
                         <label htmlFor="autor" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-person me-1"></i>
@@ -192,7 +190,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         {errors.autor && <div className="text-danger small mt-1">{errors.autor}</div>}
                       </div>
 
-                      {/* Gênero */}
+                    
                       <div className="col-md-6">
                         <label htmlFor="genero" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-tag me-1"></i>
@@ -215,7 +213,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         {errors.genero && <div className="text-danger small mt-1">{errors.genero}</div>}
                       </div>
 
-                      {/* ISBN */}
+                     
                       <div className="col-md-6">
                         <label htmlFor="isbn" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-upc me-1"></i>
@@ -233,7 +231,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         {errors.isbn && <div className="text-danger small mt-1">{errors.isbn}</div>}
                       </div>
 
-                      {/* Ano de Publicação */}
+                   
                       <div className="col-md-6">
                         <label htmlFor="anoPublicacao" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-calendar me-1"></i>
@@ -251,7 +249,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         {errors.anoPublicacao && <div className="text-danger small mt-1">{errors.anoPublicacao}</div>}
                       </div>
 
-                      {/* Editora */}
+                     
                       <div className="col-12">
                         <label htmlFor="editora" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-building me-1"></i>
@@ -268,7 +266,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         />
                       </div>
 
-                      {/* Descrição */}
+                    
                       <div className="col-12">
                         <label htmlFor="descricao" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-text-paragraph me-1"></i>
@@ -288,7 +286,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                         </div>
                       </div>
 
-                      {/* Info sobre alterações */}
+                    
                       <div className="col-12">
                         <div className="bg-secondary-custom border-custom rounded p-3">
                           <small className="text-dark-custom">
@@ -300,7 +298,7 @@ const EditarLivros = ({ show, onClose, onSave, livro }) => {
                     </div>
                   </div>
 
-                  {/* Footer */}
+                  
                   <div className="d-flex justify-content-between align-items-center p-4 border-top border-custom">
                     <small className="text-muted-custom">
                       <i className="bi bi-info-circle me-1"></i>

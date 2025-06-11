@@ -1,5 +1,3 @@
-"use client"
-
 import Footer from "../components/footer/Footer"
 
 const Home = () => {
@@ -9,7 +7,7 @@ const Home = () => {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
       <div className="bg-pattern">
-        {/* Hero Section - USANDO BOOTSTRAP PARA POSICIONAMENTO */}
+       
         <section className="vh-100 position-relative d-flex align-items-center">
           <div className="container-fluid">
             <div className="row h-100 align-items-center">
@@ -29,11 +27,11 @@ const Home = () => {
               </div>
 
               <div className="d-flex flex-row" style={{ height: "100vh" }}>
-  {/* Lado Esquerdo: Texto com fundo sólido */}
+  
   <div
     className="d-flex flex-column justify-content-center align-items-center"
     style={{
-      backgroundColor: "#a18478", // tom terroso suave
+      backgroundColor: "#a18478", 
       width: "50%",
       color: "#fff",
       padding: "2rem",
@@ -49,7 +47,7 @@ const Home = () => {
    
   </div>
 
-  {/* Lado Direito: Imagem */}
+
   <div style={{ width: "50%", position: "relative", height:"" }}>
     <img
       src="/src/assets/imagem projeto.jpg"
@@ -68,11 +66,10 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Decorative leaf - USANDO BOOTSTRAP - AUMENTADO O TAMANHO */}
-        
+       
         </section>
 
-        {/* Brand Section - USANDO BOOTSTRAP PARA MARGIN E TEXT-ALIGN */}
+        
         <section className="py-5 bg-secondary-custom">
           <div className="container text-center">
             <h1 className="display-2 fw-bold text-dark-custom mb-3">Bibliotech</h1>
@@ -80,10 +77,9 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Features Section - USANDO BOOTSTRAP PARA MARGINS */}
         <section className="py-5 bg-marrom-escuro">
           <div className="container">
-            {/* Feature 1 - USANDO BOOTSTRAP PARA MARGIN-BOTTOM - ÍCONE MAIOR */}
+            
             <div className="row align-items-center mb-5">
               <div className="col-md-2 text-center mb-3 mb-md-0">
                 <i className="bi bi-book-fill text-accent-custom" style={{ fontSize: "5rem" }}></i>
@@ -97,7 +93,6 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Feature 2 - USANDO BOOTSTRAP PARA TEXT-ALIGN E MARGINS - ÍCONE MAIOR */}
             <div className="row align-items-center mb-5">
               <div className="col-md-10 order-md-1">
                 <h3 className="fw-semibold text-dark-custom mb-3 text-md-end">Controle de Progresso de Leitura</h3>
@@ -111,7 +106,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Feature 3 - USANDO BOOTSTRAP PARA MARGINS - ÍCONE MAIOR */}
+        
             <div className="row align-items-center mb-5">
               <div className="col-md-2 text-center mb-3 mb-md-0">
                 <i className="bi bi-star-fill text-accent-custom" style={{ fontSize: "5rem" }}></i>
@@ -127,7 +122,7 @@ const Home = () => {
           </div>
         </section>
 
-        {/* CTA Section - USANDO BOOTSTRAP PARA TEXT-ALIGN E MARGINS */}
+       
         <section className="py-5 bg-dark-custom">
           <div className="container text-center">
             <h2 className="text-accent-custom mb-3">Pronto para começar?</h2>

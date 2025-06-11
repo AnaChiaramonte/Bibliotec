@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 
@@ -142,12 +140,6 @@ function Login() {
                       </p>
                     </div>
                   </form>
-
-                  <div className="mt-4 p-3 bg-light rounded">
-                    <small className="text-dark">
-                      <strong>Demo:</strong> Use admin@admin.com / 12345678 para acessar como administrador
-                    </small>
-                  </div>
                 </div>
               </div>
             </div>

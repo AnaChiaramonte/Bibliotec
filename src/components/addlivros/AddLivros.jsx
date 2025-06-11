@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 const AddLivros = ({ show, onClose, onSave }) => {
@@ -115,7 +113,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                 onClick={(e) => e.stopPropagation()}
                 style={{ maxHeight: "90vh", overflowY: "auto" }}
               >
-                {/* Header */}
+           
                 <div className="d-flex justify-content-between align-items-center p-4 border-bottom border-custom">
                   <h5 className="text-accent-custom fw-bold m-0">
                     <i className="bi bi-book-fill me-2"></i>
@@ -127,10 +125,10 @@ const AddLivros = ({ show, onClose, onSave }) => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  {/* Body */}
+           
                   <div className="p-4">
                     <div className="row g-3">
-                      {/* Título */}
+                 
                       <div className="col-12">
                         <label htmlFor="titulo" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-type me-1"></i>
@@ -148,7 +146,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         {errors.titulo && <div className="text-danger small mt-1">{errors.titulo}</div>}
                       </div>
 
-                      {/* Autor */}
+                  
                       <div className="col-md-6">
                         <label htmlFor="autor" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-person me-1"></i>
@@ -166,7 +164,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         {errors.autor && <div className="text-danger small mt-1">{errors.autor}</div>}
                       </div>
 
-                      {/* Gênero */}
+                    
                       <div className="col-md-6">
                         <label htmlFor="genero" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-tag me-1"></i>
@@ -189,7 +187,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         {errors.genero && <div className="text-danger small mt-1">{errors.genero}</div>}
                       </div>
 
-                      {/* ISBN */}
+              
                       <div className="col-md-6">
                         <label htmlFor="isbn" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-upc me-1"></i>
@@ -207,7 +205,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         {errors.isbn && <div className="text-danger small mt-1">{errors.isbn}</div>}
                       </div>
 
-                      {/* Ano de Publicação */}
+                   
                       <div className="col-md-6">
                         <label htmlFor="anoPublicacao" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-calendar me-1"></i>
@@ -225,7 +223,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         {errors.anoPublicacao && <div className="text-danger small mt-1">{errors.anoPublicacao}</div>}
                       </div>
 
-                      {/* Editora */}
+                    
                       <div className="col-12">
                         <label htmlFor="editora" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-building me-1"></i>
@@ -242,7 +240,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         />
                       </div>
 
-                      {/* Descrição */}
+                     
                       <div className="col-12">
                         <label htmlFor="descricao" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-text-paragraph me-1"></i>
@@ -262,7 +260,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                         </div>
                       </div>
 
-                      {/* Dicas */}
+                     
                       <div className="col-12">
                         <div className="alert bg-secondary-custom border-custom py-2">
                           <small className="text-dark-custom">
@@ -275,7 +273,7 @@ const AddLivros = ({ show, onClose, onSave }) => {
                     </div>
                   </div>
 
-                  {/* Footer */}
+                
                   <div className="d-flex justify-content-end gap-2 p-4 border-top border-custom">
                     <button type="button" className="btn btn-outline-custom" onClick={onClose}>
                       <i className="bi bi-x-lg me-1"></i>

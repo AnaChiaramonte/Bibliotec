@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import Footer from "../components/footer/Footer"
 
@@ -116,9 +114,7 @@ const Livros = () => {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
       <div className="bg-pattern min-vh-100" style={{ paddingTop: "60px" }}>
-        {/* Removido o navbar duplicado - agora usando apenas o Header global */}
 
-        {/* Search Bar */}
         <div className="container mt-4">
           <div className="row justify-content-center">
             <div className="col-md-6">
@@ -132,7 +128,6 @@ const Livros = () => {
           </div>
         </div>
 
-        {/* Categories */}
         <div className="container mt-4">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -153,13 +148,12 @@ const Livros = () => {
           </div>
         </div>
 
-        {/* Book Section */}
         <div className="container mt-5 pb-5">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="card card-custom border-custom shadow-custom">
                 <div className="card-body text-center p-4">
-                  {/* Book Cover */}
+             
                   <div className="mb-4">
                     <img
                       src={currentBook.image || "/placeholder.svg?height=400&width=300"}
@@ -169,7 +163,6 @@ const Livros = () => {
                     />
                   </div>
 
-                  {/* Book Info */}
                   <div className="mb-4">
                     <h2 className="text-accent-custom fw-bold mb-2">{currentBook.title}</h2>
                     <p className="text-muted-custom fs-5 mb-1">por {currentBook.author}</p>
@@ -177,7 +170,6 @@ const Livros = () => {
                     <p className="text-light lh-base">{currentBook.description}</p>
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="mb-4">
                     <button className="btn btn-primary-custom btn-lg" onClick={handleStartReading}>
                       <i className="bi bi-play-circle me-2"></i>
@@ -185,7 +177,6 @@ const Livros = () => {
                     </button>
                   </div>
 
-                  {/* Rating */}
                   <div className="mb-4">
                     <h5 className="text-accent-custom mb-3">Avaliações</h5>
                     <div className="star-rating mb-2">{renderStars(currentBook.rating)}</div>
@@ -194,7 +185,6 @@ const Livros = () => {
                     </p>
                   </div>
 
-                  {/* User Feedback Section */}
                   <div className="mb-4">
                     <div className="mb-3">
                       <p className="text-accent-custom mb-2">Sua avaliação:</p>
@@ -228,7 +218,6 @@ const Livros = () => {
                     </button>
                   </div>
 
-                  {/* Display Feedbacks */}
                   <div>
                     <h6 className="text-accent-custom mb-3">Comentários dos leitores:</h6>
                     {feedbacks.map((fb) => (

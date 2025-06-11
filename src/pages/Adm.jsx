@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import AddLivros from "../components/addlivros/AddLivros"
 import AddCategorias from "../components/addcategorias/AddCategorias"
@@ -84,7 +82,6 @@ const Adm = () => {
             </button>
           </div>
 
-          {/* Stats Cards - ADMIN DASHBOARD */}
           <div className="row g-3 mb-5">
             <div className="col-sm-6 col-lg-3">
               <div className="card border-0 shadow-sm h-100">

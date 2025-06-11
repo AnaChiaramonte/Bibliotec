@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 
 const Header = () => {
@@ -27,10 +25,10 @@ const Header = () => {
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 
-      {/* Usando classes Bootstrap para height e alinhamento */}
+  
       <nav className={`navbar navbar-expand-lg navbar-custom fixed-top h-auto py-2 ${isScrolled ? "scrolled" : ""}`}>
         <div className="container">
-          {/* Logo/Brand - usando d-flex e align-items-center */}
+         
           <a className="navbar-brand d-flex align-items-center h-100" href="/">
             <img
               src="src/assets/Black White Minimalist Book Club Logo.png"
@@ -41,7 +39,7 @@ const Header = () => {
             <span className="text-primary-custom fw-bold fs-4">Bibliotech</span>
           </a>
 
-          {/* Mobile Toggle Button */}
+          
           <button
             className="navbar-toggler border-0 p-1"
             type="button"
@@ -54,9 +52,9 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* Navigation Menu */}
+        
           <div className="collapse navbar-collapse" id="navbarNav">
-            {/* Main Navigation Links - usando py-2 para padding vertical */}
+           
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <a className="nav-link py-2 px-3" href="/Livros">
@@ -72,7 +70,7 @@ const Header = () => {
               </li>
             </ul>
 
-            {/* User Actions */}
+          
             <div className="navbar-nav">
               {user ? (
                 <div className="nav-item dropdown">

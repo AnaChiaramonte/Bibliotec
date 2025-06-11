@@ -1,5 +1,3 @@
-"use client"
-
 const Footer = () => {
   return (
     <>
@@ -9,7 +7,7 @@ const Footer = () => {
       <footer className="bg-dark-custom text-white pt-4 w-100 mt-5">
         <div className="container py-4">
           <div className="row">
-            {/* Sobre Nós */}
+          
             <div className="col-lg-4 mb-4">
               <h5 className="text-accent-custom border-bottom border-warning pb-2 mb-3">
                 <i className="bi bi-info-circle me-2"></i>
@@ -27,7 +25,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Formas de Pagamento */}
             <div className="col-lg-4 mb-4">
               <h5 className="text-accent-custom border-bottom border-warning pb-2 mb-3">
                 <i className="bi bi-credit-card me-2"></i>
@@ -61,9 +58,8 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Contato e Redes Sociais */}
             <div className="col-lg-4 mb-4">
-              {/* Contato */}
+             
               <h5 className="text-accent-custom border-bottom border-warning pb-2 mb-3">
                 <i className="bi bi-envelope me-2"></i>
                 Contato
@@ -85,14 +81,14 @@ const Footer = () => {
                 </div>
               </div>
 
-              {/* Redes Sociais */}
+             
               <h5 className="text-accent-custom border-bottom border-warning pb-2 mb-3">
                 <i className="bi bi-share me-2"></i>
                 Redes Sociais
               </h5>
               <div className="d-flex gap-3">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/"
                   className="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center"
                   style={{ width: "40px", height: "40px" }}
                   aria-label="Instagram"
@@ -102,7 +98,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://www.tiktok.com"
                   className="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center"
                   style={{ width: "40px", height: "40px" }}
                   aria-label="TikTok"
@@ -112,7 +108,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://x.com"
                   className="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center"
                   style={{ width: "40px", height: "40px" }}
                   aria-label="Twitter"
@@ -122,7 +118,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://www.facebook.com"
                   className="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center"
                   style={{ width: "40px", height: "40px" }}
                   aria-label="Facebook"
@@ -132,7 +128,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://www.youtube.com"
                   className="btn btn-outline-custom rounded-circle p-2 d-flex align-items-center justify-content-center"
                   style={{ width: "40px", height: "40px" }}
                   aria-label="YouTube"
@@ -142,7 +138,6 @@ const Footer = () => {
                 </a>
               </div>
 
-              {/* Newsletter */}
               <div className="mt-4">
                 <h6 className="text-accent-custom mb-2">
                   <i className="bi bi-bell me-1"></i>
@@ -163,93 +158,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
-          {/* Links úteis */}
-          <div className="row mt-4 pt-4 border-top border-warning">
-            <div className="col-md-3 mb-3">
-              <h6 className="text-accent-custom mb-2">Navegação</h6>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-house me-1"></i>Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-book me-1"></i>Livros
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-person me-1"></i>Perfil
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-3 mb-3">
-              <h6 className="text-accent-custom mb-2">Categorias</h6>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    Romance
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    Ficção Científica
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    Fantasia
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-3 mb-3">
-              <h6 className="text-accent-custom mb-2">Suporte</h6>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-question-circle me-1"></i>FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-headset me-1"></i>Suporte
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-shield-check me-1"></i>Privacidade
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-3 mb-3">
-              <h6 className="text-accent-custom mb-2">Empresa</h6>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-info-circle me-1"></i>Sobre
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-briefcase me-1"></i>Carreiras
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-light text-decoration-none small">
-                    <i className="bi bi-newspaper me-1"></i>Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
 
-        {/* Copyright */}
         <div className="bg-secondary-custom py-3">
           <div className="container">
             <div className="row align-items-center">

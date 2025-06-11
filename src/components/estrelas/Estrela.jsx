@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 const StarRating = ({ initialRating = 0, totalStars = 5, onRatingChange, size = "normal", readonly = false }) => {

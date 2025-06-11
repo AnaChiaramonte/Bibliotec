@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 const AddCategorias = ({ show, onClose, onSave }) => {
@@ -122,7 +120,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                 className="modal-content-custom rounded shadow-custom fade-in mh-100 overflow-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Header */}
+              
                 <div className="d-flex justify-content-between align-items-center p-4 border-bottom border-custom">
                   <h5 className="text-accent-custom fw-bold m-0">
                     <i className="bi bi-plus-circle me-2"></i>
@@ -134,10 +132,10 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  {/* Body */}
+                
                   <div className="p-4">
                     <div className="row g-3">
-                      {/* Categoria Base */}
+                     
                       <div className="col-12">
                         <label htmlFor="categoriaBase" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-collection me-1"></i>
@@ -160,7 +158,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                         {errors.categoriaBase && <div className="text-danger small mt-1">{errors.categoriaBase}</div>}
                       </div>
 
-                      {/* Nome da Subcategoria */}
+                     
                       <div className="col-12">
                         <label htmlFor="nome" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-tag me-1"></i>
@@ -180,7 +178,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                         <div className="text-muted-custom small mt-1">{categoria.nome.length}/50 caracteres</div>
                       </div>
 
-                      {/* Descrição */}
+                 
                       <div className="col-12">
                         <label htmlFor="descricao" className="form-label text-accent-custom fw-semibold">
                           <i className="bi bi-text-paragraph me-1"></i>
@@ -200,7 +198,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                         <div className="text-muted-custom small mt-1">{categoria.descricao.length}/200 caracteres</div>
                       </div>
 
-                      {/* Preview */}
+                    
                       {categoria.categoriaBase && categoria.nome && (
                         <div className="col-12">
                           <label className="form-label text-accent-custom fw-semibold">
@@ -226,7 +224,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                         </div>
                       )}
 
-                      {/* Info Alert */}
+                   
                       <div className="col-12">
                         <div className="alert alert-info py-2 border-custom">
                           <small className="text-dark-custom">
@@ -239,7 +237,7 @@ const AddCategorias = ({ show, onClose, onSave }) => {
                     </div>
                   </div>
 
-                  {/* Footer */}
+                 
                   <div className="d-flex justify-content-end gap-2 p-4 border-top border-custom">
                     <button type="button" className="btn btn-outline-custom" onClick={onClose}>
                       <i className="bi bi-x-lg me-1"></i>
